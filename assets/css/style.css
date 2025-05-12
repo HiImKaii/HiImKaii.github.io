@@ -1,34 +1,42 @@
-/* CSS phong cách thời tiết 3D */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&family=Quicksand:wght@300..900&display=swap');
+/* CSS phong cách thời tiết 3D - Cute Edition */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&family=Quicksand:wght@300..900&family=Bubblegum+Sans&display=swap');
 
 :root {
-    --color-sky-light: #87CEEB;
-    /* Màu bầu trời nhạt */
-    --color-sky-dark: #1E40AF;
-    /* Màu bầu trời đậm */
-    --color-sun: #FBBF24;
-    /* Màu vàng nắng */
-    --color-sun-bright: #F59E0B;
-    /* Màu vàng nắng rực */
-    --color-cloud: #F9FAFB;
-    /* Màu mây trắng */
-    --color-cloud-dark: #D1D5DB;
+    --color-sky-light: #8CDBFF;
+    /* Màu bầu trời nhạt - sáng hơn */
+    --color-sky-dark: #2563EB;
+    /* Màu bầu trời đậm - sáng hơn */
+    --color-sun: #FFC53D;
+    /* Màu vàng nắng - sáng hơn */
+    --color-sun-bright: #FF9F1C;
+    /* Màu vàng nắng rực - ấm hơn */
+    --color-cloud: #FFFFFF;
+    /* Màu mây trắng - sáng hơn */
+    --color-cloud-dark: #E2E8F0;
     /* Màu mây đậm */
-    --color-grass: #10B981;
-    /* Màu cỏ xanh */
-    --color-rain: #60A5FA;
-    /* Màu mưa */
-    --color-lightning: #FBBF24;
-    /* Màu sét */
-    --color-earth: #92400E;
-    /* Màu đất */
-    --gradient-sky: linear-gradient(to bottom, #87CEEB, #1E40AF);
-    --gradient-sunset: linear-gradient(to right, #FBBF24, #EF4444, #8B5CF6);
-    --gradient-rainbow: linear-gradient(to right, #EF4444, #F59E0B, #FBBF24, #10B981, #3B82F6, #8B5CF6);
-    --shadow-sun: 0 0 20px rgba(251, 191, 36, 0.6);
-    --shadow-cloud: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --color-grass: #25D366;
+    /* Màu cỏ xanh - tươi hơn */
+    --color-rain: #85C1FF;
+    /* Màu mưa - nhẹ nhàng hơn */
+    --color-lightning: #FFDD00;
+    /* Màu sét - sáng hơn */
+    --color-earth: #C2703D;
+    /* Màu đất - ấm hơn */
+    --color-pastel-pink: #FFC0CB;
+    /* Màu hồng pastel */
+    --color-pastel-purple: #CCADFF;
+    /* Màu tím pastel */
+    --color-pastel-blue: #A6D6FF;
+    /* Màu xanh pastel */
+    --gradient-sky: linear-gradient(to bottom, var(--color-sky-light), var(--color-sky-dark));
+    --gradient-sunset: linear-gradient(to right, #FFB830, #FF8080, #C490E4);
+    --gradient-rainbow: linear-gradient(to right, #FF9AA2, #FFB7B2, #FFDAC1, #E2F0CB, #B5EAD7, #C7CEEA);
+    --shadow-sun: 0 0 30px rgba(255, 197, 61, 0.8);
+    --shadow-cloud: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+    --shadow-3d: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
     --font-main: 'Montserrat', sans-serif;
     --font-alt: 'Quicksand', sans-serif;
+    --font-cute: 'Bubblegum Sans', cursive;
 }
 
 html {
@@ -46,22 +54,24 @@ body {
 }
 
 .night-mode {
-    background: linear-gradient(to bottom, #0F172A, #1E3A8A);
+    background: linear-gradient(to bottom, #0F172A, #3B82F6);
     color: #F9FAFB;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
 ::-webkit-scrollbar-track {
     background: var(--color-sky-light);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--color-sun), var(--color-sky-dark));
+    background: linear-gradient(180deg, var(--color-sun), var(--color-pastel-pink));
     border-radius: 20px;
+    border: 3px solid var(--color-sky-light);
 }
 
 /* Nền 3D */
@@ -74,45 +84,97 @@ body {
     height: 100%;
 }
 
-/* Card thời tiết */
+/* Card thời tiết - 3D nâng cao */
 .weather-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    box-shadow: var(--shadow-cloud);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    box-shadow: var(--shadow-cloud), 0 10px 15px -3px rgba(0, 0, 0, 0.1) inset;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     overflow: hidden;
+    transform: perspective(1000px) rotateX(0deg);
 }
 
 .weather-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: perspective(1000px) translateY(-15px) rotateX(2deg) rotateY(2deg);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.2), 0 15px 15px -5px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Hiệu ứng mặt trời */
+.weather-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: var(--gradient-rainbow);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.weather-card:hover::before {
+    opacity: 1;
+}
+
+/* Hiệu ứng mặt trời - 3D và cute hơn */
 .sun-effect {
     width: 80px;
     height: 80px;
-    background: var(--color-sun);
+    background: radial-gradient(circle, var(--color-sun) 60%, var(--color-sun-bright) 100%);
     border-radius: 50%;
     box-shadow: var(--shadow-sun);
-    animation: pulse-sun 3s infinite alternate;
+    animation: pulse-sun 4s infinite alternate, rotate-subtle 30s linear infinite;
+    position: relative;
+}
+
+.sun-effect::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6) 5%, transparent 50%);
+    border-radius: 50%;
+}
+
+.sun-effect::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 40px var(--color-sun);
+    opacity: 0.5;
+    filter: blur(10px);
 }
 
 @keyframes pulse-sun {
     from {
-        box-shadow: 0 0 20px var(--color-sun), 0 0 40px var(--color-sun-bright);
+        box-shadow: 0 0 30px var(--color-sun), 0 0 50px var(--color-sun-bright);
         transform: scale(1);
     }
 
     to {
-        box-shadow: 0 0 30px var(--color-sun), 0 0 60px var(--color-sun-bright);
-        transform: scale(1.1);
+        box-shadow: 0 0 50px var(--color-sun), 0 0 80px var(--color-sun-bright);
+        transform: scale(1.15);
     }
 }
 
-/* Hiệu ứng mây */
+@keyframes rotate-subtle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hiệu ứng mây - 3D và cute hơn */
 .cloud-effect {
     position: relative;
     width: 200px;
@@ -121,6 +183,8 @@ body {
     border-radius: 50px;
     filter: drop-shadow(var(--shadow-cloud));
     animation: float-cloud 10s infinite alternate ease-in-out;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) inset;
 }
 
 .cloud-effect:before,
@@ -129,37 +193,43 @@ body {
     position: absolute;
     background: var(--color-cloud);
     border-radius: 50%;
+    box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.1) inset;
 }
 
 .cloud-effect:before {
-    width: 80px;
-    height: 80px;
-    top: -40px;
+    width: 90px;
+    height: 90px;
+    top: -50px;
     left: 30px;
 }
 
 .cloud-effect:after {
-    width: 60px;
-    height: 60px;
-    top: -30px;
-    right: 40px;
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    right: 30px;
+}
+
+.cloud-effect:hover {
+    transform: scale(1.05) translateY(-5px);
+    filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.15));
 }
 
 @keyframes float-cloud {
     0% {
-        transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0) rotateZ(0deg);
     }
 
     50% {
-        transform: translateY(-15px) translateX(15px);
+        transform: translateY(-15px) translateX(15px) rotateZ(1deg);
     }
 
     100% {
-        transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0) rotateZ(0deg);
     }
 }
 
-/* Hiệu ứng mưa */
+/* Hiệu ứng mưa - Cute hơn */
 .rain-container {
     position: absolute;
     width: 100%;
@@ -171,21 +241,27 @@ body {
 
 .rain-drop {
     position: absolute;
-    width: 2px;
-    height: 15px;
-    background: var(--color-rain);
-    opacity: 0.6;
+    width: 3px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, var(--color-rain));
+    opacity: 0.7;
     border-radius: 0 0 5px 5px;
-    animation: rain-fall 1s linear infinite;
+    animation: rain-fall 1.2s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(133, 193, 255, 0.5));
 }
 
 @keyframes rain-fall {
     0% {
-        transform: translateY(-100vh);
+        transform: translateY(-100vh) rotate(5deg);
+    }
+
+    80% {
+        opacity: 0.7;
     }
 
     100% {
-        transform: translateY(100vh);
+        transform: translateY(100vh) rotate(10deg);
+        opacity: 0;
     }
 }
 
@@ -195,128 +271,197 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
+    font-family: var(--font-cute);
+    letter-spacing: 1px;
 }
 
-/* Nút thời tiết */
+/* Nút thời tiết - 3D và cute hơn */
 .weather-btn {
     background: var(--color-sky-dark);
     color: white;
-    padding: 0.8rem 2rem;
+    padding: 0.9rem 2.2rem;
     border-radius: 50px;
     font-weight: 600;
     letter-spacing: 1px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s;
-    box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 0 #1E40AF, 0 8px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transform: translateY(-3px);
 }
 
 .weather-btn:hover {
     background: var(--color-sun);
     color: #1E3A8A;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.4);
+    transform: translateY(0);
+    box-shadow: 0 3px 0 #F59E0B, 0 6px 20px rgba(251, 191, 36, 0.5);
+}
+
+.weather-btn::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(to right, var(--color-pastel-pink), var(--color-pastel-blue));
+    z-index: -2;
+    border-radius: 55px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.weather-btn:hover::before {
+    opacity: 1;
+}
+
+.weather-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
 }
 
 .weather-btn-alt {
     background: var(--color-sun);
     color: #1E3A8A;
+    box-shadow: 0 6px 0 #F59E0B, 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
 .weather-btn-alt:hover {
     background: var(--color-sky-dark);
     color: white;
+    box-shadow: 0 3px 0 #1E40AF, 0 6px 20px rgba(30, 64, 175, 0.5);
 }
 
-/* Section dividers thời tiết */
+/* Section dividers thời tiết - cute hơn */
 .wave-divider {
-    height: 150px;
+    height: 180px;
     overflow: hidden;
     line-height: 0;
     transform: rotate(180deg);
+    filter: drop-shadow(0 -10px 10px rgba(0, 0, 0, 0.05));
 }
 
 .wave-divider svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 150px;
+    height: 180px;
     transform: rotateY(180deg);
 }
 
 .wave-divider .shape-fill {
-    fill: rgba(255, 255, 255, 0.7);
+    fill: rgba(255, 255, 255, 0.8);
+    transition: fill 0.5s ease;
 }
 
-/* Tiêu đề phong cách thời tiết */
+.wave-divider:hover .shape-fill {
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+/* Tiêu đề phong cách thời tiết - cute hơn */
 .weather-heading {
     position: relative;
-    font-family: var(--font-alt);
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-family: var(--font-cute);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
     font-weight: 800;
     color: var(--color-sky-dark);
     text-align: center;
-    margin-bottom: 3rem;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    margin-bottom: 3.5rem;
+    text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    transform: rotate(-1deg);
 }
 
 .night-mode .weather-heading {
     color: var(--color-cloud);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 .weather-heading::after {
     content: '☁️';
     position: absolute;
-    bottom: -15px;
+    bottom: -20px;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.5rem;
+    transform: translateX(-50%) scale(1.3);
+    font-size: 1.8rem;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.1));
+    animation: bounce-gentle 3s ease-in-out infinite;
 }
 
-/* Hiệu ứng nổi 3D */
+@keyframes bounce-gentle {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0) scale(1.3);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px) scale(1.3);
+    }
+}
+
+/* Hiệu ứng nổi 3D - nâng cao */
 .float-3d {
     transform-style: preserve-3d;
     perspective: 1000px;
+    transition: transform 0.5s ease;
+}
+
+.float-3d:hover {
+    transform: translateY(-5px) rotateX(5deg) rotateY(-5deg);
 }
 
 .depth-1 {
-    transform: translateZ(20px);
+    transform: translateZ(30px);
+    transition: transform 0.5s ease;
 }
 
 .depth-2 {
-    transform: translateZ(40px);
+    transform: translateZ(60px);
+    transition: transform 0.5s ease;
 }
 
 .depth-3 {
-    transform: translateZ(60px);
+    transform: translateZ(90px);
+    transition: transform 0.5s ease;
 }
 
-/* Hiệu ứng mặt trời mọc */
+/* Hiệu ứng mặt trời mọc - cute hơn */
 .sunrise {
     position: relative;
-    width: 100px;
-    height: 50px;
+    width: 120px;
+    height: 60px;
     overflow: hidden;
+    border-radius: 60px 60px 0 0;
+    background: linear-gradient(to bottom, var(--color-sky-light) 0%, rgba(135, 206, 235, 0.2) 100%);
+    box-shadow: 0 -5px 15px rgba(135, 206, 235, 0.3);
 }
 
 .sunrise::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    background: var(--color-sun);
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, var(--color-sun) 60%, var(--color-sun-bright) 100%);
     border-radius: 50%;
     box-shadow: var(--shadow-sun);
-    animation: rise 4s infinite alternate;
+    animation: rise 4s infinite alternate, glow 2s infinite alternate;
 }
 
 @keyframes rise {
     from {
-        transform: translate(-50%, 100%);
+        transform: translate(-50%, 95%);
     }
 
     to {
@@ -324,94 +469,163 @@ body {
     }
 }
 
-/* Hiệu ứng tuyết rơi */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px var(--color-sun);
+    }
+
+    to {
+        box-shadow: 0 0 40px var(--color-sun), 0 0 80px var(--color-sun-bright);
+    }
+}
+
+/* Hiệu ứng tuyết rơi - cute hơn */
 .snowflake {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background: white;
     border-radius: 50%;
     filter: drop-shadow(0 0 10px white);
     animation: snowfall 10s linear infinite;
+    opacity: 0.9;
+}
+
+.snowflake::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 50%;
+    transform: scale(0.8);
+    filter: blur(2px);
 }
 
 @keyframes snowfall {
     0% {
-        transform: translateY(-100px) rotate(0deg) scale(1);
+        transform: translateY(-100px) rotate(0deg) scale(0.8);
+    }
+
+    50% {
+        transform: translateY(calc(50vh)) rotate(180deg) scale(1.2);
     }
 
     100% {
-        transform: translateY(calc(100vh + 100px)) rotate(360deg) scale(0.5);
+        transform: translateY(calc(100vh + 100px)) rotate(360deg) scale(0.8);
     }
 }
 
-/* Skill badge mây */
+/* Skill badge mây - cute hơn */
 .cloud-badge {
     background: var(--color-cloud);
-    border: 1px solid rgba(209, 213, 219, 0.5);
+    border: 2px solid rgba(209, 213, 219, 0.5);
     color: var(--color-sky-dark);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
     font-weight: 500;
-    box-shadow: var(--shadow-cloud);
-    transition: all 0.3s;
+    box-shadow: var(--shadow-cloud), 0 5px 0 rgba(209, 213, 219, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(-3px);
+    position: relative;
+    overflow: hidden;
 }
 
 .cloud-badge:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+    transform: translateY(0) scale(1.05);
+    box-shadow: 0 2px 0 rgba(209, 213, 219, 0.5), 0 15px 30px -10px rgba(0, 0, 0, 0.1);
     background: white;
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Hiệu ứng parallax clouds khi cuộn trang */
+.cloud-badge::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, var(--color-pastel-pink), var(--color-pastel-blue), var(--color-pastel-purple));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 35px;
+}
+
+.cloud-badge:hover::before {
+    opacity: 0.5;
+}
+
+/* Hiệu ứng parallax clouds khi cuộn trang - nâng cao */
 .parallax-cloud {
     position: absolute;
-    opacity: 0.7;
-    transition: transform 0.5s ease-out;
+    opacity: 0.8;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
 }
 
 .parallax-cloud-1 {
-    transform: translateY(var(--scroll-y, 0)) scale(1);
+    transform: translateY(var(--scroll-y, 0)) scale(1.1);
     z-index: -1;
 }
 
 .parallax-cloud-2 {
-    transform: translateY(calc(var(--scroll-y, 0) * 0.5)) scale(0.8);
+    transform: translateY(calc(var(--scroll-y, 0) * 0.6)) translateX(calc(var(--scroll-y, 0) * -0.1)) scale(0.9);
     z-index: -2;
 }
 
 .parallax-cloud-3 {
-    transform: translateY(calc(var(--scroll-y, 0) * 0.25)) scale(0.6);
+    transform: translateY(calc(var(--scroll-y, 0) * 0.3)) translateX(calc(var(--scroll-y, 0) * 0.05)) scale(0.7);
     z-index: -3;
 }
 
-/* Hiệu ứng hào quang */
+/* Hiệu ứng hào quang - 3D nâng cao */
 .halo {
     position: relative;
+    transition: transform 0.5s ease;
 }
 
 .halo::after {
     content: '';
     position: absolute;
-    top: -20%;
-    left: -20%;
-    width: 140%;
-    height: 140%;
-    background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(251, 191, 36, 0) 70%);
+    top: -25%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 197, 61, 0.5) 0%, rgba(255, 197, 61, 0) 70%);
     z-index: -1;
     opacity: 0;
     transition: opacity 0.5s;
+    filter: blur(10px);
+    animation: rotate-halo 20s linear infinite;
+}
+
+@keyframes rotate-halo {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.halo:hover {
+    transform: scale(1.05);
 }
 
 .halo:hover::after {
     opacity: 1;
 }
 
-/* Card với hiệu ứng mưa */
+/* Card với hiệu ứng mưa - nâng cao */
 .rain-card {
     position: relative;
     overflow: hidden;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .rain-card::before {
@@ -419,10 +633,15 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent 0%, rgba(96, 165, 250, 0.2) 100%);
-    animation: rain-animation 1.5s infinite linear;
+    background: linear-gradient(to bottom, transparent 0%, rgba(133, 193, 255, 0.3) 100%);
+    animation: rain-animation 2s infinite linear;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.5s;
+}
+
+.rain-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
 }
 
 .rain-card:hover::before {
@@ -437,4 +656,50 @@ body {
     100% {
         transform: translateY(100%);
     }
+}
+
+/* Hiệu ứng đáng yêu cho các phần tử */
+.cute-element {
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.cute-element:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.cute-element::after {
+    content: "✨";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(0.5);
+}
+
+.cute-element:hover::after {
+    opacity: 1;
+    transform: scale(1) rotate(-10deg);
+}
+
+/* Nút trong trang trông giống hoạt hình */
+.cartoon-btn {
+    font-family: var(--font-cute);
+    border-radius: 50px;
+    padding: 0.8rem 2rem;
+    background: var(--color-sun);
+    color: #1E3A8A;
+    border: 3px solid #1E3A8A;
+    box-shadow: 0 8px 0 #1E3A8A, 0 12px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: all 0.2s ease;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.cartoon-btn:hover {
+    transform: translateY(0);
+    box-shadow: 0 4px 0 #1E3A8A, 0 8px 15px rgba(0, 0, 0, 0.1);
 }
