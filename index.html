@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NHĐ Portfolio ✌️</title>
+    <title>NHĐ Weather Portfolio ☁️</title>
 
-    <link rel="icon" href="https://placehold.co/32x32/ff3366/ffffff?text=NHD&font=urbanist" type="image/x-icon">
+    <link rel="icon" href="https://placehold.co/32x32/4299e1/ffffff?text=NHD&font=urbanist" type="image/x-icon">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -15,34 +15,52 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Thêm GSAP cho animation mạnh mẽ -->
+    <!-- GSAP cho animation mạnh mẽ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Thêm thư viện Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Three.js cho hiệu ứng 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- VANTA.js cho hiệu ứng 3D background -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
 
     <style>
-        /* CSS phong cách teen năng động với nhiều hiệu ứng */
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=Urbanist:wght@300..900&display=swap');
+        /* CSS phong cách thời tiết 3D */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&family=Quicksand:wght@300..900&display=swap');
 
         :root {
-            --color-primary: #FF3366;
-            /* Pink hot */
-            --color-secondary: #5E17EB;
-            /* Purple chill */
-            --color-accent: #00F5E9;
-            /* Cyan electric */
-            --color-dark: #0A101E;
-            --color-light: #FFFFFF;
-            --gradient-main: linear-gradient(120deg, #FF3366, #5E17EB);
-            --gradient-alt: linear-gradient(120deg, #00F5E9, #5E17EB);
-            --shadow-neon: 0 0 15px rgba(255, 51, 102, 0.5);
-            --font-main: 'Urbanist', sans-serif;
-            --font-alt: 'Outfit', sans-serif;
+            --color-sky-light: #87CEEB;
+            /* Màu bầu trời nhạt */
+            --color-sky-dark: #1E40AF;
+            /* Màu bầu trời đậm */
+            --color-sun: #FBBF24;
+            /* Màu vàng nắng */
+            --color-sun-bright: #F59E0B;
+            /* Màu vàng nắng rực */
+            --color-cloud: #F9FAFB;
+            /* Màu mây trắng */
+            --color-cloud-dark: #D1D5DB;
+            /* Màu mây đậm */
+            --color-grass: #10B981;
+            /* Màu cỏ xanh */
+            --color-rain: #60A5FA;
+            /* Màu mưa */
+            --color-lightning: #FBBF24;
+            /* Màu sét */
+            --color-earth: #92400E;
+            /* Màu đất */
+            --gradient-sky: linear-gradient(to bottom, #87CEEB, #1E40AF);
+            --gradient-sunset: linear-gradient(to right, #FBBF24, #EF4444, #8B5CF6);
+            --gradient-rainbow: linear-gradient(to right, #EF4444, #F59E0B, #FBBF24, #10B981, #3B82F6, #8B5CF6);
+            --shadow-sun: 0 0 20px rgba(251, 191, 36, 0.6);
+            --shadow-cloud: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --font-main: 'Montserrat', sans-serif;
+            --font-alt: 'Quicksand', sans-serif;
         }
 
         html {
@@ -51,447 +69,547 @@
 
         body {
             font-family: var(--font-main);
-            background-color: var(--color-dark);
-            color: var(--color-light);
+            background: var(--gradient-sky);
+            color: #1F2937;
             transition: all 0.4s ease;
             overflow-x: hidden;
+            min-height: 100vh;
+            background-attachment: fixed;
         }
 
-        /* Cool Scrollbar */
+        .night-mode {
+            background: linear-gradient(to bottom, #0F172A, #1E3A8A);
+            color: #F9FAFB;
+        }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #0A101E;
+            background: var(--color-sky-light);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #FF3366, #5E17EB);
+            background: linear-gradient(180deg, var(--color-sun), var(--color-sky-dark));
             border-radius: 20px;
         }
 
-        /* Neon glowing text effect */
-        .neon-text {
-            color: var(--color-light);
-            text-shadow: 0 0 10px var(--color-primary),
-                0 0 20px var(--color-primary),
-                0 0 30px var(--color-primary);
-            animation: neon-pulse 2s infinite alternate;
-        }
-
-        @keyframes neon-pulse {
-            from {
-                text-shadow: 0 0 5px var(--color-primary),
-                    0 0 10px var(--color-primary);
-            }
-
-            to {
-                text-shadow: 0 0 10px var(--color-primary),
-                    0 0 20px var(--color-primary),
-                    0 0 30px var(--color-primary);
-            }
-        }
-
-        /* Background glowing dots/particles */
-        #particles-js {
+        /* Nền 3D */
+        #vanta-bg {
             position: fixed;
-            width: 100%;
-            height: 100%;
+            z-index: -1;
             top: 0;
             left: 0;
-            z-index: -1;
+            width: 100%;
+            height: 100%;
         }
 
-        /* Cool card styling */
-        .card-teen {
-            background: rgba(20, 20, 40, 0.7);
+        /* Card thời tiết */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            padding: 2rem;
+            box-shadow: var(--shadow-cloud);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
             overflow: hidden;
         }
 
-        .card-teen::before {
+        .weather-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Hiệu ứng mặt trời */
+        .sun-effect {
+            width: 80px;
+            height: 80px;
+            background: var(--color-sun);
+            border-radius: 50%;
+            box-shadow: var(--shadow-sun);
+            animation: pulse-sun 3s infinite alternate;
+        }
+
+        @keyframes pulse-sun {
+            from {
+                box-shadow: 0 0 20px var(--color-sun), 0 0 40px var(--color-sun-bright);
+                transform: scale(1);
+            }
+
+            to {
+                box-shadow: 0 0 30px var(--color-sun), 0 0 60px var(--color-sun-bright);
+                transform: scale(1.1);
+            }
+        }
+
+        /* Hiệu ứng mây */
+        .cloud-effect {
+            position: relative;
+            width: 200px;
+            height: 60px;
+            background: var(--color-cloud);
+            border-radius: 50px;
+            filter: drop-shadow(var(--shadow-cloud));
+            animation: float-cloud 10s infinite alternate ease-in-out;
+        }
+
+        .cloud-effect:before,
+        .cloud-effect:after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            background: var(--color-cloud);
+            border-radius: 50%;
+        }
+
+        .cloud-effect:before {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            left: 30px;
+        }
+
+        .cloud-effect:after {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            right: 40px;
+        }
+
+        @keyframes float-cloud {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-15px) translateX(15px);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        /* Hiệu ứng mưa */
+        .rain-container {
+            position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.7;
         }
 
-        .card-teen:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        .rain-drop {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: var(--color-rain);
+            opacity: 0.6;
+            border-radius: 0 0 5px 5px;
+            animation: rain-fall 1s linear infinite;
         }
 
-        .card-teen:hover::before {
-            left: 100%;
+        @keyframes rain-fall {
+            0% {
+                transform: translateY(-100vh);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
         }
 
-        /* Cool navbar styling */
-        .navbar-teen {
-            background: rgba(10, 16, 30, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* Hiệu ứng cầu vồng */
+        .rainbow-text {
+            background: var(--gradient-rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
         }
 
-        /* Animated button styling */
-        .btn-teen {
-            background: var(--gradient-main);
+        /* Nút thời tiết */
+        .weather-btn {
+            background: var(--color-sky-dark);
             color: white;
             padding: 0.8rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             letter-spacing: 1px;
             position: relative;
-            z-index: 1;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 10px 20px rgba(95, 23, 235, 0.3);
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.4);
         }
 
-        .btn-teen:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 51, 102, 0.4);
-        }
-
-        .btn-teen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-alt);
-            z-index: -1;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            transform: scaleX(0);
-            transform-origin: right;
-        }
-
-        .btn-teen:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .btn-outline-teen {
-            background: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .btn-outline-teen:hover {
-            color: white;
-            border-color: transparent;
-            background: var(--gradient-main);
+        .weather-btn:hover {
+            background: var(--color-sun);
+            color: #1E3A8A;
             transform: translateY(-3px);
-            box-shadow: var(--shadow-neon);
+            box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.4);
         }
 
-        /* Tilting card effect */
-        .tilt-card {
-            transform-style: preserve-3d;
-            perspective: 1000px;
+        .weather-btn-alt {
+            background: var(--color-sun);
+            color: #1E3A8A;
         }
 
-        /* Skill badge styling */
-        .skill-badge {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
+        .weather-btn-alt:hover {
+            background: var(--color-sky-dark);
             color: white;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .skill-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
-            background: linear-gradient(120deg, rgba(255, 51, 102, 0.2), rgba(94, 23, 235, 0.2));
-        }
-
-        /* Section separators */
-        .section-divider {
+        /* Section dividers thời tiết */
+        .wave-divider {
             height: 150px;
             overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .wave-divider svg {
             position: relative;
-            margin-top: -50px;
-        }
-
-        .section-divider svg {
-            position: absolute;
-            width: 100%;
+            display: block;
+            width: calc(100% + 1.3px);
             height: 150px;
+            transform: rotateY(180deg);
         }
 
-        /* Cool section headings */
-        .heading-teen {
+        .wave-divider .shape-fill {
+            fill: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Tiêu đề phong cách thời tiết */
+        .weather-heading {
+            position: relative;
             font-family: var(--font-alt);
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 800;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--color-sky-dark);
             text-align: center;
-            position: relative;
             margin-bottom: 3rem;
-            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
         }
 
-        .heading-teen::after {
-            content: '';
+        .night-mode .weather-heading {
+            color: var(--color-cloud);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .weather-heading::after {
+            content: '☁️';
             position: absolute;
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 5px;
-            background: var(--gradient-main);
-            border-radius: 10px;
+            font-size: 1.5rem;
         }
 
-        /* Animated icons */
-        .animated-icon {
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        /* Hiệu ứng nổi 3D */
+        .float-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
-        .animated-icon:hover {
-            transform: scale(1.3) rotate(10deg);
-            color: var(--color-primary);
+        .depth-1 {
+            transform: translateZ(20px);
         }
 
-        /* Animation for scroll reveal */
-        .reveal {
+        .depth-2 {
+            transform: translateZ(40px);
+        }
+
+        .depth-3 {
+            transform: translateZ(60px);
+        }
+
+        /* Hiệu ứng mặt trời mọc */
+        .sunrise {
             position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Staggered animations */
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        /* Avatar styling */
-        .avatar-teen {
-            border: 4px solid transparent;
-            background: linear-gradient(#0A101E, #0A101E) padding-box,
-                var(--gradient-main) border-box;
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .avatar-teen:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.5);
-        }
-
-        /* Social media buttons */
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .social-icon:hover {
-            transform: scale(1.3);
-            background: var(--gradient-main);
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.5);
-        }
-
-        /* Cool text effect */
-        .split-text {
-            overflow: hidden;
-            padding: 5px 0;
-        }
-
-        .split-text span {
-            display: inline-block;
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        /* Wavy text animation */
-        .wavy-text {
-            position: relative;
-            display: inline-block;
+            width: 100px;
+            height: 50px;
             overflow: hidden;
         }
 
-        .wavy-text:after {
+        .sunrise::before {
             content: '';
             position: absolute;
-            left: 0;
             bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--color-sun);
+            border-radius: 50%;
+            box-shadow: var(--shadow-sun);
+            animation: rise 4s infinite alternate;
+        }
+
+        @keyframes rise {
+            from {
+                transform: translate(-50%, 100%);
+            }
+
+            to {
+                transform: translate(-50%, -30%);
+            }
+        }
+
+        /* Hiệu ứng tuyết rơi */
+        .snowflake {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 10px white);
+            animation: snowfall 10s linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100px) rotate(0deg) scale(1);
+            }
+
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg) scale(0.5);
+            }
+        }
+
+        /* Skill badge mây */
+        .cloud-badge {
+            background: var(--color-cloud);
+            border: 1px solid rgba(209, 213, 219, 0.5);
+            color: var(--color-sky-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-cloud);
+            transition: all 0.3s;
+        }
+
+        .cloud-badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        /* Hiệu ứng hào quang */
+        .halo {
+            position: relative;
+        }
+
+        .halo::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(251, 191, 36, 0) 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .halo:hover::after {
+            opacity: 1;
+        }
+
+        /* Card với hiệu ứng mưa */
+        .rain-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rain-card::before {
+            content: '';
+            position: absolute;
             width: 100%;
-            height: 2px;
-            background: var(--gradient-main);
-            transform: translate(-100%, 0);
-            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(96, 165, 250, 0.2) 100%);
+            animation: rain-animation 1.5s infinite linear;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .wavy-text:hover:after {
-            transform: translate(0, 0);
+        .rain-card:hover::before {
+            opacity: 1;
         }
 
-        /* Spinning animation for logos */
-        .spin-hover {
-            transition: transform 0.6s ease;
-        }
+        @keyframes rain-animation {
+            0% {
+                transform: translateY(-100%);
+            }
 
-        .spin-hover:hover {
-            transform: rotate(360deg);
-        }
-
-        /* Mobile menu */
-        .mobile-menu-teen {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Mousemove parallax effect */
-        .parallax-element {
-            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            100% {
+                transform: translateY(100%);
+            }
         }
     </style>
 </head>
 
 <body class="light-mode">
-    <!-- Particle background effect -->
-    <div id="particles-js"></div>
+    <!-- Nền mây 3D -->
+    <div id="vanta-bg"></div>
 
     <!-- Navbar -->
-    <nav id="header" class="navbar-teen fixed w-full z-50 top-0 transition-all duration-300">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between py-4 px-4 md:px-6">
-            <div class="pl-2 md:pl-4 flex items-center">
-                <a class="text-xl lg:text-2xl font-bold tracking-tight no-underline hover:no-underline flex items-center"
-                    href="#">
-                    <span class="text-white font-black">N</span>
-                    <span class="text-[#FF3366] font-black">H</span>
-                    <span class="text-[#5E17EB] font-black">Đ</span>
-                    <span class="text-[#00F5E9] ml-1">←CODE</span>
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-3">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center">
+                    <div class="sun-effect mr-3"></div>
+                    <span class="text-xl md:text-2xl font-bold text-sky-900 dark:text-white">NHD<span
+                            class="rainbow-text">Weather</span></span>
                 </a>
-            </div>
-            <div class="flex items-center pr-2 md:pr-4">
-                <div class="hidden md:flex space-x-1 mr-5">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-github text-white"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-linkedin-in text-white"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-instagram text-white"></i>
-                    </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Giới
+                        Thiệu</a>
+                    <a href="#skills" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Kỹ Năng</a>
+                    <a href="#projects" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Dự Án</a>
+                    <a href="#contact" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Liên
+                        Hệ</a>
                 </div>
-                <button id="theme-toggle-button"
-                    class="p-2 rounded-full focus:outline-none text-white hover:bg-gray-800/40">
-                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
-                </button>
-                <div class="block lg:hidden ml-3">
-                    <button id="nav-toggle-mobile" class="flex items-center p-1 text-white focus:outline-none">
-                        <i class="fas fa-bars text-lg"></i>
+
+                <!-- Dark mode toggle & Social links -->
+                <div class="flex items-center space-x-3">
+                    <button id="theme-toggle"
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-sky-100 dark:bg-sky-900 transition-all">
+                        <i class="fas fa-sun text-yellow-400 dark:hidden"></i>
+                        <i class="fas fa-moon text-sky-300 hidden dark:inline-block"></i>
+                    </button>
+                    <div class="hidden md:flex items-center space-x-3">
+                        <a href="https://github.com/yourusername" target="_blank" class="weather-social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" class="weather-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <button id="mobile-menu-button" class="md:hidden text-sky-900 dark:text-white">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
-            <div class="mobile-menu-teen w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:mt-0 bg-transparent p-4 lg:p-0 z-20"
-                id="nav-content-mobile">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center text-center lg:text-left">
-                    <li class="mr-0 lg:mr-3 my-2 lg:my-0">
-                        <a class="wavy-text block py-2 px-2 text-sm font-medium text-white" href="#about">Giới Thiệu</a>
-                    </li>
-                    <li class="mr-0 lg:mr-3 my-2 lg:my-0">
-                        <a class="wavy-text block py-2 px-2 text-sm font-medium text-white" href="#skills">Kỹ Năng</a>
-                    </li>
-                    <li class="mr-0 lg:mr-3 my-2 lg:my-0">
-                        <a class="wavy-text block py-2 px-2 text-sm font-medium text-white" href="#projects">Dự Án</a>
-                    </li>
-                    <li class="my-2 lg:my-0 lg:ml-5">
-                        <a class="btn-teen block lg:inline-block w-full lg:w-auto text-center" href="#contact">Liên
-                            Hệ</a>
-                    </li>
-                </ul>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 opacity-0">
+            <div class="container mx-auto px-4 pt-2 pb-4 weather-card mt-2 flex flex-col space-y-4">
+                <a href="#about" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Giới
+                    Thiệu</a>
+                <a href="#skills" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Kỹ Năng</a>
+                <a href="#projects" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Dự Án</a>
+                <a href="#contact" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Liên
+                    Hệ</a>
+                <div class="flex items-center space-x-3 pt-2">
+                    <a href="https://github.com/yourusername" target="_blank" class="weather-social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="weather-social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with cool animations -->
-    <section class="min-h-screen flex items-center justify-center pt-20 pb-16 relative overflow-hidden">
-        <!-- Animated background elements -->
-        <div
-            class="absolute top-1/3 left-1/4 w-64 h-64 bg-gradient-to-r from-[#FF3366]/20 to-[#5E17EB]/20 rounded-full filter blur-3xl animate-pulse-slow opacity-70 parallax-element">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
+        <!-- Hiệu ứng mây động -->
+        <div class="absolute top-40 left-20 opacity-50 float-3d cloud-effect"></div>
+        <div class="absolute bottom-40 right-10 opacity-70 float-3d cloud-effect"></div>
+        <div class="absolute top-60 right-60 opacity-30 float-3d cloud-effect" style="transform: scale(0.7)"></div>
+
+        <!-- Hiệu ứng mưa (ẩn mặc định) -->
+        <div id="rain-effect" class="rain-container hidden">
+            <!-- Các giọt mưa được tạo bằng JS -->
         </div>
-        <div
-            class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-[#00F5E9]/20 to-[#5E17EB]/20 rounded-full filter blur-3xl animate-pulse-slower opacity-60 parallax-element">
-        </div>
 
-        <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
-            <!-- Avatar with animated border -->
-            <img src="https://placehold.co/200x200/0A101E/00F5E9?text=NHĐ&font=urbanist"
-                alt="Ảnh đại diện của Ninh Hải Đăng"
-                class="avatar-teen w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-8 shadow-2xl">
+        <div class="container mx-auto px-4 relative z-10 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Hero Content -->
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="flex items-center mb-6">
+                        <div class="sunrise mr-3"></div>
+                        <div class="cloud-badge">Geospatial Data Engineer</div>
+                    </div>
 
-            <div class="card-teen max-w-4xl mx-auto transform-gpu" id="hero-card">
-                <!-- Split text animation for main heading -->
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight split-text">
-                    <span class="text-white">Ninh Hải <span class="text-[#FF3366]">Đăng</span></span>
-                </h1>
+                    <h1 class="weather-heading text-left">
+                        <span class="split-text-reveal mb-3 block">Xin chào, tôi là</span>
+                        <span class="rainbow-text text-5xl md:text-6xl">Hải Đăng</span>
+                    </h1>
 
-                <!-- Animated text typing -->
-                <div class="text-lg md:text-xl lg:text-2xl mb-8 font-medium relative overflow-hidden h-8">
-                    <span id="typed-text" class="absolute left-1/2 transform -translate-x-1/2 neon-text"></span>
+                    <div class="weather-card p-6 mt-8 max-w-lg">
+                        <div class="flex items-start mb-4">
+                            <div class="text-xl md:text-2xl mr-2 text-sky-600">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="text-gray-700 text-lg">
+                                <span id="typing-text"></span>
+                                <span class="typing-cursor">|</span>
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="cloud-badge">
+                                <i class="fas fa-cloud mr-1"></i> Cloud Computing
+                            </span>
+                            <span class="cloud-badge">
+                                <i class="fas fa-map-marked-alt mr-1"></i> GIS
+                            </span>
+                            <span class="cloud-badge">
+                                <i class="fas fa-database mr-1"></i> Data
+                            </span>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#projects" class="weather-btn">
+                                <i class="fas fa-cloud-sun mr-2"></i>Xem Các Dự Án
+                            </a>
+                            <a href="#contact" class="weather-btn-alt">
+                                <i class="fas fa-paper-plane mr-2"></i>Liên Hệ
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <p class="text-base md:text-lg mb-10 max-w-xl mx-auto text-gray-300 leading-relaxed reveal">
-                    <span class="text-[#00F5E9] font-semibold">Coder</span> đam mê sáng tạo và công nghệ.
-                    Biến ý tưởng thành hiện thực với code và một chút <span class="text-[#FF3366] font-semibold">✨ magic
-                        ✨</span>
-                </p>
-
-                <div class="space-y-4 md:space-y-0 md:space-x-5 reveal">
-                    <a href="#projects" class="btn-teen inline-block w-full md:w-auto">
-                        <i class="fas fa-rocket mr-2"></i>Xem Dự Án
-                    </a>
-                    <a href="#" target="_blank" class="btn-outline-teen inline-block w-full md:w-auto mt-4 md:mt-0">
-                        <i class="fas fa-file-alt mr-2"></i>Download CV
-                    </a>
-                </div>
-
-                <!-- Animated scroll indicator -->
-                <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 animate-bounce mt-16 text-[#00F5E9]">
-                    <i class="fas fa-chevron-down text-2xl"></i>
+                <!-- Hero Image -->
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative float-3d">
+                        <div class="halo">
+                            <img src="https://placehold.co/400x400/4299e1/ffffff?text=NHD&font=montserrat"
+                                alt="Hai Dang Avatar"
+                                class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-lg border-4 border-white z-10 relative depth-2">
+                        </div>
+                        <!-- Hiệu ứng thời tiết xung quanh avatar -->
+                        <div class="absolute -top-4 -right-4 sun-effect depth-1"></div>
+                        <div class="absolute -bottom-6 -left-6 cloud-effect depth-3" style="transform: scale(0.5);">
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+                <span class="text-sky-900 dark:text-white text-sm mb-2">Cuộn xuống</span>
+                <div class="w-6 h-10 border-2 border-sky-900 dark:border-white rounded-full flex justify-center">
+                    <div class="w-1.5 h-3 bg-sky-900 dark:bg-white rounded-full mt-2 animate-bounce"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider wave -->
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
         </div>
     </section>
 
@@ -505,853 +623,896 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="py-24 relative">
-        <!-- Background decorative elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-[#FF3366] opacity-30 rounded-full blur-xl"></div>
-        <div class="absolute bottom-20 right-10 w-24 h-24 bg-[#00F5E9] opacity-30 rounded-full blur-xl"></div>
+    <section id="about" class="py-20 bg-white/70 relative overflow-hidden">
+        <!-- Hiệu ứng trang trí -->
+        <div class="absolute top-20 left-10 sun-effect opacity-30"></div>
+        <div class="absolute bottom-20 right-10 cloud-effect opacity-40"></div>
+        <div class="absolute top-40 right-40 w-20 h-20 rounded-full bg-blue-100 opacity-60"></div>
+        <div class="absolute bottom-40 left-40 w-32 h-32 rounded-full bg-yellow-100 opacity-50"></div>
 
-        <div class="container mx-auto px-6">
-            <h2 class="heading-teen reveal">About Me_</h2>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="weather-heading">Về Tôi</h2>
 
-            <div class="grid lg:grid-cols-12 gap-10 md:gap-12 items-center">
-                <!-- Image with tilt effect -->
-                <div class="lg:col-span-5 order-2 lg:order-1 reveal">
-                    <div class="tilt-card" data-tilt data-tilt-max="10">
-                        <div class="card-teen p-3 md:p-5">
-                            <img src="https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvZGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="Ninh Hải Đăng - Teen Coder"
-                                class="rounded-xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500">
-                        </div>
+            <div class="flex flex-col lg:flex-row gap-10">
+                <!-- About Image -->
+                <div class="lg:w-2/5 float-3d">
+                    <div class="weather-card p-4 shadow-lg halo">
+                        <img src="https://placehold.co/600x800/3b82f6/ffffff?text=Weather+Portfolio&font=montserrat"
+                            alt="About Image" class="w-full h-auto rounded-lg depth-2">
+                        <div class="absolute top-6 right-6 sun-effect"></div>
+                        <div class="absolute bottom-10 left-10 cloud-effect" style="transform: scale(0.6);"></div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 order-1 lg:order-2">
-                    <div class="card-teen p-8 md:p-10 reveal">
-                        <h3 class="text-2xl md:text-3xl font-bold mb-5 split-text">
-                            <span class="text-[#FF3366]">Hello World!</span> <span class="text-white">Tôi là Đăng</span>
-                        </h3>
+                <!-- About Content -->
+                <div class="lg:w-3/5">
+                    <div class="weather-card p-8">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-cloud-sun text-4xl text-sky-500 mr-4"></i>
+                            <h3 class="text-2xl font-bold text-sky-900">Geospatial Data Engineer ☁️</h3>
+                        </div>
 
-                        <p class="text-sm md:text-base mb-4 text-gray-300 leading-relaxed stagger-item">
-                            Tôi là một <span class="text-[#00F5E9] font-medium">Developer Gen Z</span> với đam mê tạo ra
-                            những ứng dụng và trải nghiệm số đột phá. Mỗi dòng code tôi viết đều mang theo sự sáng tạo
-                            và phong cách riêng.
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Xin chào! Tôi là <strong class="text-sky-800">Ninh Hải Đăng</strong>, một Kỹ sư dữ liệu
+                            không gian địa lý
+                            với đam mê khám phá và biến đổi dữ liệu địa lý thành những thông tin có giá trị.
+                            Giống như thời tiết luôn biến đổi, công nghệ cũng vậy, và tôi luôn sẵn sàng
+                            học hỏi và thích nghi với những công nghệ mới.
                         </p>
 
-                        <p class="text-sm md:text-base mb-6 text-gray-300 leading-relaxed stagger-item">
-                            Không chỉ code, tôi còn là người đam mê nghệ thuật và thiết kế. Sự kết hợp này giúp tôi tạo
-                            ra những sản phẩm không chỉ hoạt động tốt mà còn có visual thật "xịn".
+                        <p class="text-gray-700 mb-8 leading-relaxed">
+                            Với kinh nghiệm làm việc với Google Earth Engine, Python, và các công cụ GIS,
+                            tôi xây dựng các ứng dụng và phân tích dữ liệu không gian địa lý để giải quyết
+                            các vấn đề thực tế như giám sát môi trường, phân tích biến đổi khí hậu và quy hoạch đô thị.
                         </p>
 
-                        <!-- Cool stats with animated counting -->
-                        <div class="grid grid-cols-3 gap-4 mb-6 stagger-item">
-                            <div class="text-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                                <span class="text-[#FF3366] text-3xl font-bold count-up" data-target="20">0</span>
-                                <p class="text-xs text-gray-400 mt-1">Dự án</p>
+                        <!-- Stats Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                            <div class="weather-card p-4 text-center rain-card">
+                                <div class="text-5xl font-bold text-sky-800 mb-2 counter" data-target="10">0</div>
+                                <p class="text-gray-600">Dự Án</p>
+                                <div class="absolute bottom-0 right-0 w-10 h-10">
+                                    <i class="fas fa-cloud-rain text-sky-400 text-xl"></i>
+                                </div>
                             </div>
-                            <div class="text-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                                <span class="text-[#00F5E9] text-3xl font-bold count-up" data-target="5">0</span>
-                                <p class="text-xs text-gray-400 mt-1">Năm kinh nghiệm</p>
+                            <div class="weather-card p-4 text-center">
+                                <div class="text-5xl font-bold text-yellow-500 mb-2 counter" data-target="5">0</div>
+                                <p class="text-gray-600">Năm Kinh Nghiệm</p>
+                                <div class="absolute bottom-0 right-0 w-10 h-10">
+                                    <i class="fas fa-sun text-yellow-400 text-xl"></i>
+                                </div>
                             </div>
-                            <div class="text-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                                <span class="text-[#5E17EB] text-3xl font-bold count-up" data-target="120">0</span>
-                                <p class="text-xs text-gray-400 mt-1">Cốc cà phê</p>
+                            <div class="weather-card p-4 text-center">
+                                <div class="text-5xl font-bold text-green-600 mb-2 counter" data-target="500">0</div>
+                                <p class="text-gray-600">Cốc Cà Phê</p>
+                                <div class="absolute bottom-0 right-0 w-10 h-10">
+                                    <i class="fas fa-cloud text-gray-300 text-xl"></i>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Interests/Tags with hover effects -->
-                        <div class="flex flex-wrap gap-2 stagger-item">
-                            <span class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">#Coding</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 border-[#00F5E9]/30 text-[#00F5E9]">#Design</span>
-                            <span class="skill-badge bg-[#5E17EB]/20 border-[#5E17EB]/30 text-[#5E17EB]">#Gaming</span>
-                            <span class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">#Travel</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 border-[#00F5E9]/30 text-[#00F5E9]">#Music</span>
+                        <!-- Tags -->
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-3 text-sky-900">Sở thích:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="cloud-badge">
+                                    <i class="fas fa-map mr-1"></i> Bản đồ
+                                </span>
+                                <span class="cloud-badge">
+                                    <i class="fas fa-code mr-1"></i> Lập trình
+                                </span>
+                                <span class="cloud-badge">
+                                    <i class="fas fa-mountain mr-1"></i> Du lịch
+                                </span>
+                                <span class="cloud-badge">
+                                    <i class="fas fa-book mr-1"></i> Đọc sách
+                                </span>
+                                <span class="cloud-badge">
+                                    <i class="fas fa-camera mr-1"></i> Nhiếp ảnh
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Divider wave -->
+        <div class="wave-divider mt-20">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
     </section>
 
-    <!-- Wavy divider -->
-    <div class="section-divider">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M0,32L60,42.7C120,53,240,75,360,69.3C480,64,600,32,720,32C840,32,960,64,1080,69.3C1200,75,1320,53,1380,42.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-                fill="#0A101E"></path>
-        </svg>
-    </div>
-
     <!-- Skills Section -->
-    <section id="skills" class="py-24 relative">
-        <!-- Decorative elements -->
-        <div class="absolute top-40 right-20 w-32 h-32 bg-[#5E17EB] opacity-20 rounded-full blur-xl"></div>
-        <div class="absolute bottom-40 left-20 w-36 h-36 bg-[#FF3366] opacity-20 rounded-full blur-xl"></div>
+    <section id="skills" class="py-20 relative overflow-hidden">
+        <!-- Weather effects background -->
+        <div class="absolute top-20 left-20 cloud-effect opacity-60"></div>
+        <div class="absolute bottom-40 right-20 sun-effect opacity-60"></div>
 
-        <div class="container mx-auto px-6">
-            <h2 class="heading-teen reveal">Skills.map()_</h2>
+        <!-- Raindrops (random positioning by JS) -->
+        <div id="skill-raindrops" class="hidden">
+            <!-- Will be populated by JS -->
+        </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 reveal">
-                <!-- Tech skills with animations -->
-                <div class="card-teen p-6 text-center group stagger-item">
-                    <div
-                        class="w-16 h-16 mx-auto mb-4 bg-[#FF3366]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <i class="fab fa-react text-3xl text-[#00F5E9] spin-hover"></i>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="weather-heading">Kỹ Năng</h2>
+
+            <!-- Tech Skills -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- GIS Skills -->
+                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-100 mr-4">
+                            <i class="fas fa-globe-americas text-2xl text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-900">GIS</h3>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Frontend
-                    </h4>
-                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">React, Vue,
-                        TailwindCSS, GSAP</p>
+                    <p class="text-gray-700 mb-4">Chuyên sâu về các công cụ và kỹ thuật GIS để xử lý, phân tích và hiển
+                        thị dữ liệu không gian địa lý.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="cloud-badge">ArcGIS</span>
+                        <span class="cloud-badge">QGIS</span>
+                        <span class="cloud-badge">PostGIS</span>
+                        <span class="cloud-badge">Leaflet</span>
+                    </div>
                 </div>
 
-                <div class="card-teen p-6 text-center group stagger-item">
-                    <div
-                        class="w-16 h-16 mx-auto mb-4 bg-[#5E17EB]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <i class="fab fa-node-js text-3xl text-[#FF3366] spin-hover"></i>
+                <!-- Remote Sensing -->
+                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-green-100 mr-4">
+                            <i class="fas fa-satellite text-2xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-900">Viễn Thám</h3>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors">Backend
-                    </h4>
-                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Node.js, Express,
-                        MongoDB, Firebase</p>
+                    <p class="text-gray-700 mb-4">Kỹ năng xử lý và phân tích dữ liệu ảnh vệ tinh để giám sát môi trường
+                        và theo dõi biến đổi đất đai.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="cloud-badge">Google Earth Engine</span>
+                        <span class="cloud-badge">Sentinel</span>
+                        <span class="cloud-badge">Landsat</span>
+                        <span class="cloud-badge">ENVI</span>
+                    </div>
                 </div>
 
-                <div class="card-teen p-6 text-center group stagger-item">
-                    <div
-                        class="w-16 h-16 mx-auto mb-4 bg-[#00F5E9]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-paint-brush text-3xl text-[#5E17EB] spin-hover"></i>
+                <!-- Programming -->
+                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-yellow-100 mr-4">
+                            <i class="fas fa-code text-2xl text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-900">Lập Trình</h3>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#5E17EB] transition-colors">Design
-                    </h4>
-                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Figma, Photoshop,
-                        UI/UX, Motion</p>
+                    <p class="text-gray-700 mb-4">Kỹ năng lập trình để tự động hóa quy trình, phân tích dữ liệu lớn và
+                        phát triển ứng dụng web GIS.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="cloud-badge">Python</span>
+                        <span class="cloud-badge">JavaScript</span>
+                        <span class="cloud-badge">R</span>
+                        <span class="cloud-badge">SQL</span>
+                    </div>
                 </div>
 
-                <div class="card-teen p-6 text-center group stagger-item">
-                    <div
-                        class="w-16 h-16 mx-auto mb-4 bg-[#FF3366]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-mobile-alt text-3xl text-[#00F5E9] spin-hover"></i>
+                <!-- Cloud & Big Data -->
+                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-purple-100 mr-4">
+                            <i class="fas fa-cloud text-2xl text-purple-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-900">Cloud & Big Data</h3>
                     </div>
-                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Mobile
-                    </h4>
-                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">React Native, Flutter,
-                        Mobile UI</p>
+                    <p class="text-gray-700 mb-4">Sử dụng dịch vụ điện toán đám mây và công cụ Big Data để xử lý dữ liệu
+                        không gian địa lý quy mô lớn.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="cloud-badge">Google Cloud</span>
+                        <span class="cloud-badge">AWS</span>
+                        <span class="cloud-badge">Hadoop</span>
+                        <span class="cloud-badge">Spark</span>
+                    </div>
+                </div>
+
+                <!-- Web GIS -->
+                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-red-100 mr-4">
+                            <i class="fas fa-map-marked-alt text-2xl text-red-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-900">Web GIS</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">Phát triển ứng dụng bản đồ tương tác trên web với các thư viện và API
+                        bản đồ hiện đại.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="cloud-badge">MapBox</span>
+                        <span class="cloud-badge">OpenLayers</span>
+                        <span class="cloud-badge">Cesium JS</span>
+                        <span class="cloud-badge">Turf.js</span>
+                    </div>
+                </div>
+
+                <!-- Data Analysis -->
+                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-indigo-100 mr-4">
+                            <i class="fas fa-chart-bar text-2xl text-indigo-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-900">Phân tích dữ liệu</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">Kỹ năng phân tích, trực quan hóa dữ liệu không gian địa lý và rút ra
+                        những thông tin có giá trị.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="cloud-badge">GeoPandas</span>
+                        <span class="cloud-badge">NumPy</span>
+                        <span class="cloud-badge">Matplotlib</span>
+                        <span class="cloud-badge">Tableau</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Skill bars with animations -->
-            <div class="mt-16 max-w-3xl mx-auto reveal">
-                <div class="card-teen p-8">
-                    <h3 class="text-xl font-bold mb-6 text-center text-white">Coding Skills</h3>
+            <!-- Skill bars -->
+            <div class="weather-card p-8">
+                <h3 class="text-2xl font-bold text-sky-900 mb-6">Mức độ thành thạo</h3>
 
-                    <div class="space-y-4">
-                        <div class="stagger-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-[#FF3366]">JavaScript/TypeScript</span>
-                                <span class="text-sm font-medium text-gray-400">90%</span>
-                            </div>
-                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                                <div class="skill-bar bg-gradient-to-r from-[#FF3366] to-[#5E17EB] h-full rounded-full"
-                                    data-width="90"></div>
-                            </div>
+                <div class="space-y-6">
+                    <!-- Python Skill -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium text-sky-900">Python & Địa không gian</span>
+                            <span class="text-sky-800">90%</span>
                         </div>
-
-                        <div class="stagger-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-[#00F5E9]">React/Vue</span>
-                                <span class="text-sm font-medium text-gray-400">85%</span>
-                            </div>
-                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                                <div class="skill-bar bg-gradient-to-r from-[#00F5E9] to-[#5E17EB] h-full rounded-full"
-                                    data-width="85"></div>
-                            </div>
+                        <div class="w-full bg-blue-100 rounded-full h-4">
+                            <div class="bg-sky-500 h-4 rounded-full" style="width: 0%" data-width="90%"></div>
                         </div>
+                    </div>
 
-                        <div class="stagger-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-[#5E17EB]">UI/UX Design</span>
-                                <span class="text-sm font-medium text-gray-400">80%</span>
-                            </div>
-                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                                <div class="skill-bar bg-gradient-to-r from-[#5E17EB] to-[#FF3366] h-full rounded-full"
-                                    data-width="80"></div>
-                            </div>
+                    <!-- Google Earth Engine -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium text-sky-900">Google Earth Engine</span>
+                            <span class="text-sky-800">85%</span>
                         </div>
+                        <div class="w-full bg-blue-100 rounded-full h-4">
+                            <div class="bg-green-500 h-4 rounded-full" style="width: 0%" data-width="85%"></div>
+                        </div>
+                    </div>
 
-                        <div class="stagger-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-[#FF3366]">Node.js/Express</span>
-                                <span class="text-sm font-medium text-gray-400">75%</span>
-                            </div>
-                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                                <div class="skill-bar bg-gradient-to-r from-[#FF3366] to-[#00F5E9] h-full rounded-full"
-                                    data-width="75"></div>
-                            </div>
+                    <!-- SQL/PostGIS -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium text-sky-900">SQL/PostGIS</span>
+                            <span class="text-sky-800">80%</span>
+                        </div>
+                        <div class="w-full bg-blue-100 rounded-full h-4">
+                            <div class="bg-yellow-500 h-4 rounded-full" style="width: 0%" data-width="80%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium text-sky-900">Web Development</span>
+                            <span class="text-sky-800">75%</span>
+                        </div>
+                        <div class="w-full bg-blue-100 rounded-full h-4">
+                            <div class="bg-purple-500 h-4 rounded-full" style="width: 0%" data-width="75%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud Computing -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium text-sky-900">Cloud Computing</span>
+                            <span class="text-sky-800">70%</span>
+                        </div>
+                        <div class="w-full bg-blue-100 rounded-full h-4">
+                            <div class="bg-indigo-500 h-4 rounded-full" style="width: 0%" data-width="70%"></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Divider wave -->
+        <div class="wave-divider mt-20">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-24 relative">
-        <!-- Decorative elements -->
-        <div class="absolute top-40 left-20 w-40 h-40 bg-[#00F5E9] opacity-20 rounded-full blur-xl"></div>
-        <div class="absolute bottom-40 right-20 w-40 h-40 bg-[#FF3366] opacity-20 rounded-full blur-xl"></div>
+    <section id="projects" class="py-20 bg-white/70 relative overflow-hidden">
+        <!-- Hiệu ứng trang trí -->
+        <div class="absolute top-20 left-20 cloud-effect opacity-60"></div>
+        <div class="absolute bottom-40 right-20 sun-effect opacity-70"></div>
+        <div class="absolute top-60 right-30 cloud-effect opacity-40" style="transform: scale(0.6);"></div>
 
-        <div class="container mx-auto px-6">
-            <h2 class="heading-teen reveal">( Projects )_</h2>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="weather-heading">Dự Án</h2>
 
             <!-- Featured Project -->
-            <div class="card-teen p-0 overflow-hidden mb-12 reveal">
-                <div class="grid md:grid-cols-5 lg:grid-cols-6">
-                    <div class="md:col-span-2 lg:col-span-3 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+            <div class="weather-card p-6 mb-16 overflow-hidden">
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <div class="lg:w-3/5 float-3d halo">
+                        <img src="https://placehold.co/800x500/4299e1/ffffff?text=Earth+Engine+Project&font=montserrat"
                             alt="Featured Project"
-                            class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                            class="w-full h-auto rounded-lg depth-2 transition-all duration-500 hover:scale-[1.02]">
                     </div>
-                    <div class="md:col-span-3 lg:col-span-3 p-8 md:p-10">
-                        <div class="flex items-center mb-4">
-                            <span class="bg-[#FF3366] text-white text-xs px-3 py-1 rounded-full">Featured</span>
-                            <div class="w-10 h-[1px] bg-[#FF3366] ml-3"></div>
-                        </div>
-
-                        <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Project Alpha</h3>
-                        <p class="text-sm text-gray-400 mb-6">
-                            A revolutionary app that combines social networking with gaming elements,
-                            creating a unique platform for Gen Z to connect and play.
+                    <div class="lg:w-2/5">
+                        <span class="cloud-badge">Dự án nổi bật</span>
+                        <h3 class="text-2xl font-bold text-sky-900 mt-4 mb-3">Earth Engine Data Processing</h3>
+                        <p class="text-gray-700 mb-6">
+                            Xây dựng ứng dụng theo dõi biến đổi thời tiết và thảm thực vật dựa trên dữ liệu vệ tinh với
+                            Google Earth Engine.
+                            Ứng dụng này cho phép phân tích các xu hướng thay đổi của rừng, nước, và đô thị theo thời
+                            gian thực.
                         </p>
 
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">React</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 border-[#00F5E9]/30 text-[#00F5E9]">Node.js</span>
-                            <span class="skill-badge bg-[#5E17EB]/20 border-[#5E17EB]/30 text-[#5E17EB]">MongoDB</span>
-                            <span
-                                class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">WebSockets</span>
+                            <span class="cloud-badge">
+                                <i class="fas fa-cloud mr-1"></i> Google Earth Engine
+                            </span>
+                            <span class="cloud-badge">
+                                <i class="fab fa-python mr-1"></i> Python
+                            </span>
+                            <span class="cloud-badge">
+                                <i class="fas fa-leaf mr-1"></i> NDVI Analysis
+                            </span>
+                            <span class="cloud-badge">
+                                <i class="fas fa-satellite mr-1"></i> Landsat
+                            </span>
                         </div>
 
-                        <div class="flex space-x-4">
-                            <a href="#" class="btn-teen text-sm py-2 px-4">
-                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                        <div class="flex gap-4">
+                            <a href="#" class="weather-btn">
+                                <i class="fas fa-eye mr-2"></i>Demo
                             </a>
-                            <a href="#" class="btn-outline-teen text-sm py-2 px-4">
-                                <i class="fab fa-github mr-2"></i>Source Code
+                            <a href="#" class="weather-btn-alt">
+                                <i class="fab fa-github mr-2"></i>Mã nguồn
                             </a>
+                        </div>
+
+                        <!-- Weather icons as decoration -->
+                        <div class="absolute bottom-6 right-6 flex gap-3">
+                            <i class="fas fa-cloud-sun text-2xl text-yellow-500"></i>
+                            <i class="fas fa-cloud-rain text-2xl text-blue-500"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 gap-8 reveal">
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1 -->
-                <div class="card-teen p-0 overflow-hidden group stagger-item">
-                    <div class="relative overflow-hidden h-56">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bW9iaWxlJTIwYXBwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="Project 1"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-
-                        <div class="absolute top-4 right-4 flex space-x-2">
-                            <span class="bg-[#5E17EB] text-white text-xs px-2 py-1 rounded">Mobile</span>
-                        </div>
-                    </div>
-
+                <div class="weather-card hover:shadow-lg transition-all duration-300 overflow-hidden rain-card">
+                    <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Rainfall+Analysis&font=montserrat"
+                        alt="Project 1" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Neon
-                            Chat</h3>
-                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
-                            Unique messaging app with neon themes and real-time filters to make chatting more
-                            expressive.
-                        </p>
-
+                        <h3 class="text-xl font-bold text-sky-900 mb-2">Phân tích lượng mưa</h3>
+                        <p class="text-gray-700 mb-4">Ứng dụng phân tích và dự báo lượng mưa dựa trên dữ liệu lịch sử
+                            thời tiết và các mô hình ML.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-[#FF3366]/20 text-xs">React Native</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">Firebase</span>
-                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">Redux</span>
+                            <span class="cloud-badge">Python</span>
+                            <span class="cloud-badge">Machine Learning</span>
+                            <span class="cloud-badge">CHIRPS Data</span>
                         </div>
-
                         <div class="flex justify-between">
-                            <a href="#"
-                                class="text-[#FF3366] text-sm font-medium hover:text-[#00F5E9] transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>View
+                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
+                                <i class="fas fa-arrow-right mr-1"></i> Demo
                             </a>
-                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>Code
+                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
+                                <i class="fab fa-github mr-1"></i> Mã nguồn
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 2 -->
-                <div class="card-teen p-0 overflow-hidden group stagger-item">
-                    <div class="relative overflow-hidden h-56">
-                        <img src="https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdlYnNpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-                            alt="Project 2"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-
-                        <div class="absolute top-4 right-4 flex space-x-2">
-                            <span class="bg-[#FF3366] text-white text-xs px-2 py-1 rounded">Web</span>
-                        </div>
-                    </div>
-
+                <div class="weather-card hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    <img src="https://placehold.co/600x400/fbbf24/ffffff?text=GEE+Web+Editor&font=montserrat"
+                        alt="Project 2" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#5E17EB] transition-colors">Pixel
-                            Portfolio</h3>
-                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
-                            Creative portfolio template with pixel art style and smooth animations for designers.
-                        </p>
-
+                        <h3 class="text-xl font-bold text-sky-900 mb-2">GEE Python Web Editor</h3>
+                        <p class="text-gray-700 mb-4">Phát triển giao diện web cho phép người dùng chạy mã Python trực
+                            tiếp trong Google Earth Engine.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-[#FF3366]/20 text-xs">Vue.js</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">GSAP</span>
-                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">Tailwind</span>
+                            <span class="cloud-badge">Earth Engine API</span>
+                            <span class="cloud-badge">JavaScript</span>
+                            <span class="cloud-badge">Python</span>
                         </div>
-
                         <div class="flex justify-between">
-                            <a href="#"
-                                class="text-[#5E17EB] text-sm font-medium hover:text-[#00F5E9] transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>View
+                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
+                                <i class="fas fa-arrow-right mr-1"></i> Demo
                             </a>
-                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>Code
+                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
+                                <i class="fab fa-github mr-1"></i> Mã nguồn
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 3 -->
-                <div class="card-teen p-0 overflow-hidden group stagger-item">
-                    <div class="relative overflow-hidden h-56">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="Project 3"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-
-                        <div class="absolute top-4 right-4 flex space-x-2">
-                            <span class="bg-[#00F5E9] text-white text-xs px-2 py-1 rounded">AI</span>
-                        </div>
-                    </div>
-
+                <div class="weather-card hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    <img src="https://placehold.co/600x400/10b981/ffffff?text=Climate+Dashboard&font=montserrat"
+                        alt="Project 3" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors">
-                            VoiceFlow</h3>
-                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
-                            AI voice assistant app with customizable flows and integration with smart home devices.
-                        </p>
-
+                        <h3 class="text-xl font-bold text-sky-900 mb-2">Bảng điều khiển khí hậu</h3>
+                        <p class="text-gray-700 mb-4">Dashboard trực quan hóa dữ liệu khí hậu theo thời gian thực, hiển
+                            thị các xu hướng và dự báo.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-[#FF3366]/20 text-xs">TensorFlow</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">Python</span>
-                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">React</span>
+                            <span class="cloud-badge">D3.js</span>
+                            <span class="cloud-badge">React</span>
+                            <span class="cloud-badge">Weather API</span>
                         </div>
-
                         <div class="flex justify-between">
-                            <a href="#"
-                                class="text-[#00F5E9] text-sm font-medium hover:text-[#FF3366] transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>View
+                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
+                                <i class="fas fa-arrow-right mr-1"></i> Demo
                             </a>
-                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 4 -->
-                <div class="card-teen p-0 overflow-hidden group stagger-item">
-                    <div class="relative overflow-hidden h-56">
-                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="Project 4"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-
-                        <div class="absolute top-4 right-4 flex space-x-2">
-                            <span class="bg-[#5E17EB] text-white text-xs px-2 py-1 rounded">Game</span>
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Cyber
-                            Arena</h3>
-                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
-                            Browser-based multiplayer game with cyberpunk aesthetics and real-time battles.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-[#FF3366]/20 text-xs">JavaScript</span>
-                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">Canvas</span>
-                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">Socket.io</span>
-                        </div>
-
-                        <div class="flex justify-between">
-                            <a href="#"
-                                class="text-[#5E17EB] text-sm font-medium hover:text-[#FF3366] transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>Play
-                            </a>
-                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>Code
+                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
+                                <i class="fab fa-github mr-1"></i> Mã nguồn
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center mt-12 reveal">
-                <a href="https://github.com/ninhhaidang" target="_blank" class="btn-teen inline-block">
-                    <i class="fab fa-github mr-2"></i>More Projects on GitHub
+            <!-- More Projects Button -->
+            <div class="text-center mt-12">
+                <a href="https://github.com/ninhhaidang" target="_blank" class="weather-btn inline-block">
+                    <i class="fab fa-github mr-2"></i> Xem thêm dự án trên GitHub
                 </a>
             </div>
         </div>
+
+        <!-- Divider wave -->
+        <div class="wave-divider mt-20">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
     </section>
 
-    <!-- Wavy divider -->
-    <div class="section-divider">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,80C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
-                fill="#0A101E"></path>
-        </svg>
-    </div>
-
     <!-- Contact Section -->
-    <section id="contact" class="py-24 relative">
-        <!-- Background particles -->
-        <div class="absolute top-20 right-10 w-32 h-32 bg-[#FF3366] opacity-20 rounded-full blur-xl"></div>
-        <div class="absolute bottom-20 left-10 w-32 h-32 bg-[#00F5E9] opacity-20 rounded-full blur-xl"></div>
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <!-- Hiệu ứng trang trí -->
+        <div class="absolute top-20 right-20 cloud-effect opacity-50"></div>
+        <div class="absolute bottom-40 left-20 sun-effect opacity-60"></div>
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-blue-100 opacity-20">
+        </div>
 
-        <div class="container mx-auto px-6">
-            <h2 class="heading-teen reveal">./contact_me</h2>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="weather-heading">Liên Hệ</h2>
 
-            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-10">
                 <!-- Contact Info -->
-                <div class="card-teen p-8 reveal">
-                    <h3 class="text-2xl font-bold mb-6 text-white">Let's Talk!</h3>
+                <div class="lg:w-2/5">
+                    <div class="weather-card p-8 mb-8">
+                        <h3 class="text-2xl font-bold text-sky-900 mb-6 flex items-center">
+                            <i class="fas fa-paper-plane text-sky-500 mr-3"></i>
+                            Thông tin liên hệ
+                        </h3>
 
-                    <div class="space-y-6">
-                        <div class="flex items-center stagger-item">
-                            <div class="w-12 h-12 bg-[#FF3366]/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-envelope text-[#FF3366]"></i>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-sky-900">Email</h4>
+                                    <a href="mailto:example@example.com"
+                                        class="text-gray-700 hover:text-sky-600 transition-colors">example@example.com</a>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-400">Email</h4>
-                                <a href="mailto:ninhhaidang@example.com"
-                                    class="text-white hover:text-[#FF3366] transition-colors">ninhhaidang@example.com</a>
+
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                                    <i class="fab fa-discord text-purple-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-sky-900">Discord</h4>
+                                    <a href="#"
+                                        class="text-gray-700 hover:text-sky-600 transition-colors">username#1234</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                                    <i class="fab fa-github text-gray-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-sky-900">GitHub</h4>
+                                    <a href="https://github.com/ninhhaidang" target="_blank"
+                                        class="text-gray-700 hover:text-sky-600 transition-colors">@ninhhaidang</a>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="flex items-center stagger-item">
-                            <div class="w-12 h-12 bg-[#00F5E9]/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fab fa-discord text-[#00F5E9]"></i>
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <h4 class="text-lg font-medium text-sky-900 mb-4">Social</h4>
+                            <div class="flex space-x-4">
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 hover:bg-pink-200 transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-400 hover:bg-blue-200 transition-all">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-500 hover:bg-red-200 transition-all">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-400">Discord</h4>
-                                <a href="#" class="text-white hover:text-[#00F5E9] transition-colors">ninh.haidang</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center stagger-item">
-                            <div class="w-12 h-12 bg-[#5E17EB]/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fab fa-github text-[#5E17EB]"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-400">GitHub</h4>
-                                <a href="https://github.com/ninhhaidang" target="_blank"
-                                    class="text-white hover:text-[#5E17EB] transition-colors">@ninhhaidang</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Social Media -->
-                    <div class="mt-8 pt-6 border-t border-gray-800">
-                        <h4 class="text-sm font-medium text-gray-400 mb-4">Follow Me:</h4>
-                        <div class="flex space-x-3">
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-twitter text-white"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-instagram text-white"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-linkedin-in text-white"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-youtube text-white"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Form -->
-                <div class="card-teen p-8 reveal">
-                    <form class="space-y-4">
-                        <div class="stagger-item">
-                            <label class="block text-sm font-medium text-gray-400 mb-1">Your Name</label>
-                            <input type="text"
-                                class="w-full bg-[#171C2C] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF3366] transition-all"
-                                placeholder="Enter your name">
-                        </div>
+                <div class="lg:w-3/5">
+                    <div class="weather-card p-8">
+                        <h3 class="text-2xl font-bold text-sky-900 mb-6 flex items-center">
+                            <i class="fas fa-cloud-sun text-yellow-500 mr-3"></i>
+                            Gửi tin nhắn
+                        </h3>
 
-                        <div class="stagger-item">
-                            <label class="block text-sm font-medium text-gray-400 mb-1">Email</label>
-                            <input type="email"
-                                class="w-full bg-[#171C2C] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00F5E9] transition-all"
-                                placeholder="your@email.com">
-                        </div>
+                        <form action="#" method="POST" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ và
+                                        tên</label>
+                                    <input type="text" id="name" name="name"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="email"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" id="email" name="email"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all">
+                                </div>
+                            </div>
 
-                        <div class="stagger-item">
-                            <label class="block text-sm font-medium text-gray-400 mb-1">Message</label>
-                            <textarea rows="4"
-                                class="w-full bg-[#171C2C] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#5E17EB] transition-all resize-none"
-                                placeholder="Your message..."></textarea>
-                        </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Chủ đề</label>
+                                <input type="text" id="subject" name="subject"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all">
+                            </div>
 
-                        <div class="stagger-item">
-                            <button type="submit" class="btn-teen w-full">
-                                <i class="fas fa-paper-plane mr-2"></i>Send Message
-                            </button>
-                        </div>
-                    </form>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Tin
+                                    nhắn</label>
+                                <textarea id="message" name="message" rows="5"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"></textarea>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="weather-btn w-full">
+                                    <i class="fas fa-paper-plane mr-2"></i>Gửi tin nhắn
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 text-center border-t border-gray-800">
-        <div class="container mx-auto px-6">
+    <footer class="bg-sky-900 text-white py-8">
+        <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <a href="#" class="text-2xl font-bold flex items-center justify-center md:justify-start">
-                        <span class="text-white font-black">N</span>
-                        <span class="text-[#FF3366] font-black">H</span>
-                        <span class="text-[#5E17EB] font-black">Đ</span>
-                    </a>
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="sun-effect mr-3 w-10 h-10"></div>
+                        <span class="text-xl font-bold">NHD<span class="rainbow-text">Weather</span></span>
+                    </div>
+                    <p class="text-sky-200 mt-2 text-sm">Geospatial Data Engineer</p>
                 </div>
 
-                <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
-                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a>
-                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                <div class="text-center mb-6 md:mb-0">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#about" class="text-sky-100 hover:text-white transition-colors">Giới Thiệu</a>
+                        <a href="#skills" class="text-sky-100 hover:text-white transition-colors">Kỹ Năng</a>
+                        <a href="#projects" class="text-sky-100 hover:text-white transition-colors">Dự Án</a>
+                        <a href="#contact" class="text-sky-100 hover:text-white transition-colors">Liên Hệ</a>
+                    </div>
                 </div>
 
-                <div>
-                    <p class="text-sm text-gray-500">&copy; <span id="current-year"></span> Ninh Hải Đăng. All rights
+                <div class="text-center">
+                    <p class="text-sky-200 text-sm">&copy; <span id="current-year"></span> Ninh Hải Đăng. All rights
                         reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript cho Animation và Hiệu ứng -->
+    <!-- Scripts -->
     <script>
-        // Particles background
-        document.addEventListener('DOMContentLoaded', function () {
-            if (typeof particlesJS !== 'undefined') {
-                particlesJS('particles-js', {
-                    "particles": {
-                        "number": {
-                            "value": 80,
-                            "density": {
-                                "enable": true,
-                                "value_area": 800
-                            }
-                        },
-                        "color": {
-                            "value": ["#FF3366", "#5E17EB", "#00F5E9"]
-                        },
-                        "shape": {
-                            "type": "circle",
-                            "stroke": {
-                                "width": 0,
-                                "color": "#000000"
-                            }
-                        },
-                        "opacity": {
-                            "value": 0.3,
-                            "random": true,
-                            "anim": {
-                                "enable": true,
-                                "speed": 0.5,
-                                "opacity_min": 0.1,
-                                "sync": false
-                            }
-                        },
-                        "size": {
-                            "value": 3,
-                            "random": true,
-                            "anim": {
-                                "enable": true,
-                                "speed": 1,
-                                "size_min": 0.1,
-                                "sync": false
-                            }
-                        },
-                        "line_linked": {
-                            "enable": true,
-                            "distance": 150,
-                            "color": "#ffffff",
-                            "opacity": 0.1,
-                            "width": 1
-                        },
-                        "move": {
-                            "enable": true,
-                            "speed": 1,
-                            "direction": "none",
-                            "random": true,
-                            "straight": false,
-                            "out_mode": "out",
-                            "bounce": false,
-                            "attract": {
-                                "enable": false,
-                                "rotateX": 600,
-                                "rotateY": 1200
-                            }
-                        }
-                    },
-                    "interactivity": {
-                        "detect_on": "canvas",
-                        "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "grab"
-                            },
-                            "onclick": {
-                                "enable": true,
-                                "mode": "push"
-                            },
-                            "resize": true
-                        },
-                        "modes": {
-                            "grab": {
-                                "distance": 140,
-                                "line_linked": {
-                                    "opacity": 0.3
-                                }
-                            },
-                            "push": {
-                                "particles_nb": 3
-                            }
-                        }
-                    },
-                    "retina_detect": true
+        // Khởi tạo nền mây 3D với VANTA.js
+        function initVantaBackground() {
+            if (window.VANTA) {
+                window.vantaEffect = VANTA.CLOUDS({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    skyColor: 0x87ceeb,
+                    cloudColor: 0xffffff,
+                    cloudShadowColor: 0x003971,
+                    sunColor: 0xfbbf24,
+                    sunGlareColor: 0xf59e0b,
+                    sunlightColor: 0xfbbf24,
+                    speed: 0.8
                 });
+            } else {
+                // Nếu thư viện chưa được tải, thử lại sau 500ms
+                setTimeout(initVantaBackground, 500);
             }
-        });
+        }
 
-        // Split text animation
+        // Hiệu ứng mưa
+        function createRainEffect() {
+            const rainContainer = document.getElementById('rain-effect');
+            if (!rainContainer) return;
+
+            // Xóa các giọt mưa cũ
+            rainContainer.innerHTML = '';
+
+            // Tạo giọt mưa mới
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('rain-drop');
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
+                drop.style.animationDelay = `${Math.random() * 2}s`;
+                rainContainer.appendChild(drop);
+            }
+        }
+
+        // Hiệu ứng split text animation
         function animateSplitText() {
-            document.querySelectorAll('.split-text').forEach(element => {
+            const elements = document.querySelectorAll('.split-text-reveal');
+
+            elements.forEach(element => {
                 const text = element.textContent;
                 element.innerHTML = '';
+                element.style.opacity = '1';
 
                 for (let i = 0; i < text.length; i++) {
                     const span = document.createElement('span');
-                    span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
-                    span.style.transitionDelay = `${i * 0.05}s`;
+                    span.textContent = text[i] === ' ' ? ' ' : text[i];
+                    span.style.display = 'inline-block';
+                    span.style.opacity = '0';
+                    span.style.transform = 'translateY(20px)';
+                    span.style.transition = `all 0.3s ease ${i * 0.03}s`;
                     element.appendChild(span);
                 }
-            });
 
-            // Start animation after a short delay
-            setTimeout(() => {
-                document.querySelectorAll('.split-text span').forEach(span => {
-                    span.style.transform = 'translateY(0)';
-                    span.style.opacity = '1';
-                });
-            }, 500);
+                setTimeout(() => {
+                    element.querySelectorAll('span').forEach(span => {
+                        span.style.opacity = '1';
+                        span.style.transform = 'translateY(0)';
+                    });
+                }, 100);
+            });
         }
 
-        // Scroll Reveal Animation
+        // Hiệu ứng typing
+        function setupTypingEffect() {
+            const textElement = document.getElementById('typing-text');
+            if (!textElement) return;
+
+            const texts = [
+                "Tôi phân tích dữ liệu không gian địa lý để tạo giá trị.",
+                "Tôi sử dụng GIS và Cloud để xử lý dữ liệu vệ tinh.",
+                "Tôi xây dựng ứng dụng theo dõi biến đổi khí hậu.",
+                "Tôi yêu thích mọi thứ về dữ liệu địa lý và bản đồ."
+            ];
+
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+
+            function type() {
+                const currentText = texts[textIndex];
+
+                if (isDeleting) {
+                    textElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50;
+                } else {
+                    textElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100;
+                }
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    isDeleting = true;
+                    typingSpeed = 1500; // Delay trước khi xóa
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typingSpeed = 500; // Delay trước khi gõ text mới
+                }
+
+                setTimeout(type, typingSpeed);
+            }
+
+            type();
+        }
+
+        // Hiệu ứng animated scroll reveal
         function setupScrollReveal() {
-            const observer = new IntersectionObserver(entries => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+                        entry.target.classList.add('revealed');
 
-                        // Handle staggered animations within revealed elements
-                        const staggerItems = entry.target.querySelectorAll('.stagger-item');
-                        staggerItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.style.opacity = '1';
-                                item.style.transform = 'translateY(0)';
-                            }, 100 * index);
-                        });
+                        // Nếu là card có counter, bắt đầu đếm
+                        if (entry.target.querySelector('.counter')) {
+                            const counters = entry.target.querySelectorAll('.counter');
+                            animateCounters(counters);
+                        }
+
+                        // Nếu là skill bar, bắt đầu animation
+                        if (entry.target.querySelector('[data-width]')) {
+                            const skillBars = entry.target.querySelectorAll('[data-width]');
+                            animateSkillBars(skillBars);
+                        }
 
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15 });
+            }, {
+                threshold: 0.1
+            });
 
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
+            // Theo dõi các thẻ weather-card để hiệu ứng xuất hiện
+            document.querySelectorAll('.weather-card').forEach(card => {
+                observer.observe(card);
             });
         }
 
-        // Animated typing effect
-        function setupTypingEffect() {
-            const textElement = document.getElementById('typed-text');
-            if (!textElement) return;
+        // Hiệu ứng counter
+        function animateCounters(counters) {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 giây
+                const step = target / (duration / 16); // 60fps
 
-            const phrases = ["Creator", "Web Developer", "UI/UX Designer", "Mobile Dev", "Game Dev"];
-            let currentPhrase = 0;
-            let currentChar = 0;
-            let isDeleting = false;
-            let typingSpeed = 100;
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += step;
+                    counter.textContent = Math.round(current);
 
-            function typeEffect() {
-                const currentText = phrases[currentPhrase];
-
-                if (isDeleting) {
-                    textElement.textContent = currentText.substring(0, currentChar - 1);
-                    currentChar--;
-                    typingSpeed = 50;
-                } else {
-                    textElement.textContent = currentText.substring(0, currentChar + 1);
-                    currentChar++;
-                    typingSpeed = 100;
-                }
-
-                if (!isDeleting && currentChar === currentText.length) {
-                    isDeleting = true;
-                    typingSpeed = 1500; // Pause at the end
-                } else if (isDeleting && currentChar === 0) {
-                    isDeleting = false;
-                    currentPhrase = (currentPhrase + 1) % phrases.length;
-                    typingSpeed = 500; // Pause before typing next phrase
-                }
-
-                setTimeout(typeEffect, typingSpeed);
-            }
-
-            setTimeout(typeEffect, 1000);
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 16);
+            });
         }
 
-        // Skill bars animation
-        function animateSkillBars() {
-            document.querySelectorAll('.skill-bar').forEach(bar => {
+        // Hiệu ứng skill bars
+        function animateSkillBars(skillBars) {
+            skillBars.forEach(bar => {
                 const width = bar.getAttribute('data-width');
                 setTimeout(() => {
-                    bar.style.width = width + '%';
-                }, 500);
+                    bar.style.width = width;
+                }, 300);
             });
         }
 
-        // CountUp animation
-        function animateCounters() {
-            document.querySelectorAll('.count-up').forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000; // ms
-                const frameDuration = 1000 / 60; // 60fps
-                const totalFrames = Math.round(duration / frameDuration);
-                let frame = 0;
-
-                const animate = () => {
-                    frame++;
-                    const progress = frame / totalFrames;
-                    const currentCount = Math.round(target * progress);
-
-                    if (parseInt(counter.textContent) !== currentCount) {
-                        counter.textContent = currentCount;
-                    }
-
-                    if (frame < totalFrames) {
-                        requestAnimationFrame(animate);
-                    }
-                };
-
-                requestAnimationFrame(animate);
-            });
-        }
-
-        // Tilt effect for cards
-        function setupTiltEffect() {
-            if (typeof VanillaTilt === 'undefined') {
-                // Load VanillaTilt.js dynamically if needed
-                const script = document.createElement('script');
-                script.src = 'https://unpkg.com/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js';
-                script.onload = () => {
-                    if (typeof VanillaTilt !== 'undefined') {
-                        VanillaTilt.init(document.querySelectorAll('.tilt-card'), {
-                            max: 10,
-                            speed: 400,
-                            glare: true,
-                            'max-glare': 0.3
-                        });
-                    }
-                };
-                document.head.appendChild(script);
-            } else {
-                VanillaTilt.init(document.querySelectorAll('.tilt-card'), {
-                    max: 10,
-                    speed: 400,
-                    glare: true,
-                    'max-glare': 0.3
-                });
-            }
-        }
-
-        // Parallax effect for background elements
-        function setupParallaxEffect() {
-            const parallaxElements = document.querySelectorAll('.parallax-element');
-
-            document.addEventListener('mousemove', e => {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-
-                parallaxElements.forEach(element => {
-                    const speedX = element.getAttribute('data-speed-x') || 30;
-                    const speedY = element.getAttribute('data-speed-y') || 30;
-
-                    const moveX = (x * speedX) - (speedX / 2);
-                    const moveY = (y * speedY) - (speedY / 2);
-
-                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                });
-            });
-        }
-
-        // Mobile navigation menu
-        function setupMobileMenu() {
-            const navToggle = document.getElementById('nav-toggle-mobile');
-            const navContent = document.getElementById('nav-content-mobile');
-
-            if (navToggle && navContent) {
-                navToggle.addEventListener('click', () => {
-                    navContent.classList.toggle('hidden');
-                });
-
-                // Close menu when clicking a link
-                const navLinks = navContent.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        navContent.classList.add('hidden');
-                    });
-                });
-            }
-        }
-
-        // Dark/Light mode toggle
-        function setupThemeToggle() {
-            const themeToggle = document.getElementById('theme-toggle-button');
-            const themeIcon = document.getElementById('theme-icon');
+        // Hiệu ứng tuyết rơi (sử dụng khi cần)
+        function createSnowEffect() {
             const body = document.body;
 
-            // This implementation is a placeholder since our design is already dark by default
-            if (themeToggle && themeIcon) {
-                themeToggle.addEventListener('click', () => {
-                    // Toggle some class for potential theme variations
-                    body.classList.toggle('theme-alt');
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflake.style.opacity = Math.random() * 0.8 + 0.2;
 
-                    if (body.classList.contains('theme-alt')) {
-                        themeIcon.classList.remove('fa-moon');
-                        themeIcon.classList.add('fa-sun');
-                    } else {
-                        themeIcon.classList.remove('fa-sun');
-                        themeIcon.classList.add('fa-moon');
-                    }
-                });
+                body.appendChild(snowflake);
             }
         }
 
-        // Update current year in footer
+        // Hiệu ứng parallax cơ bản
+        function setupParallaxEffect() {
+            const parallaxElements = document.querySelectorAll('.float-3d');
+
+            window.addEventListener('mousemove', (event) => {
+                const x = event.clientX / window.innerWidth - 0.5;
+                const y = event.clientY / window.innerHeight - 0.5;
+
+                parallaxElements.forEach(element => {
+                    const depth = element.querySelector('.depth-1') ? 10 : 5;
+                    element.style.transform = `translateX(${x * depth}px) translateY(${y * depth}px)`;
+                });
+            });
+        }
+
+        // Toggle menu mobile
+        function setupMobileMenu() {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (!menuButton || !mobileMenu) return;
+
+            menuButton.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('h-0')) {
+                    mobileMenu.classList.remove('h-0', 'opacity-0');
+                    mobileMenu.classList.add('h-auto', 'opacity-100');
+                } else {
+                    mobileMenu.classList.add('h-0', 'opacity-0');
+                    mobileMenu.classList.remove('h-auto', 'opacity-100');
+                }
+            });
+
+            // Đóng menu khi click vào link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('h-0', 'opacity-0');
+                    mobileMenu.classList.remove('h-auto', 'opacity-100');
+                });
+            });
+        }
+
+        // Toggle theme (light/dark)
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (!themeToggle) return;
+
+            // Kiểm tra theme đã lưu
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('night-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('night-mode');
+
+                // Lưu trạng thái theme
+                if (document.body.classList.contains('night-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    if (window.vantaEffect) {
+                        window.vantaEffect.setOptions({
+                            skyColor: 0x0f172a,
+                            cloudShadowColor: 0x000000
+                        });
+                    }
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    if (window.vantaEffect) {
+                        window.vantaEffect.setOptions({
+                            skyColor: 0x87ceeb,
+                            cloudShadowColor: 0x003971
+                        });
+                    }
+                }
+            });
+        }
+
+        // Cập nhật năm hiện tại
         function updateCopyrightYear() {
             const yearElement = document.getElementById('current-year');
             if (yearElement) {
@@ -1359,71 +1520,75 @@
             }
         }
 
-        // GSAP animations
-        function setupGSAPAnimations() {
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                // Register ScrollTrigger plugin
-                gsap.registerPlugin(ScrollTrigger);
+        // Toggle hiệu ứng mưa (ví dụ: khi hover vào card rain)
+        function setupRainToggle() {
+            const rainCards = document.querySelectorAll('.rain-card');
+            const rainEffect = document.getElementById('rain-effect');
 
-                // Hero card animation
-                gsap.from('#hero-card', {
-                    y: 100,
-                    opacity: 0,
-                    duration: 1,
-                    ease: 'power3.out'
+            if (!rainEffect) return;
+
+            rainCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    createRainEffect();
+                    rainEffect.classList.remove('hidden');
                 });
 
-                // Heading animations
-                gsap.utils.toArray('.heading-teen').forEach(heading => {
-                    gsap.from(heading, {
-                        scrollTrigger: {
-                            trigger: heading,
-                            start: 'top 80%',
-                            toggleActions: 'play none none none'
-                        },
-                        opacity: 0,
-                        y: 50,
-                        duration: 0.8,
-                        ease: 'back.out(1.7)'
-                    });
+                card.addEventListener('mouseleave', () => {
+                    setTimeout(() => {
+                        rainEffect.classList.add('hidden');
+                    }, 1000);
                 });
+            });
+        }
+
+        // Tạo thêm giọt mưa cho phần skill (trang trí)
+        function createSkillRaindrops() {
+            const container = document.getElementById('skill-raindrops');
+            if (!container) return;
+
+            container.classList.remove('hidden');
+
+            for (let i = 0; i < 20; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('rain-drop');
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.top = `${Math.random() * 100}%`;
+                drop.style.animationDuration = `${Math.random() * 1 + 2}s`;
+                drop.style.animationDelay = `${Math.random() * 2}s`;
+                drop.style.opacity = '0.3';
+                container.appendChild(drop);
             }
         }
 
-        // Initialize all animations and effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // First visible animations
+        // Thiết lập hiệu ứng fixed header khi scroll
+        function setupStickyHeader() {
+            const navbar = document.querySelector('nav');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('bg-white/80', 'dark:bg-sky-900/80', 'backdrop-blur-md', 'shadow-md');
+                } else {
+                    navbar.classList.remove('bg-white/80', 'dark:bg-sky-900/80', 'backdrop-blur-md', 'shadow-md');
+                }
+            });
+        }
+
+        // Khởi tạo tất cả các hiệu ứng khi trang được tải
+        document.addEventListener('DOMContentLoaded', function () {
+            // Khởi tạo nền mây 3D
+            initVantaBackground();
+
+            // Thiết lập các hiệu ứng và animation
             animateSplitText();
             setupTypingEffect();
-
-            // Scroll-based animations
             setupScrollReveal();
-            animateSkillBars();
-
-            // Interaction effects
-            setupTiltEffect();
             setupParallaxEffect();
             setupMobileMenu();
             setupThemeToggle();
-
-            // Other initializations
             updateCopyrightYear();
-            setupGSAPAnimations();
-
-            // Animate countups when they come into view
-            const counterObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        counterObserver.disconnect();
-                    }
-                });
-            });
-
-            const countersContainer = document.querySelector('.count-up');
-            if (countersContainer) {
-                counterObserver.observe(countersContainer);
-            }
+            setupRainToggle();
+            createSkillRaindrops();
+            setupStickyHeader();
         });
     </script>
 </body>
