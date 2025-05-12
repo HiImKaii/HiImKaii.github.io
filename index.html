@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninh Hải Đăng - Geospatial Data Engineer</title>
+    <title>NHĐ Portfolio ✌️</title>
 
-    <link rel="icon" href="https://placehold.co/32x32/1e40af/ffffff?text=NHD&font=roboto" type="image/x-icon">
+    <link rel="icon" href="https://placehold.co/32x32/ff3366/ffffff?text=NHD&font=urbanist" type="image/x-icon">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -15,428 +15,556 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Thêm GSAP cho animation mạnh mẽ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Thêm thư viện Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <style>
-        /* CSS tùy chỉnh cho phong cách Geospatial Data Engineer */
+        /* CSS phong cách teen năng động với nhiều hiệu ứng */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=Urbanist:wght@300..900&display=swap');
+
+        :root {
+            --color-primary: #FF3366;
+            /* Pink hot */
+            --color-secondary: #5E17EB;
+            /* Purple chill */
+            --color-accent: #00F5E9;
+            /* Cyan electric */
+            --color-dark: #0A101E;
+            --color-light: #FFFFFF;
+            --gradient-main: linear-gradient(120deg, #FF3366, #5E17EB);
+            --gradient-alt: linear-gradient(120deg, #00F5E9, #5E17EB);
+            --shadow-neon: 0 0 15px rgba(255, 51, 102, 0.5);
+            --font-main: 'Urbanist', sans-serif;
+            --font-alt: 'Outfit', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            /* Font chuyên nghiệp hơn */
-            /* Sử dụng gradient nhẹ nhàng hoặc ảnh nền tinh tế liên quan đến bản đồ/dữ liệu */
-            background: linear-gradient(to bottom, #f0f4f8, #e5e9ec);
-            /* Light mode subtle gradient */
-            background-attachment: fixed;
-            transition: background 0.5s ease, color 0.5s ease;
+            font-family: var(--font-main);
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            transition: all 0.4s ease;
+            overflow-x: hidden;
         }
 
-        /* Light mode base */
-        body.light-mode {
-            background-color: #f8fafc;
-            /* slate-50 */
-            color: #1e293b;
-            /* slate-800 */
+        /* Cool Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        /* Dark mode base */
-        body.dark-mode {
-            background-color: #0b132b;
-            /* Màu nền tối sâu hơn */
-            color: #cbd5e1;
-            /* slate-300 */
-            background-image: linear-gradient(to bottom, #0b132b, #1c2541);
-            /* Dark subtle gradient */
+        ::-webkit-scrollbar-track {
+            background: #0A101E;
         }
 
-        .content-card {
-            /* Thay thế glassmorphism bằng card rõ ràng hơn */
-            background-color: rgba(255, 255, 255, 0.85);
-            /* Nền trắng mờ nhẹ */
-            backdrop-filter: blur(5px);
-            /* Giảm blur */
-            border: 1px solid rgba(203, 213, 225, 0.5);
-            /* slate-300 border */
-            border-radius: 0.75rem;
-            /* Bo góc vừa phải */
-            box-shadow: 0 4px 15px 0 rgba(100, 116, 139, 0.08);
-            /* slate-400 shadow nhẹ */
-            transition: background-color 0.4s ease, border 0.4s ease, box-shadow 0.4s ease;
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF3366, #5E17EB);
+            border-radius: 20px;
         }
 
-        .dark-mode .content-card {
-            background-color: rgba(30, 41, 59, 0.75);
-            /* slate-800 với opacity */
-            border: 1px solid rgba(71, 85, 105, 0.5);
-            /* slate-600 border */
-            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        /* Neon glowing text effect */
+        .neon-text {
+            color: var(--color-light);
+            text-shadow: 0 0 10px var(--color-primary),
+                0 0 20px var(--color-primary),
+                0 0 30px var(--color-primary);
+            animation: neon-pulse 2s infinite alternate;
         }
 
-        .nav-bar {
-            /* Thanh điều hướng */
-            background-color: rgba(255, 255, 255, 0.8);
+        @keyframes neon-pulse {
+            from {
+                text-shadow: 0 0 5px var(--color-primary),
+                    0 0 10px var(--color-primary);
+            }
+
+            to {
+                text-shadow: 0 0 10px var(--color-primary),
+                    0 0 20px var(--color-primary),
+                    0 0 30px var(--color-primary);
+            }
+        }
+
+        /* Background glowing dots/particles */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Cool card styling */
+        .card-teen {
+            background: rgba(20, 20, 40, 0.7);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.7);
-            /* slate-200 */
-        }
-
-        .dark-mode .nav-bar {
-            background-color: rgba(15, 23, 42, 0.8);
-            /* slate-900 with opacity */
-            border-bottom: 1px solid rgba(51, 65, 85, 0.7);
-            /* slate-700 */
-        }
-
-        /* Tiêu đề section */
-        .section-title {
-            font-family: 'Roboto Mono', monospace;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 600;
-            margin-bottom: 3rem;
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            letter-spacing: -0.5px;
+            overflow: hidden;
         }
 
-        .light-mode .section-title {
-            color: #0f172a;
-        }
-
-        /* slate-900 */
-        .dark-mode .section-title {
-            color: #f1f5f9;
-        }
-
-        /* slate-100 */
-
-        .section-title::before {
-            /* Gạch chân đơn giản, kỹ thuật hơn */
+        .card-teen::before {
             content: '';
             position: absolute;
-            left: 50%;
-            bottom: -12px;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 4px;
-            border-radius: 2px;
-            background-color: #2563eb;
-            /* blue-600 */
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
 
-        .dark-mode .section-title::before {
-            background-color: #60a5fa;
-            /* blue-400 */
+        .card-teen:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        /* Nút bấm */
-        .btn-primary {
-            background-color: #2563eb;
-            /* blue-600 */
+        .card-teen:hover::before {
+            left: 100%;
+        }
+
+        /* Cool navbar styling */
+        .navbar-teen {
+            background: rgba(10, 16, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animated button styling */
+        .btn-teen {
+            background: var(--gradient-main);
             color: white;
-            padding: 0.75rem 1.75rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            /* Medium weight */
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2);
-            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 10px 20px rgba(95, 23, 235, 0.3);
         }
 
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-            /* blue-700 */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        .btn-teen:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 51, 102, 0.4);
         }
 
-        .dark-mode .btn-primary {
-            background-color: #3b82f6;
-            /* blue-500 */
-            box-shadow: 0 2px 5px rgba(59, 130, 246, 0.15);
+        .btn-teen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-alt);
+            z-index: -1;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: scaleX(0);
+            transform-origin: right;
         }
 
-        .dark-mode .btn-primary:hover {
-            background-color: #60a5fa;
-            /* blue-400 */
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+        .btn-teen:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
+        .btn-outline-teen {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid #3b82f6;
-            /* blue-500 */
-            color: #2563eb;
-            /* blue-600 */
-            padding: 0.75rem 1.75rem;
-            border-radius: 0.5rem;
+        .btn-outline-teen:hover {
+            color: white;
+            border-color: transparent;
+            background: var(--gradient-main);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-neon);
+        }
+
+        /* Tilting card effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* Skill badge styling */
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 0.8rem;
             font-weight: 500;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-secondary:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-            /* blue-500/10 */
-            transform: translateY(-2px);
-            border-color: #2563eb;
-            /* blue-600 */
+        .skill-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+            background: linear-gradient(120deg, rgba(255, 51, 102, 0.2), rgba(94, 23, 235, 0.2));
         }
 
-        .dark-mode .btn-secondary {
-            border-color: #60a5fa;
-            /* blue-400 */
-            color: #60a5fa;
-            /* blue-400 */
-        }
-
-        .dark-mode .btn-secondary:hover {
-            background-color: rgba(96, 165, 250, 0.15);
-            /* blue-400/15 */
-            border-color: #93c5fd;
-            /* blue-300 */
-            color: #93c5fd;
-        }
-
-        /* Card kỹ năng/dự án */
-        .item-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .item-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px 0 rgba(100, 116, 139, 0.1);
-        }
-
-        .dark-mode .item-card:hover {
-            box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        .project-image-wrapper {
-            /* Bỏ hiệu ứng zoom ảnh */
+        /* Section separators */
+        .section-divider {
+            height: 150px;
             overflow: hidden;
-            border-radius: 0.5rem 0.5rem 0 0;
-        }
-
-        /* Lưới cho kỹ năng */
-        .skills-grid {
-            display: grid;
-            gap: 1.5rem;
-            /* Giảm gap */
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-            /* Cột nhỏ hơn cho skills */
-        }
-
-        /* Hiệu ứng cho avatar */
-        .avatar-geospatial {
             position: relative;
-            transition: transform 0.3s ease;
+            margin-top: -50px;
+        }
+
+        .section-divider svg {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+        }
+
+        /* Cool section headings */
+        .heading-teen {
+            font-family: var(--font-alt);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            position: relative;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+        }
+
+        .heading-teen::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--gradient-main);
+            border-radius: 10px;
+        }
+
+        /* Animated icons */
+        .animated-icon {
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .animated-icon:hover {
+            transform: scale(1.3) rotate(10deg);
+            color: var(--color-primary);
+        }
+
+        /* Animation for scroll reveal */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animations */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Avatar styling */
+        .avatar-teen {
             border: 4px solid transparent;
-            /* Border trong suốt ban đầu */
-            border-image-slice: 1;
-            border-image-source: linear-gradient(to bottom right, #60a5fa, #1e40af);
-            /* Gradient xanh */
+            background: linear-gradient(#0A101E, #0A101E) padding-box,
+                var(--gradient-main) border-box;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .avatar-geospatial:hover {
-            transform: scale(1.05);
+        .avatar-teen:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.5);
         }
 
-        /* Bỏ hiệu ứng vòng sáng phức tạp */
-
-        /* Nút chuyển chế độ */
-        #theme-toggle-button {
-            transition: transform 0.3s ease, color 0.3s ease;
+        /* Social media buttons */
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        #theme-toggle-button:hover {
-            transform: scale(1.1);
-            /* Bớt xoay */
+        .social-icon:hover {
+            transform: scale(1.3);
+            background: var(--gradient-main);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.5);
         }
 
-        .nav-link-item {
+        /* Cool text effect */
+        .split-text {
+            overflow: hidden;
+            padding: 5px 0;
+        }
+
+        .split-text span {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        /* Wavy text animation */
+        .wavy-text {
             position: relative;
-            padding-bottom: 4px;
-            transition: color 0.3s ease;
+            display: inline-block;
+            overflow: hidden;
         }
 
-        .nav-link-item::after {
-            /* Gạch chân đơn giản hơn */
+        .wavy-text:after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 0;
+            width: 100%;
             height: 2px;
-            background-color: #2563eb;
-            /* blue-600 */
-            transition: width 0.3s ease;
+            background: var(--gradient-main);
+            transform: translate(-100%, 0);
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        .dark-mode .nav-link-item::after {
-            background-color: #60a5fa;
-            /* blue-400 */
+        .wavy-text:hover:after {
+            transform: translate(0, 0);
         }
 
-        .nav-link-item:hover::after {
-            width: 70%;
-            /* Gạch chân không hết chiều rộng */
+        /* Spinning animation for logos */
+        .spin-hover {
+            transition: transform 0.6s ease;
         }
 
-        .nav-link-item:hover {
-            color: #1d4ed8;
-            /* blue-700 */
+        .spin-hover:hover {
+            transform: rotate(360deg);
         }
 
-        .dark-mode .nav-link-item:hover {
-            color: #93c5fd;
-            /* blue-300 */
+        /* Mobile menu */
+        .mobile-menu-teen {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .tech-tag {
-            /* Styling cho tag công nghệ */
-            font-size: 0.75rem;
-            /* text-xs */
-            font-weight: 500;
-            /* medium */
-            padding: 0.3rem 0.75rem;
-            /* px-3 py-1.5 */
-            border-radius: 9999px;
-            /* rounded-full */
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        /* Mousemove parallax effect */
+        .parallax-element {
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
     </style>
 </head>
 
 <body class="light-mode">
+    <!-- Particle background effect -->
+    <div id="particles-js"></div>
 
-    <nav id="header" class="nav-bar fixed w-full z-50 top-0 transition-all duration-300">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-3 px-4 md:px-2">
+    <!-- Navbar -->
+    <nav id="header" class="navbar-teen fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between py-4 px-4 md:px-6">
             <div class="pl-2 md:pl-4 flex items-center">
-                <a class="text-lg lg:text-xl font-semibold font-roboto-mono tracking-tight no-underline hover:no-underline light-mode:text-slate-900 dark-mode:text-slate-50"
+                <a class="text-xl lg:text-2xl font-bold tracking-tight no-underline hover:no-underline flex items-center"
                     href="#">
-                    NHD<span class="light-mode:text-blue-600 dark-mode:text-blue-400">/</span>GeoData
+                    <span class="text-white font-black">N</span>
+                    <span class="text-[#FF3366] font-black">H</span>
+                    <span class="text-[#5E17EB] font-black">Đ</span>
+                    <span class="text-[#00F5E9] ml-1">←CODE</span>
                 </a>
             </div>
             <div class="flex items-center pr-2 md:pr-4">
+                <div class="hidden md:flex space-x-1 mr-5">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-github text-white"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in text-white"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram text-white"></i>
+                    </a>
+                </div>
                 <button id="theme-toggle-button"
-                    class="p-2 rounded-full focus:outline-none light-mode:text-slate-600 dark-mode:text-yellow-400 light-mode:hover:bg-gray-200/70 dark-mode:hover:bg-slate-700/50">
+                    class="p-2 rounded-full focus:outline-none text-white hover:bg-gray-800/40">
                     <i id="theme-icon" class="fas fa-moon text-lg"></i>
                 </button>
                 <div class="block lg:hidden ml-3">
-                    <button id="nav-toggle-mobile"
-                        class="flex items-center p-1 light-mode:text-slate-700 dark-mode:text-slate-200 focus:outline-none">
+                    <button id="nav-toggle-mobile" class="flex items-center p-1 text-white focus:outline-none">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:mt-0 bg-transparent p-4 lg:p-0 z-20"
+            <div class="mobile-menu-teen w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:mt-0 bg-transparent p-4 lg:p-0 z-20"
                 id="nav-content-mobile">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center text-center lg:text-left">
-                    <li class="mr-0 lg:mr-5 my-2 lg:my-0">
-                        <a class="nav-link-item block py-2 px-2 text-sm font-medium light-mode:text-slate-700 dark-mode:text-slate-200"
-                            href="#about">Giới Thiệu</a>
+                    <li class="mr-0 lg:mr-3 my-2 lg:my-0">
+                        <a class="wavy-text block py-2 px-2 text-sm font-medium text-white" href="#about">Giới Thiệu</a>
                     </li>
-                    <li class="mr-0 lg:mr-5 my-2 lg:my-0">
-                        <a class="nav-link-item block py-2 px-2 text-sm font-medium light-mode:text-slate-700 dark-mode:text-slate-200"
-                            href="#skills">Kỹ Năng</a>
+                    <li class="mr-0 lg:mr-3 my-2 lg:my-0">
+                        <a class="wavy-text block py-2 px-2 text-sm font-medium text-white" href="#skills">Kỹ Năng</a>
                     </li>
-                    <li class="mr-0 lg:mr-5 my-2 lg:my-0">
-                        <a class="nav-link-item block py-2 px-2 text-sm font-medium light-mode:text-slate-700 dark-mode:text-slate-200"
-                            href="#projects">Dự Án</a>
+                    <li class="mr-0 lg:mr-3 my-2 lg:my-0">
+                        <a class="wavy-text block py-2 px-2 text-sm font-medium text-white" href="#projects">Dự Án</a>
                     </li>
-                    <li class="my-2 lg:my-0">
-                        <a class="nav-link-item block py-2 px-2 text-sm font-medium light-mode:text-slate-700 dark-mode:text-slate-200"
-                            href="#contact">Liên Hệ</a>
+                    <li class="my-2 lg:my-0 lg:ml-5">
+                        <a class="btn-teen block lg:inline-block w-full lg:w-auto text-center" href="#contact">Liên
+                            Hệ</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="min-h-[90vh] flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
+    <!-- Hero Section with cool animations -->
+    <section class="min-h-screen flex items-center justify-center pt-20 pb-16 relative overflow-hidden">
+        <!-- Animated background elements -->
         <div
-            class="absolute top-1/5 left-1/5 w-40 h-40 bg-blue-300/20 dark:bg-blue-500/10 rounded-full filter blur-3xl animate-pulse-slow opacity-60">
+            class="absolute top-1/3 left-1/4 w-64 h-64 bg-gradient-to-r from-[#FF3366]/20 to-[#5E17EB]/20 rounded-full filter blur-3xl animate-pulse-slow opacity-70 parallax-element">
         </div>
         <div
-            class="absolute bottom-1/5 right-1/5 w-52 h-52 bg-emerald-300/20 dark:bg-emerald-500/10 rounded-full filter blur-3xl animate-pulse-slower opacity-60">
+            class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-[#00F5E9]/20 to-[#5E17EB]/20 rounded-full filter blur-3xl animate-pulse-slower opacity-60 parallax-element">
         </div>
 
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <img src="https://placehold.co/160x160/e0f2fe/0c4a6e?text=NHD&font=inter"
+        <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
+            <!-- Avatar with animated border -->
+            <img src="https://placehold.co/200x200/0A101E/00F5E9?text=NHĐ&font=urbanist"
                 alt="Ảnh đại diện của Ninh Hải Đăng"
-                class="avatar-geospatial w-36 h-36 md:w-44 md:h-44 rounded-full mx-auto mb-8 shadow-xl">
+                class="avatar-teen w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-8 shadow-2xl">
 
-            <div class="content-card p-8 md:p-10 max-w-3xl mx-auto">
-                <h1
-                    class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 font-inter light-mode:text-slate-900 dark-mode:text-white">
-                    Ninh Hải Đăng
+            <div class="card-teen max-w-4xl mx-auto transform-gpu" id="hero-card">
+                <!-- Split text animation for main heading -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight split-text">
+                    <span class="text-white">Ninh Hải <span class="text-[#FF3366]">Đăng</span></span>
                 </h1>
-                <div
-                    class="text-lg md:text-xl lg:text-2xl mb-8 font-roboto-mono light-mode:text-blue-700 dark-mode:text-blue-400">
-                    <span id="typed-text-hero-creative" class="font-medium"></span>
+
+                <!-- Animated text typing -->
+                <div class="text-lg md:text-xl lg:text-2xl mb-8 font-medium relative overflow-hidden h-8">
+                    <span id="typed-text" class="absolute left-1/2 transform -translate-x-1/2 neon-text"></span>
                 </div>
-                <p
-                    class="text-base md:text-lg mb-10 max-w-xl mx-auto light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
-                    Xây dựng và tối ưu hóa các hệ thống dữ liệu không gian địa lý mạnh mẽ, khả năng mở rộng cao để giải
-                    quyết các vấn đề phức tạp.
+
+                <p class="text-base md:text-lg mb-10 max-w-xl mx-auto text-gray-300 leading-relaxed reveal">
+                    <span class="text-[#00F5E9] font-semibold">Coder</span> đam mê sáng tạo và công nghệ.
+                    Biến ý tưởng thành hiện thực với code và một chút <span class="text-[#FF3366] font-semibold">✨ magic
+                        ✨</span>
                 </p>
-                <div class="space-y-4 md:space-y-0 md:space-x-5">
-                    <a href="#projects" class="btn-primary inline-block w-full md:w-auto">
-                        <i class="fas fa-map-marked-alt mr-2"></i>Xem Dự Án Geo
+
+                <div class="space-y-4 md:space-y-0 md:space-x-5 reveal">
+                    <a href="#projects" class="btn-teen inline-block w-full md:w-auto">
+                        <i class="fas fa-rocket mr-2"></i>Xem Dự Án
                     </a>
-                    <a href="[LINK_CV_CUA_BAN_PDF]" target="_blank" class="btn-secondary inline-block w-full md:w-auto">
-                        <i class="fas fa-file-alt mr-2"></i>Tải Hồ Sơ (CV)
+                    <a href="#" target="_blank" class="btn-outline-teen inline-block w-full md:w-auto mt-4 md:mt-0">
+                        <i class="fas fa-file-alt mr-2"></i>Download CV
                     </a>
+                </div>
+
+                <!-- Animated scroll indicator -->
+                <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 animate-bounce mt-16 text-[#00F5E9]">
+                    <i class="fas fa-chevron-down text-2xl"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20">
+    <!-- Wavy divider -->
+    <div class="section-divider">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,53.3C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+                fill="#0A101E"></path>
+        </svg>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <!-- Background decorative elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-[#FF3366] opacity-30 rounded-full blur-xl"></div>
+        <div class="absolute bottom-20 right-10 w-24 h-24 bg-[#00F5E9] opacity-30 rounded-full blur-xl"></div>
+
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Về Tôi</h2>
+            <h2 class="heading-teen reveal">About Me_</h2>
+
             <div class="grid lg:grid-cols-12 gap-10 md:gap-12 items-center">
-                <div class="lg:col-span-5 content-card p-5 order-2 lg:order-1 item-card">
-                    <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRhdGElMjBlbmdpbmVlcmluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                        alt="Ninh Hải Đăng - Kỹ sư dữ liệu không gian địa lý"
-                        class="rounded-lg shadow-lg w-full h-auto object-cover">
+                <!-- Image with tilt effect -->
+                <div class="lg:col-span-5 order-2 lg:order-1 reveal">
+                    <div class="tilt-card" data-tilt data-tilt-max="10">
+                        <div class="card-teen p-3 md:p-5">
+                            <img src="https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvZGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                                alt="Ninh Hải Đăng - Teen Coder"
+                                class="rounded-xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
                 </div>
+
                 <div class="lg:col-span-7 order-1 lg:order-2">
-                    <div class="content-card p-8 md:p-10">
-                        <h3
-                            class="text-xl md:text-2xl lg:text-3xl font-semibold mb-5 font-inter light-mode:text-slate-800 dark-mode:text-slate-100">
-                            Kỹ sư Dữ liệu với Đam mê Không gian Địa lý</h3>
-                        <p
-                            class="text-sm md:text-base mb-4 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
-                            Tôi là một Kỹ sư Dữ liệu chuyên sâu về xử lý và quản lý dữ liệu không gian địa lý
-                            (geospatial data). Kinh nghiệm của tôi bao gồm thiết kế, xây dựng và triển khai các luồng xử
-                            lý dữ liệu (ETL/ELT pipelines) hiệu quả, từ thu thập, làm sạch, tích hợp đến phân tích và
-                            trực quan hóa.
+                    <div class="card-teen p-8 md:p-10 reveal">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-5 split-text">
+                            <span class="text-[#FF3366]">Hello World!</span> <span class="text-white">Tôi là Đăng</span>
+                        </h3>
+
+                        <p class="text-sm md:text-base mb-4 text-gray-300 leading-relaxed stagger-item">
+                            Tôi là một <span class="text-[#00F5E9] font-medium">Developer Gen Z</span> với đam mê tạo ra
+                            những ứng dụng và trải nghiệm số đột phá. Mỗi dòng code tôi viết đều mang theo sự sáng tạo
+                            và phong cách riêng.
                         </p>
-                        <p
-                            class="text-sm md:text-base mb-4 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
-                            Tôi có kinh nghiệm làm việc với nhiều định dạng dữ liệu không gian địa lý (vector, raster,
-                            point cloud) và các công cụ mã nguồn mở phổ biến như GDAL, Rasterio, Fiona, Shapely,
-                            GeoPandas, PostGIS. Tôi cũng thành thạo trong việc tận dụng sức mạnh của các nền tảng đám
-                            mây (AWS, GCP) và các công cụ xử lý dữ liệu lớn (Spark, Dask) cho các tác vụ geospatial quy
-                            mô lớn.
+
+                        <p class="text-sm md:text-base mb-6 text-gray-300 leading-relaxed stagger-item">
+                            Không chỉ code, tôi còn là người đam mê nghệ thuật và thiết kế. Sự kết hợp này giúp tôi tạo
+                            ra những sản phẩm không chỉ hoạt động tốt mà còn có visual thật "xịn".
                         </p>
-                        <p
-                            class="text-sm md:text-base mb-6 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
-                            Mục tiêu của tôi là áp dụng kỹ năng kỹ thuật để biến dữ liệu không gian địa lý thô thành
-                            thông tin hữu ích, hỗ trợ đưa ra quyết định tốt hơn trong các lĩnh vực như môi trường, quy
-                            hoạch đô thị, nông nghiệp và logistics.
-                        </p>
-                        <div class="flex flex-wrap gap-2.5">
-                            <span
-                                class="tech-tag light-mode:bg-blue-100 light-mode:text-blue-800 dark-mode:bg-blue-900/60 dark-mode:text-blue-200">#DataPipelines</span>
-                            <span
-                                class="tech-tag light-mode:bg-emerald-100 light-mode:text-emerald-800 dark-mode:bg-emerald-900/60 dark-mode:text-emerald-200">#Geospatial</span>
-                            <span
-                                class="tech-tag light-mode:bg-indigo-100 light-mode:text-indigo-800 dark-mode:bg-indigo-900/60 dark-mode:text-indigo-200">#Python</span>
-                            <span
-                                class="tech-tag light-mode:bg-sky-100 light-mode:text-sky-800 dark-mode:bg-sky-900/60 dark-mode:text-sky-200">#Cloud</span>
-                            <span
-                                class="tech-tag light-mode:bg-amber-100 light-mode:text-amber-800 dark-mode:bg-amber-900/60 dark-mode:text-amber-200">#BigData</span>
+
+                        <!-- Cool stats with animated counting -->
+                        <div class="grid grid-cols-3 gap-4 mb-6 stagger-item">
+                            <div class="text-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                <span class="text-[#FF3366] text-3xl font-bold count-up" data-target="20">0</span>
+                                <p class="text-xs text-gray-400 mt-1">Dự án</p>
+                            </div>
+                            <div class="text-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                <span class="text-[#00F5E9] text-3xl font-bold count-up" data-target="5">0</span>
+                                <p class="text-xs text-gray-400 mt-1">Năm kinh nghiệm</p>
+                            </div>
+                            <div class="text-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                <span class="text-[#5E17EB] text-3xl font-bold count-up" data-target="120">0</span>
+                                <p class="text-xs text-gray-400 mt-1">Cốc cà phê</p>
+                            </div>
+                        </div>
+
+                        <!-- Interests/Tags with hover effects -->
+                        <div class="flex flex-wrap gap-2 stagger-item">
+                            <span class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">#Coding</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 border-[#00F5E9]/30 text-[#00F5E9]">#Design</span>
+                            <span class="skill-badge bg-[#5E17EB]/20 border-[#5E17EB]/30 text-[#5E17EB]">#Gaming</span>
+                            <span class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">#Travel</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 border-[#00F5E9]/30 text-[#00F5E9]">#Music</span>
                         </div>
                     </div>
                 </div>
@@ -444,351 +572,859 @@
         </div>
     </section>
 
-    <section id="skills" class="py-20">
+    <!-- Wavy divider -->
+    <div class="section-divider">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0,32L60,42.7C120,53,240,75,360,69.3C480,64,600,32,720,32C840,32,960,64,1080,69.3C1200,75,1320,53,1380,42.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+                fill="#0A101E"></path>
+        </svg>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 relative">
+        <!-- Decorative elements -->
+        <div class="absolute top-40 right-20 w-32 h-32 bg-[#5E17EB] opacity-20 rounded-full blur-xl"></div>
+        <div class="absolute bottom-40 left-20 w-36 h-36 bg-[#FF3366] opacity-20 rounded-full blur-xl"></div>
+
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Công Nghệ & Kỹ Năng</h2>
-            <div class="skills-grid">
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fab fa-python fa-3x mb-4 light-mode:text-blue-600 dark-mode:text-blue-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">Python
+            <h2 class="heading-teen reveal">Skills.map()_</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 reveal">
+                <!-- Tech skills with animations -->
+                <div class="card-teen p-6 text-center group stagger-item">
+                    <div
+                        class="w-16 h-16 mx-auto mb-4 bg-[#FF3366]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <i class="fab fa-react text-3xl text-[#00F5E9] spin-hover"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Frontend
                     </h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(GeoPandas, Rasterio, Fiona,
-                        Shapely, Xarray)</p>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">React, Vue,
+                        TailwindCSS, GSAP</p>
                 </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fas fa-database fa-3x mb-4 light-mode:text-emerald-600 dark-mode:text-emerald-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">SQL &
-                        Databases</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(PostgreSQL/PostGIS, Spatial
-                        SQL)</p>
+
+                <div class="card-teen p-6 text-center group stagger-item">
+                    <div
+                        class="w-16 h-16 mx-auto mb-4 bg-[#5E17EB]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <i class="fab fa-node-js text-3xl text-[#FF3366] spin-hover"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors">Backend
+                    </h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Node.js, Express,
+                        MongoDB, Firebase</p>
                 </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i
-                        class="fas fa-map-marked-alt fa-3x mb-4 light-mode:text-orange-500 dark-mode:text-orange-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">GIS &
-                        Libraries</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(QGIS, GDAL/OGR, PDAL)</p>
+
+                <div class="card-teen p-6 text-center group stagger-item">
+                    <div
+                        class="w-16 h-16 mx-auto mb-4 bg-[#00F5E9]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-paint-brush text-3xl text-[#5E17EB] spin-hover"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#5E17EB] transition-colors">Design
+                    </h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Figma, Photoshop,
+                        UI/UX, Motion</p>
                 </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fas fa-cogs fa-3x mb-4 light-mode:text-indigo-500 dark-mode:text-indigo-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">Data
-                        Processing</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(Apache Spark, Dask, Pandas)
-                    </p>
+
+                <div class="card-teen p-6 text-center group stagger-item">
+                    <div
+                        class="w-16 h-16 mx-auto mb-4 bg-[#FF3366]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-mobile-alt text-3xl text-[#00F5E9] spin-hover"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Mobile
+                    </h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">React Native, Flutter,
+                        Mobile UI</p>
                 </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fas fa-cloud fa-3x mb-4 light-mode:text-sky-500 dark-mode:text-sky-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">Cloud
-                        Platforms</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(AWS S3/EC2/Lambda, GCP
-                        GCS/Compute)</p>
-                </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fas fa-project-diagram fa-3x mb-4 light-mode:text-rose-500 dark-mode:text-rose-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">Workflow
-                        Orchestration</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(Apache Airflow)</p>
-                </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fab fa-docker fa-3x mb-4 light-mode:text-cyan-600 dark-mode:text-cyan-400"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">
-                        Containerization</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(Docker, Kubernetes basics)
-                    </p>
-                </div>
-                <div class="item-card content-card p-6 text-center">
-                    <i class="fab fa-git-alt fa-3x mb-4 light-mode:text-gray-700 dark-mode:text-gray-300"></i>
-                    <h4 class="text-lg font-semibold mb-1 light-mode:text-slate-800 dark-mode:text-slate-100">Version
-                        Control</h4>
-                    <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-400">(Git, GitHub/GitLab)</p>
+            </div>
+
+            <!-- Skill bars with animations -->
+            <div class="mt-16 max-w-3xl mx-auto reveal">
+                <div class="card-teen p-8">
+                    <h3 class="text-xl font-bold mb-6 text-center text-white">Coding Skills</h3>
+
+                    <div class="space-y-4">
+                        <div class="stagger-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-[#FF3366]">JavaScript/TypeScript</span>
+                                <span class="text-sm font-medium text-gray-400">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar bg-gradient-to-r from-[#FF3366] to-[#5E17EB] h-full rounded-full"
+                                    data-width="90"></div>
+                            </div>
+                        </div>
+
+                        <div class="stagger-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-[#00F5E9]">React/Vue</span>
+                                <span class="text-sm font-medium text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar bg-gradient-to-r from-[#00F5E9] to-[#5E17EB] h-full rounded-full"
+                                    data-width="85"></div>
+                            </div>
+                        </div>
+
+                        <div class="stagger-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-[#5E17EB]">UI/UX Design</span>
+                                <span class="text-sm font-medium text-gray-400">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar bg-gradient-to-r from-[#5E17EB] to-[#FF3366] h-full rounded-full"
+                                    data-width="80"></div>
+                            </div>
+                        </div>
+
+                        <div class="stagger-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-[#FF3366]">Node.js/Express</span>
+                                <span class="text-sm font-medium text-gray-400">75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar bg-gradient-to-r from-[#FF3366] to-[#00F5E9] h-full rounded-full"
+                                    data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-20">
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative">
+        <!-- Decorative elements -->
+        <div class="absolute top-40 left-20 w-40 h-40 bg-[#00F5E9] opacity-20 rounded-full blur-xl"></div>
+        <div class="absolute bottom-40 right-20 w-40 h-40 bg-[#FF3366] opacity-20 rounded-full blur-xl"></div>
+
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Dự Án Tiêu Biểu</h2>
-            <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
+            <h2 class="heading-teen reveal">( Projects )_</h2>
 
-                <div class="item-card content-card">
-                    <div class="project-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBpcGVsaW5lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-                            alt="Hình ảnh dự án Xử lý dữ liệu Raster" class="w-full h-64 object-cover">
+            <!-- Featured Project -->
+            <div class="card-teen p-0 overflow-hidden mb-12 reveal">
+                <div class="grid md:grid-cols-5 lg:grid-cols-6">
+                    <div class="md:col-span-2 lg:col-span-3 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+                            alt="Featured Project"
+                            class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
                     </div>
-                    <div class="p-6 md:p-8">
-                        <h3
-                            class="text-xl lg:text-2xl font-semibold mb-3 light-mode:text-slate-800 dark-mode:text-slate-100">
-                            Pipeline Xử lý Dữ liệu Raster Quy mô lớn</h3>
-                        <p class="text-sm mb-4 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
-                            Xây dựng hệ thống ETL tự động trên cloud (AWS/GCP) để xử lý hàng Terabyte dữ liệu ảnh vệ
-                            tinh (Landsat, Sentinel). Tối ưu hóa hiệu năng bằng Spark và Dask, sử dụng Rasterio/Xarray
-                            để tính toán các chỉ số thực vật và phát hiện thay đổi.
-                        </p>
-                        <div class="mb-5 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag light-mode:bg-blue-100 light-mode:text-blue-800 dark-mode:bg-blue-900/60 dark-mode:text-blue-200">#Python</span>
-                            <span
-                                class="tech-tag light-mode:bg-amber-100 light-mode:text-amber-800 dark-mode:bg-amber-900/60 dark-mode:text-amber-200">#Spark</span>
-                            <span
-                                class="tech-tag light-mode:bg-sky-100 light-mode:text-sky-800 dark-mode:bg-sky-900/60 dark-mode:text-sky-200">#AWS</span>
-                            <span
-                                class="tech-tag light-mode:bg-orange-100 light-mode:text-orange-800 dark-mode:bg-orange-900/60 dark-mode:text-orange-200">#Rasterio</span>
-                            <span
-                                class="tech-tag light-mode:bg-rose-100 light-mode:text-rose-800 dark-mode:bg-rose-900/60 dark-mode:text-rose-200">#Airflow</span>
+                    <div class="md:col-span-3 lg:col-span-3 p-8 md:p-10">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-[#FF3366] text-white text-xs px-3 py-1 rounded-full">Featured</span>
+                            <div class="w-10 h-[1px] bg-[#FF3366] ml-3"></div>
                         </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-                            <a href="#" target="_blank" class="btn-secondary w-full sm:w-auto text-center text-xs"><i
-                                    class="fab fa-github mr-1.5"></i>Mã Nguồn</a>
-                            <a href="#" target="_blank" class="btn-primary w-full sm:w-auto text-center text-xs"><i
-                                    class="fas fa-book-open mr-1.5"></i>Chi Tiết (Blog)</a>
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Project Alpha</h3>
+                        <p class="text-sm text-gray-400 mb-6">
+                            A revolutionary app that combines social networking with gaming elements,
+                            creating a unique platform for Gen Z to connect and play.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">React</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 border-[#00F5E9]/30 text-[#00F5E9]">Node.js</span>
+                            <span class="skill-badge bg-[#5E17EB]/20 border-[#5E17EB]/30 text-[#5E17EB]">MongoDB</span>
+                            <span
+                                class="skill-badge bg-[#FF3366]/20 border-[#FF3366]/30 text-[#FF3366]">WebSockets</span>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <a href="#" class="btn-teen text-sm py-2 px-4">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                            </a>
+                            <a href="#" class="btn-outline-teen text-sm py-2 px-4">
+                                <i class="fab fa-github mr-2"></i>Source Code
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="item-card content-card">
-                    <div class="project-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGF0YWJhc2UlMjBtaWdyYXRpb258ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
-                            alt="Hình ảnh dự án Kho dữ liệu Vector" class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-6 md:p-8">
-                        <h3
-                            class="text-xl lg:text-2xl font-semibold mb-3 light-mode:text-slate-800 dark-mode:text-slate-100">
-                            Kho Dữ liệu Vector Tối ưu cho Truy vấn Không gian</h3>
-                        <p class="text-sm mb-4 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
-                            Thiết kế và triển khai kho dữ liệu (data warehouse) trên PostgreSQL/PostGIS để lưu trữ và
-                            quản lý hiệu quả dữ liệu vector địa lý phức tạp (đường giao thông, ranh giới hành chính).
-                            Xây dựng API truy vấn không gian hiệu năng cao sử dụng GeoAlchemy/FastAPI.
-                        </p>
-                        <div class="mb-5 flex flex-wrap gap-2">
-                            <span
-                                class="tech-tag light-mode:bg-blue-100 light-mode:text-blue-800 dark-mode:bg-blue-900/60 dark-mode:text-blue-200">#Python</span>
-                            <span
-                                class="tech-tag light-mode:bg-emerald-100 light-mode:text-emerald-800 dark-mode:bg-emerald-900/60 dark-mode:text-emerald-200">#PostGIS</span>
-                            <span
-                                class="tech-tag light-mode:bg-purple-100 light-mode:text-purple-800 dark-mode:bg-purple-900/60 dark-mode:text-purple-200">#SQLAlchemy</span>
-                            <span
-                                class="tech-tag light-mode:bg-teal-100 light-mode:text-teal-800 dark-mode:bg-teal-900/60 dark-mode:text-teal-200">#FastAPI</span>
-                            <span
-                                class="tech-tag light-mode:bg-gray-100 light-mode:text-gray-800 dark-mode:bg-gray-900/60 dark-mode:text-gray-200">#ETL</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-                            <a href="#" target="_blank" class="btn-secondary w-full sm:w-auto text-center text-xs"><i
-                                    class="fab fa-github mr-1.5"></i>Mã Nguồn</a>
-                            <a href="#" target="_blank" class="btn-primary w-full sm:w-auto text-center text-xs"><i
-                                    class="fas fa-database mr-1.5"></i>Demo API</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <div class="text-center mt-16">
-                <a href="https://github.com/ninhhaidang?tab=repositories" target="_blank"
-                    class="btn-primary text-base px-8 py-3">
-                    <i class="fab fa-github mr-2"></i> Khám phá thêm trên GitHub
+
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <!-- Project Card 1 -->
+                <div class="card-teen p-0 overflow-hidden group stagger-item">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bW9iaWxlJTIwYXBwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="Project 1"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+
+                        <div class="absolute top-4 right-4 flex space-x-2">
+                            <span class="bg-[#5E17EB] text-white text-xs px-2 py-1 rounded">Mobile</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Neon
+                            Chat</h3>
+                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
+                            Unique messaging app with neon themes and real-time filters to make chatting more
+                            expressive.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-[#FF3366]/20 text-xs">React Native</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">Firebase</span>
+                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">Redux</span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <a href="#"
+                                class="text-[#FF3366] text-sm font-medium hover:text-[#00F5E9] transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>View
+                            </a>
+                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="card-teen p-0 overflow-hidden group stagger-item">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdlYnNpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                            alt="Project 2"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+
+                        <div class="absolute top-4 right-4 flex space-x-2">
+                            <span class="bg-[#FF3366] text-white text-xs px-2 py-1 rounded">Web</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#5E17EB] transition-colors">Pixel
+                            Portfolio</h3>
+                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
+                            Creative portfolio template with pixel art style and smooth animations for designers.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-[#FF3366]/20 text-xs">Vue.js</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">GSAP</span>
+                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">Tailwind</span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <a href="#"
+                                class="text-[#5E17EB] text-sm font-medium hover:text-[#00F5E9] transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>View
+                            </a>
+                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="card-teen p-0 overflow-hidden group stagger-item">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="Project 3"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+
+                        <div class="absolute top-4 right-4 flex space-x-2">
+                            <span class="bg-[#00F5E9] text-white text-xs px-2 py-1 rounded">AI</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors">
+                            VoiceFlow</h3>
+                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
+                            AI voice assistant app with customizable flows and integration with smart home devices.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-[#FF3366]/20 text-xs">TensorFlow</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">Python</span>
+                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">React</span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <a href="#"
+                                class="text-[#00F5E9] text-sm font-medium hover:text-[#FF3366] transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>View
+                            </a>
+                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="card-teen p-0 overflow-hidden group stagger-item">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="Project 4"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+
+                        <div class="absolute top-4 right-4 flex space-x-2">
+                            <span class="bg-[#5E17EB] text-white text-xs px-2 py-1 rounded">Game</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#00F5E9] transition-colors">Cyber
+                            Arena</h3>
+                        <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden">
+                            Browser-based multiplayer game with cyberpunk aesthetics and real-time battles.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-[#FF3366]/20 text-xs">JavaScript</span>
+                            <span class="skill-badge bg-[#00F5E9]/20 text-xs">Canvas</span>
+                            <span class="skill-badge bg-[#5E17EB]/20 text-xs">Socket.io</span>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <a href="#"
+                                class="text-[#5E17EB] text-sm font-medium hover:text-[#FF3366] transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>Play
+                            </a>
+                            <a href="#" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 reveal">
+                <a href="https://github.com/ninhhaidang" target="_blank" class="btn-teen inline-block">
+                    <i class="fab fa-github mr-2"></i>More Projects on GitHub
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 relative">
-        <div class="absolute inset-0 opacity-5 dark:opacity-10 bg-fixed"
-            style="background-image: url('https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80'); filter: grayscale(80%);">
-        </div>
-        <div class="container mx-auto px-6 relative z-10">
-            <h2 class="section-title">Liên Hệ</h2>
-            <p class="text-center text-base light-mode:text-slate-600 dark-mode:text-slate-300 mb-12 max-w-lg mx-auto">
-                Sẵn sàng thảo luận về các dự án dữ liệu không gian địa lý, cơ hội hợp tác hoặc các thách thức kỹ thuật.
-            </p>
-            <div class="max-w-md mx-auto content-card p-8 md:p-10">
-                <div class="space-y-6">
-                    <a href="mailto:ninh.hai.dang.geodata@email.com"
-                        class="flex items-center p-4 rounded-lg transition-colors duration-300 light-mode:hover:bg-slate-100 dark-mode:hover:bg-slate-700/50 group">
-                        <i
-                            class="fas fa-envelope fa-lg mr-5 light-mode:text-blue-600 dark-mode:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"></i>
-                        <div>
-                            <h4 class="text-base font-medium light-mode:text-slate-800 dark-mode:text-slate-100">Email
-                            </h4>
-                            <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">
-                                ninh.hai.dang.geodata@email.com</p>
+    <!-- Wavy divider -->
+    <div class="section-divider">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,80C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+                fill="#0A101E"></path>
+        </svg>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <!-- Background particles -->
+        <div class="absolute top-20 right-10 w-32 h-32 bg-[#FF3366] opacity-20 rounded-full blur-xl"></div>
+        <div class="absolute bottom-20 left-10 w-32 h-32 bg-[#00F5E9] opacity-20 rounded-full blur-xl"></div>
+
+        <div class="container mx-auto px-6">
+            <h2 class="heading-teen reveal">./contact_me</h2>
+
+            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <!-- Contact Info -->
+                <div class="card-teen p-8 reveal">
+                    <h3 class="text-2xl font-bold mb-6 text-white">Let's Talk!</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center stagger-item">
+                            <div class="w-12 h-12 bg-[#FF3366]/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-[#FF3366]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-400">Email</h4>
+                                <a href="mailto:ninhhaidang@example.com"
+                                    class="text-white hover:text-[#FF3366] transition-colors">ninhhaidang@example.com</a>
+                            </div>
                         </div>
-                    </a>
-                    <a href="https://linkedin.com/in/ninhhaidang-geo" target="_blank"
-                        class="flex items-center p-4 rounded-lg transition-colors duration-300 light-mode:hover:bg-slate-100 dark-mode:hover:bg-slate-700/50 group">
-                        <i
-                            class="fab fa-linkedin fa-lg mr-5 light-mode:text-sky-700 dark-mode:text-sky-500 group-hover:text-sky-800 dark:group-hover:text-sky-400 transition-colors"></i>
-                        <div>
-                            <h4 class="text-base font-medium light-mode:text-slate-800 dark-mode:text-slate-100">
-                                LinkedIn</h4>
-                            <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">
-                                linkedin.com/in/ninhhaidang-geo</p>
+
+                        <div class="flex items-center stagger-item">
+                            <div class="w-12 h-12 bg-[#00F5E9]/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-discord text-[#00F5E9]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-400">Discord</h4>
+                                <a href="#" class="text-white hover:text-[#00F5E9] transition-colors">ninh.haidang</a>
+                            </div>
                         </div>
-                    </a>
-                    <a href="https://github.com/ninhhaidang" target="_blank"
-                        class="flex items-center p-4 rounded-lg transition-colors duration-300 light-mode:hover:bg-slate-100 dark-mode:hover:bg-slate-700/50 group">
-                        <i
-                            class="fab fa-github fa-lg mr-5 light-mode:text-slate-700 dark-mode:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100 transition-colors"></i>
-                        <div>
-                            <h4 class="text-base font-medium light-mode:text-slate-800 dark-mode:text-slate-100">GitHub
-                            </h4>
-                            <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">github.com/ninhhaidang
-                            </p>
+
+                        <div class="flex items-center stagger-item">
+                            <div class="w-12 h-12 bg-[#5E17EB]/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-github text-[#5E17EB]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-400">GitHub</h4>
+                                <a href="https://github.com/ninhhaidang" target="_blank"
+                                    class="text-white hover:text-[#5E17EB] transition-colors">@ninhhaidang</a>
+                            </div>
                         </div>
-                    </a>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="mt-8 pt-6 border-t border-gray-800">
+                        <h4 class="text-sm font-medium text-gray-400 mb-4">Follow Me:</h4>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-twitter text-white"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in text-white"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-youtube text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="card-teen p-8 reveal">
+                    <form class="space-y-4">
+                        <div class="stagger-item">
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Your Name</label>
+                            <input type="text"
+                                class="w-full bg-[#171C2C] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF3366] transition-all"
+                                placeholder="Enter your name">
+                        </div>
+
+                        <div class="stagger-item">
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                            <input type="email"
+                                class="w-full bg-[#171C2C] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00F5E9] transition-all"
+                                placeholder="your@email.com">
+                        </div>
+
+                        <div class="stagger-item">
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                            <textarea rows="4"
+                                class="w-full bg-[#171C2C] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#5E17EB] transition-all resize-none"
+                                placeholder="Your message..."></textarea>
+                        </div>
+
+                        <div class="stagger-item">
+                            <button type="submit" class="btn-teen w-full">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 text-center border-t light-mode:border-slate-200 dark-mode:border-slate-800">
+    <!-- Footer -->
+    <footer class="py-10 text-center border-t border-gray-800">
         <div class="container mx-auto px-6">
-            <p class="mb-2 text-xs light-mode:text-slate-500 dark-mode:text-slate-400">&copy; <span
-                    id="currentYearCreative"></span> Ninh Hải Đăng.</p>
-            <p class="text-xs light-mode:text-slate-400 dark-mode:text-slate-500">Geospatial Data Engineer Portfolio</p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-bold flex items-center justify-center md:justify-start">
+                        <span class="text-white font-black">N</span>
+                        <span class="text-[#FF3366] font-black">H</span>
+                        <span class="text-[#5E17EB] font-black">Đ</span>
+                    </a>
+                </div>
+
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <div>
+                    <p class="text-sm text-gray-500">&copy; <span id="current-year"></span> Ninh Hải Đăng. All rights
+                        reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript cho Animation và Hiệu ứng -->
     <script>
-        // JavaScript cho hiệu ứng gõ chữ (Cập nhật nội dung)
-        const typedTextHeroCreativeSpan = document.getElementById("typed-text-hero-creative");
-        // THAY THẾ bằng các chức danh/kỹ năng Geospatial Data Engineer
-        const textArrayHeroCreative = ["Geospatial Data Engineer.", "Data Pipeline Architect.", "Cloud Solutions Specialist.", "Spatial Data Enthusiast."];
-        const typingDelayHeroCreative = 100;
-        const erasingDelayHeroCreative = 50;
-        const newTextDelayHeroCreative = 2000;
-        let textArrayIndexHeroCreative = 0;
-        let charIndexHeroCreative = 0;
-
-        function typeHeroCreative() {
-            if (!typedTextHeroCreativeSpan) return; // Check if element exists
-            if (charIndexHeroCreative < textArrayHeroCreative[textArrayIndexHeroCreative].length) {
-                typedTextHeroCreativeSpan.textContent += textArrayHeroCreative[textArrayIndexHeroCreative].charAt(charIndexHeroCreative);
-                charIndexHeroCreative++;
-                setTimeout(typeHeroCreative, typingDelayHeroCreative);
-            } else {
-                setTimeout(eraseHeroCreative, newTextDelayHeroCreative);
+        // Particles background
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": ["#FF3366", "#5E17EB", "#00F5E9"]
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.3,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 0.5,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 1,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#ffffff",
+                            "opacity": 0.1,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 1,
+                            "direction": "none",
+                            "random": true,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 0.3
+                                }
+                            },
+                            "push": {
+                                "particles_nb": 3
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
             }
-        }
+        });
 
-        function eraseHeroCreative() {
-            if (!typedTextHeroCreativeSpan) return;
-            if (charIndexHeroCreative > 0) {
-                typedTextHeroCreativeSpan.textContent = textArrayHeroCreative[textArrayIndexHeroCreative].substring(0, charIndexHeroCreative - 1);
-                charIndexHeroCreative--;
-                setTimeout(eraseHeroCreative, erasingDelayHeroCreative);
-            } else {
-                textArrayIndexHeroCreative++;
-                if (textArrayIndexHeroCreative >= textArrayHeroCreative.length) textArrayIndexHeroCreative = 0;
-                setTimeout(typeHeroCreative, typingDelayHeroCreative + 300);
-            }
-        }
+        // Split text animation
+        function animateSplitText() {
+            document.querySelectorAll('.split-text').forEach(element => {
+                const text = element.textContent;
+                element.innerHTML = '';
 
-        // Chuyển đổi chế độ Sáng/Tối (Giữ nguyên logic)
-        const themeToggleButton = document.getElementById('theme-toggle-button');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
-
-        function applyTheme(theme) {
-            if (theme === 'dark') {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        }
-
-        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            applyTheme(currentTheme);
-        } else if (prefersDarkScheme.matches) {
-            applyTheme('dark');
-        } else {
-            applyTheme('light');
-        }
-
-        if (themeToggleButton) {
-            themeToggleButton.addEventListener('click', () => {
-                let newTheme;
-                if (body.classList.contains('light-mode')) {
-                    newTheme = 'dark';
-                } else {
-                    newTheme = 'light';
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+                    span.style.transitionDelay = `${i * 0.05}s`;
+                    element.appendChild(span);
                 }
-                applyTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
             });
+
+            // Start animation after a short delay
+            setTimeout(() => {
+                document.querySelectorAll('.split-text span').forEach(span => {
+                    span.style.transform = 'translateY(0)';
+                    span.style.opacity = '1';
+                });
+            }, 500);
         }
 
-        // JavaScript cho thanh điều hướng mobile (Giữ nguyên logic)
-        const navToggleMobile = document.getElementById('nav-toggle-mobile');
-        const navContentMobile = document.getElementById('nav-content-mobile');
-        const navLinksMobile = navContentMobile ? navContentMobile.querySelectorAll('.nav-link-item') : [];
-        const header = document.getElementById('header');
+        // Scroll Reveal Animation
+        function setupScrollReveal() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
 
-        if (navToggleMobile && navContentMobile) {
-            navToggleMobile.addEventListener('click', function () {
-                navContentMobile.classList.toggle('hidden');
-                // Add/remove background on mobile menu toggle at top
-                if (!navContentMobile.classList.contains('hidden') && window.scrollY <= 50 && header) {
-                    if (body.classList.contains('light-mode')) header.classList.add('bg-white/90'); // Slightly more opaque
-                    else header.classList.add('bg-slate-900/90');
-                } else if (window.scrollY <= 50 && header) {
-                    header.classList.remove('bg-white/90', 'bg-slate-900/90');
-                }
-            });
-        }
+                        // Handle staggered animations within revealed elements
+                        const staggerItems = entry.target.querySelectorAll('.stagger-item');
+                        staggerItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 100 * index);
+                        });
 
-        navLinksMobile.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navContentMobile && !navContentMobile.classList.contains('hidden')) {
-                    navContentMobile.classList.add('hidden');
-                    if (window.scrollY <= 50 && header) {
-                        header.classList.remove('bg-white/90', 'bg-slate-900/90');
+                        observer.unobserve(entry.target);
                     }
-                }
-            });
-        });
+                });
+            }, { threshold: 0.15 });
 
-        // Cập nhật năm
-        const currentYearSpan = document.getElementById('currentYearCreative');
-        if (currentYearSpan) {
-            currentYearSpan.textContent = new Date().getFullYear();
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
         }
 
-        // Khởi động hiệu ứng gõ chữ
-        document.addEventListener("DOMContentLoaded", function () {
-            if (typedTextHeroCreativeSpan && textArrayHeroCreative.length) {
-                setTimeout(typeHeroCreative, newTextDelayHeroCreative / 2); // Start typing sooner
+        // Animated typing effect
+        function setupTypingEffect() {
+            const textElement = document.getElementById('typed-text');
+            if (!textElement) return;
+
+            const phrases = ["Creator", "Web Developer", "UI/UX Designer", "Mobile Dev", "Game Dev"];
+            let currentPhrase = 0;
+            let currentChar = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+
+            function typeEffect() {
+                const currentText = phrases[currentPhrase];
+
+                if (isDeleting) {
+                    textElement.textContent = currentText.substring(0, currentChar - 1);
+                    currentChar--;
+                    typingSpeed = 50;
+                } else {
+                    textElement.textContent = currentText.substring(0, currentChar + 1);
+                    currentChar++;
+                    typingSpeed = 100;
+                }
+
+                if (!isDeleting && currentChar === currentText.length) {
+                    isDeleting = true;
+                    typingSpeed = 1500; // Pause at the end
+                } else if (isDeleting && currentChar === 0) {
+                    isDeleting = false;
+                    currentPhrase = (currentPhrase + 1) % phrases.length;
+                    typingSpeed = 500; // Pause before typing next phrase
+                }
+
+                setTimeout(typeEffect, typingSpeed);
+            }
+
+            setTimeout(typeEffect, 1000);
+        }
+
+        // Skill bars animation
+        function animateSkillBars() {
+            document.querySelectorAll('.skill-bar').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 500);
+            });
+        }
+
+        // CountUp animation
+        function animateCounters() {
+            document.querySelectorAll('.count-up').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // ms
+                const frameDuration = 1000 / 60; // 60fps
+                const totalFrames = Math.round(duration / frameDuration);
+                let frame = 0;
+
+                const animate = () => {
+                    frame++;
+                    const progress = frame / totalFrames;
+                    const currentCount = Math.round(target * progress);
+
+                    if (parseInt(counter.textContent) !== currentCount) {
+                        counter.textContent = currentCount;
+                    }
+
+                    if (frame < totalFrames) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+
+                requestAnimationFrame(animate);
+            });
+        }
+
+        // Tilt effect for cards
+        function setupTiltEffect() {
+            if (typeof VanillaTilt === 'undefined') {
+                // Load VanillaTilt.js dynamically if needed
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js';
+                script.onload = () => {
+                    if (typeof VanillaTilt !== 'undefined') {
+                        VanillaTilt.init(document.querySelectorAll('.tilt-card'), {
+                            max: 10,
+                            speed: 400,
+                            glare: true,
+                            'max-glare': 0.3
+                        });
+                    }
+                };
+                document.head.appendChild(script);
+            } else {
+                VanillaTilt.init(document.querySelectorAll('.tilt-card'), {
+                    max: 10,
+                    speed: 400,
+                    glare: true,
+                    'max-glare': 0.3
+                });
+            }
+        }
+
+        // Parallax effect for background elements
+        function setupParallaxEffect() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+
+            document.addEventListener('mousemove', e => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                parallaxElements.forEach(element => {
+                    const speedX = element.getAttribute('data-speed-x') || 30;
+                    const speedY = element.getAttribute('data-speed-y') || 30;
+
+                    const moveX = (x * speedX) - (speedX / 2);
+                    const moveY = (y * speedY) - (speedY / 2);
+
+                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+            });
+        }
+
+        // Mobile navigation menu
+        function setupMobileMenu() {
+            const navToggle = document.getElementById('nav-toggle-mobile');
+            const navContent = document.getElementById('nav-content-mobile');
+
+            if (navToggle && navContent) {
+                navToggle.addEventListener('click', () => {
+                    navContent.classList.toggle('hidden');
+                });
+
+                // Close menu when clicking a link
+                const navLinks = navContent.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navContent.classList.add('hidden');
+                    });
+                });
+            }
+        }
+
+        // Dark/Light mode toggle
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle-button');
+            const themeIcon = document.getElementById('theme-icon');
+            const body = document.body;
+
+            // This implementation is a placeholder since our design is already dark by default
+            if (themeToggle && themeIcon) {
+                themeToggle.addEventListener('click', () => {
+                    // Toggle some class for potential theme variations
+                    body.classList.toggle('theme-alt');
+
+                    if (body.classList.contains('theme-alt')) {
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                    } else {
+                        themeIcon.classList.remove('fa-sun');
+                        themeIcon.classList.add('fa-moon');
+                    }
+                });
+            }
+        }
+
+        // Update current year in footer
+        function updateCopyrightYear() {
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        }
+
+        // GSAP animations
+        function setupGSAPAnimations() {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                // Register ScrollTrigger plugin
+                gsap.registerPlugin(ScrollTrigger);
+
+                // Hero card animation
+                gsap.from('#hero-card', {
+                    y: 100,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.out'
+                });
+
+                // Heading animations
+                gsap.utils.toArray('.heading-teen').forEach(heading => {
+                    gsap.from(heading, {
+                        scrollTrigger: {
+                            trigger: heading,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        },
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.8,
+                        ease: 'back.out(1.7)'
+                    });
+                });
+            }
+        }
+
+        // Initialize all animations and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // First visible animations
+            animateSplitText();
+            setupTypingEffect();
+
+            // Scroll-based animations
+            setupScrollReveal();
+            animateSkillBars();
+
+            // Interaction effects
+            setupTiltEffect();
+            setupParallaxEffect();
+            setupMobileMenu();
+            setupThemeToggle();
+
+            // Other initializations
+            updateCopyrightYear();
+            setupGSAPAnimations();
+
+            // Animate countups when they come into view
+            const counterObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        counterObserver.disconnect();
+                    }
+                });
+            });
+
+            const countersContainer = document.querySelector('.count-up');
+            if (countersContainer) {
+                counterObserver.observe(countersContainer);
             }
         });
-
-        // Animation cho các khối khi cuộn vào tầm nhìn (Giữ nguyên logic, có thể điều chỉnh threshold)
-        const animatedElements = document.querySelectorAll('.content-card, .item-card');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                    // Optional: unobserve after first animation
-                    // observer.unobserve(entry.target); 
-                }
-            });
-        }, { threshold: 0.15 }); // Kích hoạt sớm hơn một chút
-
-        animatedElements.forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)'; // Dịch chuyển ít hơn
-            el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-            observer.observe(el);
-        });
-
     </script>
 </body>
 
