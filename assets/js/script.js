@@ -329,6 +329,17 @@ function setupStickyHeader() {
     });
 }
 
+// Thiết lập hiệu ứng parallax clouds khi cuộn
+function setupParallaxClouds() {
+    const parallaxClouds = document.querySelectorAll('.parallax-cloud');
+    if (parallaxClouds.length === 0) return;
+
+    window.addEventListener('scroll', function () {
+        const scrollY = window.scrollY;
+        document.documentElement.style.setProperty('--scroll-y', `${scrollY}px`);
+    });
+}
+
 // Khởi tạo tất cả các hiệu ứng khi trang được tải
 document.addEventListener('DOMContentLoaded', function () {
     // Khởi tạo nền mây 3D
@@ -345,4 +356,5 @@ document.addEventListener('DOMContentLoaded', function () {
     setupRainToggle();
     createSkillRaindrops();
     setupStickyHeader();
+    setupParallaxClouds();
 }); 

@@ -45,7 +45,7 @@
                 <a href="#" class="flex items-center">
                     <div class="sun-effect mr-3"></div>
                     <span class="text-xl md:text-2xl font-bold text-sky-900 dark:text-white">NHD<span
-                            class="rainbow-text">Weather</span></span>
+                            class="text-sky-600 dark:text-sky-400 font-bold">Weather</span></span>
                 </a>
 
                 <!-- Desktop Menu -->
@@ -103,10 +103,11 @@
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
-        <!-- Hiệu ứng mây động -->
-        <div class="absolute top-40 left-20 opacity-50 float-3d cloud-effect"></div>
-        <div class="absolute bottom-40 right-10 opacity-70 float-3d cloud-effect"></div>
-        <div class="absolute top-60 right-60 opacity-30 float-3d cloud-effect" style="transform: scale(0.7)"></div>
+        <!-- Hiệu ứng mây động với parallax -->
+        <div class="absolute top-40 left-20 opacity-50 float-3d cloud-effect parallax-cloud parallax-cloud-1"></div>
+        <div class="absolute bottom-40 right-10 opacity-70 float-3d cloud-effect parallax-cloud parallax-cloud-2"></div>
+        <div class="absolute top-60 right-60 opacity-30 float-3d cloud-effect parallax-cloud parallax-cloud-3"
+            style="transform: scale(0.7)"></div>
 
         <!-- Hiệu ứng mưa (ẩn mặc định) -->
         <div id="rain-effect" class="rain-container hidden">
@@ -124,7 +125,7 @@
 
                     <h1 class="weather-heading text-left">
                         <span class="split-text-reveal mb-3 block">Xin chào, tôi là</span>
-                        <span class="rainbow-text text-5xl md:text-6xl">Hải Đăng</span>
+                        <span class="text-5xl md:text-6xl text-sky-600 dark:text-sky-400 font-bold">Hải Đăng</span>
                     </h1>
 
                     <div class="weather-card p-6 mt-8 max-w-lg">
@@ -206,11 +207,13 @@
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-white/70 relative overflow-hidden">
-        <!-- Hiệu ứng trang trí -->
+        <!-- Hiệu ứng trang trí với parallax -->
         <div class="absolute top-20 left-10 sun-effect opacity-30"></div>
-        <div class="absolute bottom-20 right-10 cloud-effect opacity-40"></div>
+        <div class="absolute bottom-20 right-10 cloud-effect opacity-40 parallax-cloud parallax-cloud-1"></div>
         <div class="absolute top-40 right-40 w-20 h-20 rounded-full bg-blue-100 opacity-60"></div>
-        <div class="absolute bottom-40 left-40 w-32 h-32 rounded-full bg-yellow-100 opacity-50"></div>
+        <div
+            class="absolute bottom-40 left-40 w-32 h-32 rounded-full bg-yellow-100 opacity-50 parallax-cloud parallax-cloud-2">
+        </div>
 
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="weather-heading">Về Tôi</h2>
@@ -312,8 +315,8 @@
 
     <!-- Skills Section -->
     <section id="skills" class="py-20 relative overflow-hidden">
-        <!-- Weather effects background -->
-        <div class="absolute top-20 left-20 cloud-effect opacity-60"></div>
+        <!-- Weather effects background with parallax -->
+        <div class="absolute top-20 left-20 cloud-effect opacity-60 parallax-cloud parallax-cloud-3"></div>
         <div class="absolute bottom-40 right-20 sun-effect opacity-60"></div>
 
         <!-- Raindrops (random positioning by JS) -->
@@ -511,10 +514,11 @@
 
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-white/70 relative overflow-hidden">
-        <!-- Hiệu ứng trang trí -->
-        <div class="absolute top-20 left-20 cloud-effect opacity-60"></div>
+        <!-- Hiệu ứng trang trí with parallax-->
+        <div class="absolute top-20 left-20 cloud-effect opacity-60 parallax-cloud parallax-cloud-2"></div>
         <div class="absolute bottom-40 right-20 sun-effect opacity-70"></div>
-        <div class="absolute top-60 right-30 cloud-effect opacity-40" style="transform: scale(0.6);"></div>
+        <div class="absolute top-60 right-30 cloud-effect opacity-40 parallax-cloud parallax-cloud-1"
+            style="transform: scale(0.6);"></div>
 
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="weather-heading">Dự Án</h2>
@@ -800,7 +804,7 @@
                 <div class="mb-6 md:mb-0">
                     <div class="flex items-center">
                         <div class="sun-effect mr-3 w-10 h-10"></div>
-                        <span class="text-xl font-bold">NHD<span class="rainbow-text">Weather</span></span>
+                        <span class="text-xl font-bold">NHD<span class="text-sky-400 font-bold">Weather</span></span>
                     </div>
                     <p class="text-sky-200 mt-2 text-sm">Geospatial Data Engineer</p>
                 </div>
