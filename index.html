@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[TÊN CỦA BẠN] - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Tùy chỉnh cơ bản */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Màu nền xám nhạt */
+            color: #1f2937; /* Màu chữ chính */
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient tím-xanh */
+        }
+        .section-title {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* 24px */
+            text-align: center;
+            color: #374151; /* Màu xám đậm hơn cho tiêu đề */
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* CSS cho hiệu ứng gõ chữ */
+        .typed-text-container {
+            display: inline-block;
+        }
+        .typed-text {
+            border-right: .15em solid orange; /* Con trỏ gõ chữ */
+            white-space: nowrap;
+            overflow: hidden;
+            letter-spacing: .05em;
+        }
+        /* Hiệu ứng cho nút */
+        .btn-primary {
+            background-color: #4f46e5; /* Indigo-600 */
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca; /* Indigo-700 */
+        }
+        .btn-secondary {
+            background-color: #64748b; /* Slate-500 */
+            transition: background-color 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #475569; /* Slate-600 */
+        }
+        /* Hiệu ứng cho thanh điều hướng khi cuộn */
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95); /* Nền trắng mờ */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="leading-normal tracking-normal">
+
+    <nav id="header" class="fixed w-full z-30 top-0 text-white transition-all duration-300">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2 px-4 md:px-0">
+            <div class="pl-4 flex items-center">
+                <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
+                    [TÊN CỦA BẠN]
+                </a>
+            </div>
+            <div class="block lg:hidden pr-4">
+                <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                    <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
+            </div>
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:mt-0 lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+                <ul class="list-reset lg:flex justify-end flex-1 items-center">
+                    <li class="mr-3">
+                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#about">Giới thiệu</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#skills">Kỹ năng</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#projects">Dự án</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#contact">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
+    </nav>
+
+    <section class="hero-bg pt-24 pb-16 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <img src="[URL_AVATAR_CUA_BAN_HOAC_PLACEHOLDER]" alt="Ảnh đại diện của [TÊN CỦA BẠN]" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                Chào bạn, tôi là [TÊN CỦA BẠN]!
+            </h1>
+            <div class="text-xl md:text-2xl mb-8 typed-text-container">
+                Tôi là một <span id="typed-text" class="typed-text font-semibold"></span>
+            </div>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                [MỘT CÂU GIỚI THIỆU NGẮN GỌN VỀ BẠN, VÍ DỤ: Lập trình viên Full-stack với đam mê xây dựng các ứng dụng web hữu ích và sáng tạo. Chào mừng đến với không gian cá nhân của tôi!]
+            </p>
+            <div>
+                <a href="#projects" class="btn-primary text-white font-bold py-3 px-6 rounded-lg text-lg mr-4 hover:shadow-xl transition-shadow duration-300">
+                    Xem Dự Án
+                </a>
+                <a href="[LINK_CV_CUA_BAN_PDF_HOAC_GOOGLE_DRIVE]" target="_blank" class="btn-secondary text-white font-bold py-3 px-6 rounded-lg text-lg hover:shadow-xl transition-shadow duration-300">
+                    Tải CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Về tôi</h2>
+            <div class="max-w-3xl mx-auto text-center text-lg text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    [ĐOẠN VĂN GIỚI THIỆU CHI TIẾT HƠN VỀ BẠN. NÓI VỀ ĐAM MÊ, MỤC TIÊU NGHỀ NGHIỆP, KINH NGHIỆM HỌC TẬP HOẶC LÀM VIỆC NỔI BẬT. VÍ DỤ: Tôi tốt nghiệp từ [TÊN TRƯỜNG] với chuyên ngành [CHUYÊN NGÀNH]. Tôi luôn hứng thú với việc giải quyết các vấn đề phức tạp bằng công nghệ và không ngừng học hỏi để nâng cao kỹ năng của mình...]
+                </p>
+                <p class="mb-4">
+                    [NÊU THÊM VỀ SỞ THÍCH CÁ NHÂN HOẶC CÁC HOẠT ĐỘNG NGOÀI LỀ NẾU MUỐN. VÍ DỤ: Ngoài lập trình, tôi còn thích đọc sách, chơi thể thao và khám phá những địa điểm mới.]
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Kỹ năng của tôi</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-html5 fa-3x text-orange-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">HTML5</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-css3-alt fa-3x text-blue-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">CSS3</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-js-square fa-3x text-yellow-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">JavaScript</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-react fa-3x text-sky-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">React</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-node-js fa-3x text-green-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">Node.js</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-python fa-3x text-blue-400 mb-2"></i>
+                    <p class="font-semibold text-gray-700">Python</p>
+                </div>
+                 <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fas fa-database fa-3x text-indigo-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">SQL/NoSQL</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-git-alt fa-3x text-red-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">Git & GitHub</p>
+                </div>
+                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fab fa-figma fa-3x text-purple-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">Figma</p>
+                </div>
+                 <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <i class="fas fa-cloud fa-3x text-teal-500 mb-2"></i>
+                    <p class="font-semibold text-gray-700">Cloud (AWS/Azure)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Dự án nổi bật</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-gray-50 rounded-lg shadow-lg overflow-hidden">
+                    <img src="[URL_HINH_ANH_DU_AN_1_HOAC_PLACEHOLDER]" alt="Hình ảnh dự án 1" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">[TÊN DỰ ÁN 1]</h3>
+                        <p class="text-gray-600 text-base mb-4">
+                            [MÔ TẢ NGẮN VỀ DỰ ÁN 1. CÔNG NGHỆ SỬ DỤNG, VAI TRÒ CỦA BẠN, KẾT QUẢ ĐẠT ĐƯỢC.]
+                        </p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#Tag1</span>
+                            <span class="inline-block bg-pink-100 text-pink-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#Tag2</span>
+                            </div>
+                        <a href="[LINK_GITHUB_REPO_DU_AN_1]" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold mr-4"><i class="fab fa-github"></i> Xem Mã Nguồn</a>
+                        <a href="[LINK_DEMO_TRUC_TIEP_DU_AN_1]" target="_blank" class="text-green-600 hover:text-green-800 font-semibold"><i class="fas fa-external-link-alt"></i> Demo Trực Tiếp</a>
+                    </div>
+                </div>
+
+                <div class="project-card bg-gray-50 rounded-lg shadow-lg overflow-hidden">
+                    <img src="[URL_HINH_ANH_DU_AN_2_HOAC_PLACEHOLDER]" alt="Hình ảnh dự án 2" class="w-full h-56 object-cover">
+                     <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">[TÊN DỰ ÁN 2]</h3>
+                        <p class="text-gray-600 text-base mb-4">
+                            [MÔ TẢ NGẮN VỀ DỰ ÁN 2. CÔNG NGHỆ SỬ DỤNG, VAI TRÒ CỦA BẠN, KẾT QUẢ ĐẠT ĐƯỢC.]
+                        </p>
+                         <div class="mb-4">
+                            <span class="inline-block bg-teal-100 text-teal-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagA</span>
+                            <span class="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagB</span>
+                        </div>
+                        <a href="[LINK_GITHUB_REPO_DU_AN_2]" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold mr-4"><i class="fab fa-github"></i> Xem Mã Nguồn</a>
+                        <a href="[LINK_DEMO_TRUC_TIEP_DU_AN_2]" target="_blank" class="text-green-600 hover:text-green-800 font-semibold"><i class="fas fa-external-link-alt"></i> Demo Trực Tiếp</a>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-gray-50 rounded-lg shadow-lg overflow-hidden">
+                    <img src="[URL_HINH_ANH_DU_AN_3_HOAC_PLACEHOLDER]" alt="Hình ảnh dự án 3" class="w-full h-56 object-cover">
+                     <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">[TÊN DỰ ÁN 3]</h3>
+                        <p class="text-gray-600 text-base mb-4">
+                            [MÔ TẢ NGẮN VỀ DỰ ÁN 3. CÔNG NGHỆ SỬ DỤNG, VAI TRÒ CỦA BẠN, KẾT QUẢ ĐẠT ĐƯỢC.]
+                        </p>
+                         <div class="mb-4">
+                            <span class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagX</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagY</span>
+                        </div>
+                        <a href="[LINK_GITHUB_REPO_DU_AN_3]" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold mr-4"><i class="fab fa-github"></i> Xem Mã Nguồn</a>
+                        <a href="[LINK_DEMO_TRUC_TIEP_DU_AN_3]" target="_blank" class="text-green-600 hover:text-green-800 font-semibold"><i class="fas fa-external-link-alt"></i> Demo Trực Tiếp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Liên hệ với tôi</h2>
+            <p class="text-center text-lg text-gray-700 mb-8 max-w-xl mx-auto">
+                Tôi rất sẵn lòng kết nối! Nếu bạn có bất kỳ câu hỏi, cơ hội hợp tác hoặc chỉ muốn nói lời chào, đừng ngần ngại liên hệ với tôi.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="mailto:[ĐỊA CHỈ EMAIL CỦA BẠN]" class="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-gray-700 hover:text-indigo-600">
+                    <i class="fas fa-envelope fa-2x mr-3 text-red-500"></i>
+                    <span>[ĐỊA CHỈ EMAIL CỦA BẠN]</span>
+                </a>
+                <a href="[LINK_LINKEDIN_CUA_BAN]" target="_blank" class="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-gray-700 hover:text-blue-700">
+                    <i class="fab fa-linkedin fa-2x mr-3 text-blue-700"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/ninhhaidang" target="_blank" class="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-gray-700 hover:text-gray-900">
+                    <i class="fab fa-github fa-2x mr-3 text-gray-800"></i>
+                    <span>GitHub</span>
+                </a>
+                </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="currentYear"></span> [TÊN CỦA BẠN]. Mọi quyền được bảo lưu.</p>
+            <p class="text-sm mt-1">Thiết kế với <i class="fas fa-heart text-red-500"></i> và Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript cho hiệu ứng gõ chữ
+        const typedTextSpan = document.getElementById("typed-text");
+        const textArray = ["[CHỨC DANH 1 CỦA BẠN]", "[CHỨC DANH 2 CỦA BẠN]", "[MỘT KỸ NĂNG NỔI BẬT]", "Người học hỏi suốt đời"]; // Thay thế bằng các chức danh/kỹ năng của bạn
+        const typingDelay = 100;
+        const erasingDelay = 50;
+        const newTextDelay = 2000; // Thời gian chờ trước khi bắt đầu gõ chữ mới
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay + 1100);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() { 
+            if (textArray.length) setTimeout(type, newTextDelay + 250);
+        });
+
+        // JavaScript cho thanh điều hướng (navigation)
+        const navToggle = document.getElementById('nav-toggle');
+        const navContent = document.getElementById('nav-content');
+        const header = document.getElementById('header');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        if (navToggle) {
+            navToggle.addEventListener('click', function() {
+                navContent.classList.toggle('hidden');
+            });
+        }
+        
+        // Đóng menu khi click vào link trên mobile
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!navContent.classList.contains('hidden') && window.innerWidth < 1024) {
+                    navContent.classList.add('hidden');
+                }
+            });
+        });
+
+        // Thay đổi màu nền thanh điều hướng khi cuộn
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('nav-scrolled', 'text-gray-800');
+                header.classList.remove('text-white');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'hover:text-gray-200');
+                    link.classList.add('text-gray-800', 'hover:text-indigo-600');
+                });
+                document.querySelector('#header a.toggleColour').classList.remove('text-white');
+                document.querySelector('#header a.toggleColour').classList.add('text-gray-800');
+
+            } else {
+                header.classList.remove('nav-scrolled', 'text-gray-800');
+                header.classList.add('text-white');
+                 navLinks.forEach(link => {
+                    link.classList.add('text-white', 'hover:text-gray-200');
+                    link.classList.remove('text-gray-800', 'hover:text-indigo-600');
+                });
+                document.querySelector('#header a.toggleColour').classList.add('text-white');
+                document.querySelector('#header a.toggleColour').classList.remove('text-gray-800');
+            }
+        });
+
+        // Cập nhật năm hiện tại ở footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll cho các link điều hướng
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Tính toán vị trí cuộn, trừ đi chiều cao của header nếu header cố định
+                    const headerOffset = document.getElementById('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+        
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
