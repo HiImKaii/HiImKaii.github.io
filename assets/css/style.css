@@ -1,0 +1,418 @@
+/* CSS phong cách thời tiết 3D */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&family=Quicksand:wght@300..900&display=swap');
+
+:root {
+    --color-sky-light: #87CEEB;
+    /* Màu bầu trời nhạt */
+    --color-sky-dark: #1E40AF;
+    /* Màu bầu trời đậm */
+    --color-sun: #FBBF24;
+    /* Màu vàng nắng */
+    --color-sun-bright: #F59E0B;
+    /* Màu vàng nắng rực */
+    --color-cloud: #F9FAFB;
+    /* Màu mây trắng */
+    --color-cloud-dark: #D1D5DB;
+    /* Màu mây đậm */
+    --color-grass: #10B981;
+    /* Màu cỏ xanh */
+    --color-rain: #60A5FA;
+    /* Màu mưa */
+    --color-lightning: #FBBF24;
+    /* Màu sét */
+    --color-earth: #92400E;
+    /* Màu đất */
+    --gradient-sky: linear-gradient(to bottom, #87CEEB, #1E40AF);
+    --gradient-sunset: linear-gradient(to right, #FBBF24, #EF4444, #8B5CF6);
+    --gradient-rainbow: linear-gradient(to right, #EF4444, #F59E0B, #FBBF24, #10B981, #3B82F6, #8B5CF6);
+    --shadow-sun: 0 0 20px rgba(251, 191, 36, 0.6);
+    --shadow-cloud: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --font-main: 'Montserrat', sans-serif;
+    --font-alt: 'Quicksand', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--gradient-sky);
+    color: #1F2937;
+    transition: all 0.4s ease;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.night-mode {
+    background: linear-gradient(to bottom, #0F172A, #1E3A8A);
+    color: #F9FAFB;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-sky-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-sun), var(--color-sky-dark));
+    border-radius: 20px;
+}
+
+/* Nền 3D */
+#vanta-bg {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Card thời tiết */
+.weather-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: var(--shadow-cloud);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.weather-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Hiệu ứng mặt trời */
+.sun-effect {
+    width: 80px;
+    height: 80px;
+    background: var(--color-sun);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sun);
+    animation: pulse-sun 3s infinite alternate;
+}
+
+@keyframes pulse-sun {
+    from {
+        box-shadow: 0 0 20px var(--color-sun), 0 0 40px var(--color-sun-bright);
+        transform: scale(1);
+    }
+
+    to {
+        box-shadow: 0 0 30px var(--color-sun), 0 0 60px var(--color-sun-bright);
+        transform: scale(1.1);
+    }
+}
+
+/* Hiệu ứng mây */
+.cloud-effect {
+    position: relative;
+    width: 200px;
+    height: 60px;
+    background: var(--color-cloud);
+    border-radius: 50px;
+    filter: drop-shadow(var(--shadow-cloud));
+    animation: float-cloud 10s infinite alternate ease-in-out;
+}
+
+.cloud-effect:before,
+.cloud-effect:after {
+    content: '';
+    position: absolute;
+    background: var(--color-cloud);
+    border-radius: 50%;
+}
+
+.cloud-effect:before {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: 30px;
+}
+
+.cloud-effect:after {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    right: 40px;
+}
+
+@keyframes float-cloud {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-15px) translateX(15px);
+    }
+
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Hiệu ứng mưa */
+.rain-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+.rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: var(--color-rain);
+    opacity: 0.6;
+    border-radius: 0 0 5px 5px;
+    animation: rain-fall 1s linear infinite;
+}
+
+@keyframes rain-fall {
+    0% {
+        transform: translateY(-100vh);
+    }
+
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* Hiệu ứng cầu vồng */
+.rainbow-text {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+/* Nút thời tiết */
+.weather-btn {
+    background: var(--color-sky-dark);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.4);
+}
+
+.weather-btn:hover {
+    background: var(--color-sun);
+    color: #1E3A8A;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.4);
+}
+
+.weather-btn-alt {
+    background: var(--color-sun);
+    color: #1E3A8A;
+}
+
+.weather-btn-alt:hover {
+    background: var(--color-sky-dark);
+    color: white;
+}
+
+/* Section dividers thời tiết */
+.wave-divider {
+    height: 150px;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+}
+
+.wave-divider .shape-fill {
+    fill: rgba(255, 255, 255, 0.7);
+}
+
+/* Tiêu đề phong cách thời tiết */
+.weather-heading {
+    position: relative;
+    font-family: var(--font-alt);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--color-sky-dark);
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.night-mode .weather-heading {
+    color: var(--color-cloud);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.weather-heading::after {
+    content: '☁️';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+}
+
+/* Hiệu ứng nổi 3D */
+.float-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.depth-1 {
+    transform: translateZ(20px);
+}
+
+.depth-2 {
+    transform: translateZ(40px);
+}
+
+.depth-3 {
+    transform: translateZ(60px);
+}
+
+/* Hiệu ứng mặt trời mọc */
+.sunrise {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.sunrise::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: var(--color-sun);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sun);
+    animation: rise 4s infinite alternate;
+}
+
+@keyframes rise {
+    from {
+        transform: translate(-50%, 100%);
+    }
+
+    to {
+        transform: translate(-50%, -30%);
+    }
+}
+
+/* Hiệu ứng tuyết rơi */
+.snowflake {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px white);
+    animation: snowfall 10s linear infinite;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-100px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg) scale(0.5);
+    }
+}
+
+/* Skill badge mây */
+.cloud-badge {
+    background: var(--color-cloud);
+    border: 1px solid rgba(209, 213, 219, 0.5);
+    color: var(--color-sky-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-cloud);
+    transition: all 0.3s;
+}
+
+.cloud-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+/* Hiệu ứng hào quang */
+.halo {
+    position: relative;
+}
+
+.halo::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, rgba(251, 191, 36, 0) 70%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.halo:hover::after {
+    opacity: 1;
+}
+
+/* Card với hiệu ứng mưa */
+.rain-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.rain-card::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(96, 165, 250, 0.2) 100%);
+    animation: rain-animation 1.5s infinite linear;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.rain-card:hover::before {
+    opacity: 1;
+}
+
+@keyframes rain-animation {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
