@@ -1,374 +1,631 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
+<html lang="vi" class="scroll-smooth"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[TÊN CỦA BẠN] - Portfolio</title>
+    <title>Ninh Hải Đăng - Portfolio Sáng Tạo</title>
+    
+    <link rel="icon" href="https://placehold.co/32x32/3b82f6/ffffff?text=NHD&font=poppins" type="image/x-icon">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        /* Tùy chỉnh cơ bản */
+        /* CSS tùy chỉnh cho hiệu ứng kính mờ và chế độ tối */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Màu nền xám nhạt */
-            color: #1f2937; /* Màu chữ chính */
+            font-family: 'Poppins', sans-serif;
+            /* Ảnh nền cho hiệu ứng kính mờ - THAY THẾ bằng ảnh của bạn hoặc gradient phức tạp hơn */
+            background-image: url('https://source.unsplash.com/random/1920x1080/?abstract,technology,code'); /* Ảnh nền mặc định cho light mode */
+            background-size: cover;
+            background-attachment: fixed; /* Nền cố định khi cuộn */
+            transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease;
         }
-        .hero-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient tím-xanh */
+
+        /* Light mode base */
+        body.light-mode {
+            background-color: #eef2f7; /* Màu nền sáng rất nhạt */
+            color: #1f2937; /* Màu chữ chính sáng */
         }
-        .section-title {
-            font-size: 2.5rem; /* 40px */
+        /* Dark mode base */
+        body.dark-mode {
+            background-color: #0f172a; /* Màu nền tối (slate-900) */
+            color: #e2e8f0; /* Màu chữ chính tối (slate-200) */
+            /* Ảnh nền khác cho dark mode nếu muốn */
+            background-image: url('https://source.unsplash.com/random/1920x1080/?dark,abstract,space');
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.15); /* Nền kính mờ cho light mode */
+            -webkit-backdrop-filter: blur(12px); /* Safari */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.25rem; /* Bo góc lớn hơn */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            transition: background 0.4s ease, border 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .dark-mode .glassmorphism {
+            background: rgba(30, 41, 59, 0.35); /* Nền kính mờ cho dark mode, đậm hơn (slate-800 with opacity) */
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-glass { /* Thanh điều hướng */
+            background: rgba(255, 255, 255, 0.1); 
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .dark-mode .nav-glass {
+            background: rgba(15, 23, 42, 0.3); /* slate-900 with opacity */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Tiêu đề section */
+        .section-title-creative {
+            font-family: 'Roboto Mono', monospace;
+            font-size: clamp(2rem, 5vw, 2.8rem); /* Kích thước font linh hoạt */
             font-weight: 700;
-            margin-bottom: 1.5rem; /* 24px */
+            margin-bottom: 3.5rem; 
             text-align: center;
-            color: #374151; /* Màu xám đậm hơn cho tiêu đề */
+            position: relative; 
+            letter-spacing: -0.5px;
         }
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .light-mode .section-title-creative { color: #1e293b; } /* slate-800 */
+        .dark-mode .section-title-creative { color: #f1f5f9; } /* slate-100 */
+
+        .section-title-creative::before { /* Hiệu ứng gạch chân cách điệu */
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 5px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6); /* Gradient xanh-tím */
         }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .dark-mode .section-title-creative::before {
+             background: linear-gradient(90deg, #60a5fa, #a78bfa); /* Gradient sáng hơn cho dark mode */
         }
-        /* CSS cho hiệu ứng gõ chữ */
-        .typed-text-container {
-            display: inline-block;
+
+
+        /* Nút bấm */
+        .btn-primary-creative {
+            background-image: linear-gradient(to right, #3b82f6 0%, #8b5cf6 50%, #3b82f6 100%);
+            background-size: 200% auto;
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(96, 165, 250, 0.3); /* blue-400 shadow */
+            border: none;
         }
-        .typed-text {
-            border-right: .15em solid orange; /* Con trỏ gõ chữ */
-            white-space: nowrap;
+        .btn-primary-creative:hover {
+            background-position: right center; /* Thay đổi gradient khi hover */
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4); /* purple-500 shadow */
+        }
+        .dark-mode .btn-primary-creative {
+            box-shadow: 0 5px 20px rgba(96, 165, 250, 0.2);
+        }
+         .dark-mode .btn-primary-creative:hover {
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+
+        .btn-secondary-creative {
+            background-color: transparent;
+            border: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, #3b82f6, #8b5cf6);
+            color: #3b82f6; /* Sẽ được override bởi text-gradient */
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+            position: relative;
             overflow: hidden;
-            letter-spacing: .05em;
         }
-        /* Hiệu ứng cho nút */
-        .btn-primary {
-            background-color: #4f46e5; /* Indigo-600 */
-            transition: background-color 0.3s ease;
+        .btn-secondary-creative .btn-text { /* Dùng span để áp gradient cho text */
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .btn-primary:hover {
-            background-color: #4338ca; /* Indigo-700 */
+        .btn-secondary-creative:hover {
+            background-image: linear-gradient(to right, #3b82f6 0%, #8b5cf6 100%);
+            transform: translateY(-3px) scale(1.03);
+            border-color: transparent; /* Ẩn border khi nền gradient xuất hiện */
         }
-        .btn-secondary {
-            background-color: #64748b; /* Slate-500 */
-            transition: background-color 0.3s ease;
+         .btn-secondary-creative:hover .btn-text {
+            background: none; /* Bỏ gradient text */
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: white; /* Chữ trắng khi hover */
         }
-        .btn-secondary:hover {
-            background-color: #475569; /* Slate-600 */
+        .dark-mode .btn-secondary-creative {
+            border-image-source: linear-gradient(to right, #60a5fa, #a78bfa);
         }
-        /* Hiệu ứng cho thanh điều hướng khi cuộn */
-        .nav-scrolled {
-            background-color: rgba(255, 255, 255, 0.95); /* Nền trắng mờ */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .dark-mode .btn-secondary-creative .btn-text {
+             background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
+         .dark-mode .btn-secondary-creative:hover {
+            background-image: linear-gradient(to right, #60a5fa 0%, #a78bfa 100%);
+        }
+        .dark-mode .btn-secondary-creative:hover .btn-text {
+            color: #0f172a; /* Chữ màu nền tối khi hover */
+        }
+        
+        /* Card dự án */
+        .project-card-creative {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .project-card-creative:hover {
+            transform: translateY(-12px) rotateX(5deg) rotateY(-2deg);
+            box-shadow: 0 20px 50px 0 rgba(31, 38, 135, 0.15);
+        }
+        .dark-mode .project-card-creative:hover {
+            box-shadow: 0 20px 50px 0 rgba(96, 165, 250, 0.1);
+        }
+        .project-image-wrapper {
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0; /* Bo góc trên của ảnh */
+        }
+        .project-image-wrapper img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .project-card-creative:hover .project-image-wrapper img {
+            transform: scale(1.12) rotate(2deg); /* Zoom và xoay nhẹ ảnh */
+        }
+        
+        /* Bố cục lưới độc đáo cho section */
+        .creative-grid-container {
+            display: grid;
+            gap: 2.5rem; 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
+        }
+
+        /* Hiệu ứng cho avatar */
+        .avatar-hero {
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+        .avatar-hero:hover {
+            transform: scale(1.08) rotate(3deg);
+        }
+        .avatar-hero::after { /* Hiệu ứng vòng sáng gradient */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 115%;
+            height: 115%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #8b5cf6, #3b82f6, #ec4899, #8b5cf6);
+            transform: translate(-50%, -50%);
+            filter: blur(15px); /* Làm mờ vòng gradient */
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: -1;
+        }
+        .avatar-hero:hover::after {
+            opacity: 0.6;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        .dark-mode .avatar-hero::after {
+             background: conic-gradient(from 0deg, #a78bfa, #60a5fa, #f472b6, #a78bfa);
+        }
+
+
+        /* Nút chuyển chế độ */
+        #theme-toggle-button {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        #theme-toggle-button:hover {
+            transform: scale(1.15) rotate(20deg);
+        }
+        .nav-link-item {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link-item::after { /* Gạch chân cho link nav */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .dark-mode .nav-link-item::after {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+        }
+        .nav-link-item:hover::after {
+            width: 100%;
+        }
+
     </style>
 </head>
-<body class="leading-normal tracking-normal">
+<body class="light-mode"> 
 
-    <nav id="header" class="fixed w-full z-30 top-0 text-white transition-all duration-300">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2 px-4 md:px-0">
-            <div class="pl-4 flex items-center">
-                <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-                    [TÊN CỦA BẠN]
+    <nav id="header" class="nav-glass fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-3.5 px-4 md:px-2">
+            <div class="pl-2 md:pl-4 flex items-center">
+                <a class="text-xl lg:text-2xl font-bold font-roboto-mono tracking-tighter no-underline hover:no-underline light-mode:text-slate-900 dark-mode:text-slate-50" href="#">
+                    NHD<span class="light-mode:text-purple-600 dark-mode:text-purple-400">/</span>Portfolio
                 </a>
             </div>
-            <div class="block lg:hidden pr-4">
-                <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                    <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+            <div class="flex items-center pr-2 md:pr-4">
+                <button id="theme-toggle-button" class="p-2.5 rounded-full focus:outline-none light-mode:text-slate-700 dark-mode:text-yellow-400 light-mode:hover:bg-gray-200 dark-mode:hover:bg-slate-700/50">
+                    <i id="theme-icon" class="fas fa-moon text-xl"></i> 
                 </button>
+                <div class="block lg:hidden ml-3">
+                    <button id="nav-toggle-mobile" class="flex items-center p-1.5 light-mode:text-slate-700 dark-mode:text-slate-200 focus:outline-none">
+                        <i class="fas fa-stream text-xl"></i> </button>
+                </div>
             </div>
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:mt-0 lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center">
-                    <li class="mr-3">
-                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#about">Giới thiệu</a>
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:mt-0 bg-transparent p-4 lg:p-0 z-20" id="nav-content-mobile">
+                <ul class="list-reset lg:flex justify-end flex-1 items-center text-center lg:text-left">
+                    <li class="mr-0 lg:mr-6 my-2.5 lg:my-0">
+                        <a class="nav-link-item block py-2 px-3 font-medium light-mode:text-slate-700 dark-mode:text-slate-200 light-mode:hover:text-purple-600 dark-mode:hover:text-purple-400" href="#about">Giới Thiệu</a>
                     </li>
-                    <li class="mr-3">
-                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#skills">Kỹ năng</a>
+                    <li class="mr-0 lg:mr-6 my-2.5 lg:my-0">
+                        <a class="nav-link-item block py-2 px-3 font-medium light-mode:text-slate-700 dark-mode:text-slate-200 light-mode:hover:text-purple-600 dark-mode:hover:text-purple-400" href="#skills">Kỹ Năng</a>
                     </li>
-                    <li class="mr-3">
-                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#projects">Dự án</a>
+                    <li class="mr-0 lg:mr-6 my-2.5 lg:my-0">
+                        <a class="nav-link-item block py-2 px-3 font-medium light-mode:text-slate-700 dark-mode:text-slate-200 light-mode:hover:text-purple-600 dark-mode:hover:text-purple-400" href="#projects">Dự Án</a>
                     </li>
-                    <li class="mr-3">
-                        <a class="nav-link inline-block py-2 px-4 text-white hover:text-gray-200 no-underline" href="#contact">Liên hệ</a>
+                    <li class="my-2.5 lg:my-0">
+                        <a class="nav-link-item block py-2 px-3 font-medium light-mode:text-slate-700 dark-mode:text-slate-200 light-mode:hover:text-purple-600 dark-mode:hover:text-purple-400" href="#contact">Liên Hệ</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
 
-    <section class="hero-bg pt-24 pb-16 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <img src="[URL_AVATAR_CUA_BAN_HOAC_PLACEHOLDER]" alt="Ảnh đại diện của [TÊN CỦA BẠN]" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">
-                Chào bạn, tôi là [TÊN CỦA BẠN]!
-            </h1>
-            <div class="text-xl md:text-2xl mb-8 typed-text-container">
-                Tôi là một <span id="typed-text" class="typed-text font-semibold"></span>
-            </div>
-            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-                [MỘT CÂU GIỚI THIỆU NGẮN GỌN VỀ BẠN, VÍ DỤ: Lập trình viên Full-stack với đam mê xây dựng các ứng dụng web hữu ích và sáng tạo. Chào mừng đến với không gian cá nhân của tôi!]
-            </p>
-            <div>
-                <a href="#projects" class="btn-primary text-white font-bold py-3 px-6 rounded-lg text-lg mr-4 hover:shadow-xl transition-shadow duration-300">
-                    Xem Dự Án
-                </a>
-                <a href="[LINK_CV_CUA_BAN_PDF_HOAC_GOOGLE_DRIVE]" target="_blank" class="btn-secondary text-white font-bold py-3 px-6 rounded-lg text-lg hover:shadow-xl transition-shadow duration-300">
-                    Tải CV
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title">Về tôi</h2>
-            <div class="max-w-3xl mx-auto text-center text-lg text-gray-700 leading-relaxed">
-                <p class="mb-4">
-                    [ĐOẠN VĂN GIỚI THIỆU CHI TIẾT HƠN VỀ BẠN. NÓI VỀ ĐAM MÊ, MỤC TIÊU NGHỀ NGHIỆP, KINH NGHIỆM HỌC TẬP HOẶC LÀM VIỆC NỔI BẬT. VÍ DỤ: Tôi tốt nghiệp từ [TÊN TRƯỜNG] với chuyên ngành [CHUYÊN NGÀNH]. Tôi luôn hứng thú với việc giải quyết các vấn đề phức tạp bằng công nghệ và không ngừng học hỏi để nâng cao kỹ năng của mình...]
+    <section class="min-h-screen flex items-center justify-center pt-28 pb-20 relative overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-purple-400/30 dark:bg-purple-600/20 rounded-full filter blur-2xl animate-pulse-slow opacity-70 dark:opacity-50"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-56 h-56 bg-blue-400/30 dark:bg-blue-600/20 rounded-full filter blur-2xl animate-pulse-slower opacity-70 dark:opacity-50"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <img src="https://placehold.co/180x180/FFFFFF/8b5cf6?text=NHD&font=poppins" alt="[Image of Ảnh đại diện của Ninh Hải Đăng]" class="avatar-hero w-44 h-44 md:w-52 md:h-52 rounded-full mx-auto mb-10 border-4 border-opacity-80 shadow-2xl light-mode:border-white dark-mode:border-slate-600">
+            
+            <div class="glassmorphism p-8 md:p-12 max-w-4xl mx-auto">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-5 font-poppins light-mode:text-slate-800 dark-mode:text-white">
+                    Ninh Hải Đăng
+                </h1>
+                <div class="text-xl md:text-2xl lg:text-3xl mb-10 font-roboto-mono light-mode:text-purple-600 dark-mode:text-purple-400">
+                    <span id="typed-text-hero-creative" class="font-medium"></span>
+                </div>
+                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
+                    Đam mê kiến tạo những trải nghiệm số độc đáo và giải pháp công nghệ đột phá. Chào mừng đến với không gian sáng tạo của tôi!
                 </p>
-                <p class="mb-4">
-                    [NÊU THÊM VỀ SỞ THÍCH CÁ NHÂN HOẶC CÁC HOẠT ĐỘNG NGOÀI LỀ NẾU MUỐN. VÍ DỤ: Ngoài lập trình, tôi còn thích đọc sách, chơi thể thao và khám phá những địa điểm mới.]
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-16">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title">Kỹ năng của tôi</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-html5 fa-3x text-orange-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">HTML5</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-css3-alt fa-3x text-blue-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">CSS3</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-js-square fa-3x text-yellow-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">JavaScript</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-react fa-3x text-sky-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">React</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-node-js fa-3x text-green-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">Node.js</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-python fa-3x text-blue-400 mb-2"></i>
-                    <p class="font-semibold text-gray-700">Python</p>
-                </div>
-                 <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fas fa-database fa-3x text-indigo-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">SQL/NoSQL</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-git-alt fa-3x text-red-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">Git & GitHub</p>
-                </div>
-                <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fab fa-figma fa-3x text-purple-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">Figma</p>
-                </div>
-                 <div class="skill-item text-center p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <i class="fas fa-cloud fa-3x text-teal-500 mb-2"></i>
-                    <p class="font-semibold text-gray-700">Cloud (AWS/Azure)</p>
+                <div class="space-y-5 md:space-y-0 md:space-x-6">
+                    <a href="#projects" class="btn-primary-creative inline-block w-full md:w-auto">
+                        <i class="fas fa-meteor mr-2.5"></i>Khám Phá Dự Án
+                    </a>
+                    <a href="[LINK_CV_CUA_BAN_PDF]" target="_blank" class="btn-secondary-creative inline-block w-full md:w-auto">
+                        <span class="btn-text"><i class="fas fa-file-lines mr-2.5"></i>Hồ Sơ Năng Lực</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-16 bg-white">
+    <section id="about" class="py-24">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Dự án nổi bật</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card bg-gray-50 rounded-lg shadow-lg overflow-hidden">
-                    <img src="[URL_HINH_ANH_DU_AN_1_HOAC_PLACEHOLDER]" alt="Hình ảnh dự án 1" class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800">[TÊN DỰ ÁN 1]</h3>
-                        <p class="text-gray-600 text-base mb-4">
-                            [MÔ TẢ NGẮN VỀ DỰ ÁN 1. CÔNG NGHỆ SỬ DỤNG, VAI TRÒ CỦA BẠN, KẾT QUẢ ĐẠT ĐƯỢC.]
-                        </p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#Tag1</span>
-                            <span class="inline-block bg-pink-100 text-pink-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#Tag2</span>
-                            </div>
-                        <a href="[LINK_GITHUB_REPO_DU_AN_1]" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold mr-4"><i class="fab fa-github"></i> Xem Mã Nguồn</a>
-                        <a href="[LINK_DEMO_TRUC_TIEP_DU_AN_1]" target="_blank" class="text-green-600 hover:text-green-800 font-semibold"><i class="fas fa-external-link-alt"></i> Demo Trực Tiếp</a>
-                    </div>
+            <h2 class="section-title-creative">Chân Dung Số</h2>
+            <div class="grid lg:grid-cols-12 gap-10 md:gap-16 items-center">
+                <div class="lg:col-span-5 glassmorphism p-6 order-2 lg:order-1 transform hover:scale-105 transition-transform duration-500">
+                     <img src="https://placehold.co/500x600/FFFFFF/2c3e50?text=Ninh+Hai+Dang&font=poppins" alt="[Image of Ninh Hải Đăng - Giới thiệu]" class="rounded-xl shadow-2xl w-full h-auto object-cover">
                 </div>
-
-                <div class="project-card bg-gray-50 rounded-lg shadow-lg overflow-hidden">
-                    <img src="[URL_HINH_ANH_DU_AN_2_HOAC_PLACEHOLDER]" alt="Hình ảnh dự án 2" class="w-full h-56 object-cover">
-                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800">[TÊN DỰ ÁN 2]</h3>
-                        <p class="text-gray-600 text-base mb-4">
-                            [MÔ TẢ NGẮN VỀ DỰ ÁN 2. CÔNG NGHỆ SỬ DỤNG, VAI TRÒ CỦA BẠN, KẾT QUẢ ĐẠT ĐƯỢC.]
+                <div class="lg:col-span-7 order-1 lg:order-2">
+                    <div class="glassmorphism p-8 md:p-12">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 font-poppins light-mode:text-slate-800 dark-mode:text-slate-100">Xin chào, tôi là Đăng!</h3>
+                        <p class="text-base md:text-lg mb-5 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
+                            Một nhà phát triển phần mềm với khát vọng biến những ý tưởng phức tạp thành các giải pháp công nghệ trực quan và hiệu quả. Tôi tin vào sức mạnh của sự hợp tác, tư duy đổi mới và không ngừng học hỏi để chinh phục những thách thức mới.
                         </p>
-                         <div class="mb-4">
-                            <span class="inline-block bg-teal-100 text-teal-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagA</span>
-                            <span class="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagB</span>
+                        <p class="text-base md:text-lg mb-8 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
+                            Hành trình của tôi trong thế giới mã lệnh được dẫn dắt bởi sự tò mò và mong muốn tạo ra những sản phẩm có ý nghĩa, mang lại giá trị thực cho người dùng và cộng đồng.
+                        </p>
+                        <div class="flex flex-wrap gap-3.5">
+                            <span class="text-sm font-medium px-4 py-1.5 rounded-full shadow-sm light-mode:bg-purple-100 light-mode:text-purple-700 dark-mode:bg-purple-600/70 dark-mode:text-purple-100">#ĐổiMớiSángTạo</span>
+                            <span class="text-sm font-medium px-4 py-1.5 rounded-full shadow-sm light-mode:bg-sky-100 light-mode:text-sky-700 dark-mode:bg-sky-600/70 dark-mode:text-sky-100">#GiảiPhápCôngNghệ</span>
+                            <span class="text-sm font-medium px-4 py-1.5 rounded-full shadow-sm light-mode:bg-emerald-100 light-mode:text-emerald-700 dark-mode:bg-emerald-600/70 dark-mode:text-emerald-100">#HọcHỏiLiênTục</span>
                         </div>
-                        <a href="[LINK_GITHUB_REPO_DU_AN_2]" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold mr-4"><i class="fab fa-github"></i> Xem Mã Nguồn</a>
-                        <a href="[LINK_DEMO_TRUC_TIEP_DU_AN_2]" target="_blank" class="text-green-600 hover:text-green-800 font-semibold"><i class="fas fa-external-link-alt"></i> Demo Trực Tiếp</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title-creative">Bộ Công Cụ Sáng Tạo</h2>
+            <div class="creative-grid-container">
+                <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-purple-500/20">
+                    <i class="fab fa-react fa-4x mb-5 light-mode:text-sky-500 dark-mode:text-sky-400"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">React.js</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Xây dựng giao diện người dùng tương tác cao</p>
+                </div>
+                <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-green-500/20">
+                    <i class="fab fa-node-js fa-4x mb-5 light-mode:text-green-500 dark-mode:text-green-400"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">Node.js</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Phát triển Backend và API mạnh mẽ</p>
+                </div>
+                <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-blue-500/20">
+                    <i class="fab fa-python fa-4x mb-5 light-mode:text-blue-600 dark-mode:text-blue-500"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">Python</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Ứng dụng trong Data Science, AI và Web</p>
+                </div>
+                <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-indigo-500/20">
+                    <i class="fas fa-database fa-4x mb-5 light-mode:text-indigo-500 dark-mode:text-indigo-400"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">Cơ Sở Dữ Liệu</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Kinh nghiệm với SQL & NoSQL (MongoDB, PostgreSQL)</p>
+                </div>
+                 <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-fuchsia-500/20 lg:col-span-1">
+                    <i class="fab fa-figma fa-4x mb-5 light-mode:text-fuchsia-500 dark-mode:text-fuchsia-400"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">Figma</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Thiết kế UI/UX và Prototyping</p>
+                </div>
+                <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-rose-500/20 lg:col-span-2"> <i class="fas fa-lightbulb fa-4x mb-5 light-mode:text-rose-500 dark-mode:text-rose-400"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">Tư Duy Giải Quyết Vấn Đề</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Phân tích, logic và tìm kiếm giải pháp tối ưu</p>
+                </div>
+                 <div class="glassmorphism p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:hover:shadow-orange-500/20">
+                    <i class="fab fa-git-alt fa-4x mb-5 light-mode:text-orange-500 dark-mode:text-orange-400"></i>
+                    <h4 class="text-xl font-semibold mb-1.5 light-mode:text-slate-800 dark-mode:text-slate-100">Git & GitHub</h4>
+                    <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-400">Quản lý phiên bản và hợp tác hiệu quả</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title-creative">Dấu Ấn Sáng Tạo</h2>
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-12">
                 
-                <div class="project-card bg-gray-50 rounded-lg shadow-lg overflow-hidden">
-                    <img src="[URL_HINH_ANH_DU_AN_3_HOAC_PLACEHOLDER]" alt="Hình ảnh dự án 3" class="w-full h-56 object-cover">
-                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800">[TÊN DỰ ÁN 3]</h3>
-                        <p class="text-gray-600 text-base mb-4">
-                            [MÔ TẢ NGẮN VỀ DỰ ÁN 3. CÔNG NGHỆ SỬ DỤNG, VAI TRÒ CỦA BẠN, KẾT QUẢ ĐẠT ĐƯỢC.]
-                        </p>
-                         <div class="mb-4">
-                            <span class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagX</span>
-                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">#TagY</span>
-                        </div>
-                        <a href="[LINK_GITHUB_REPO_DU_AN_3]" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-semibold mr-4"><i class="fab fa-github"></i> Xem Mã Nguồn</a>
-                        <a href="[LINK_DEMO_TRUC_TIEP_DU_AN_3]" target="_blank" class="text-green-600 hover:text-green-800 font-semibold"><i class="fas fa-external-link-alt"></i> Demo Trực Tiếp</a>
+                <div class="project-card-creative glassmorphism">
+                    <div class="project-image-wrapper">
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Project+Alpha&font=poppins" alt="[Image of Hình ảnh dự án Alpha]" class="w-full h-72 object-cover">
                     </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl lg:text-3xl font-semibold mb-3.5 light-mode:text-slate-800 dark-mode:text-slate-100">[TÊN DỰ ÁN ALPHA]</h3>
+                        <p class="text-sm mb-5 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
+                            Một ứng dụng web đột phá giúp [mô tả lợi ích/tính năng chính]. Được xây dựng với kiến trúc hiện đại, tập trung vào trải nghiệm người dùng và hiệu suất cao.
+                        </p>
+                        <div class="mb-6 flex flex-wrap gap-2.5">
+                            <span class="text-xs font-medium px-3.5 py-1.5 rounded-full shadow-sm light-mode:bg-sky-100 light-mode:text-sky-800 dark-mode:bg-sky-700/60 dark-mode:text-sky-100">#React</span>
+                            <span class="text-xs font-medium px-3.5 py-1.5 rounded-full shadow-sm light-mode:bg-emerald-100 light-mode:text-emerald-800 dark-mode:bg-emerald-700/60 dark-mode:text-emerald-100">#NodeJS</span>
+                            <span class="text-xs font-medium px-3.5 py-1.5 rounded-full shadow-sm light-mode:bg-violet-100 light-mode:text-violet-800 dark-mode:bg-violet-700/60 dark-mode:text-violet-100">#MongoDB</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                            <a href="#" target="_blank" class="btn-secondary-creative w-full sm:w-auto text-center"><span class="btn-text"><i class="fab fa-github mr-2"></i>Mã Nguồn</span></a>
+                            <a href="#" target="_blank" class="btn-primary-creative w-full sm:w-auto text-center"><i class="fas fa-external-link-alt mr-2"></i>Xem Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-creative glassmorphism md:mt-10"> 
+                     <div class="project-image-wrapper">
+                        <img src="https://placehold.co/600x400/10b981/ffffff?text=Project+Beta&font=poppins" alt="[Image of Hình ảnh dự án Beta]" class="w-full h-72 object-cover">
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl lg:text-3xl font-semibold mb-3.5 light-mode:text-slate-800 dark-mode:text-slate-100">[TÊN DỰ ÁN BETA]</h3>
+                        <p class="text-sm mb-5 light-mode:text-slate-600 dark-mode:text-slate-300 leading-relaxed">
+                            Nền tảng [mô tả loại nền tảng] sử dụng sức mạnh của Python và AI để [mô tả mục tiêu/chức năng]. Mang đến giải pháp thông minh và tối ưu cho [đối tượng người dùng/vấn đề].
+                        </p>
+                        <div class="mb-6 flex flex-wrap gap-2.5">
+                            <span class="text-xs font-medium px-3.5 py-1.5 rounded-full shadow-sm light-mode:bg-amber-100 light-mode:text-amber-800 dark-mode:bg-amber-700/60 dark-mode:text-amber-100">#Python</span>
+                            <span class="text-xs font-medium px-3.5 py-1.5 rounded-full shadow-sm light-mode:bg-rose-100 light-mode:text-rose-800 dark-mode:bg-rose-700/60 dark-mode:text-rose-100">#Django</span>
+                             <span class="text-xs font-medium px-3.5 py-1.5 rounded-full shadow-sm light-mode:bg-teal-100 light-mode:text-teal-800 dark-mode:bg-teal-700/60 dark-mode:text-teal-100">#AI</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                            <a href="#" target="_blank" class="btn-secondary-creative w-full sm:w-auto text-center"><span class="btn-text"><i class="fab fa-github mr-2"></i>Mã Nguồn</span></a>
+                            <a href="#" target="_blank" class="btn-primary-creative w-full sm:w-auto text-center"><i class="fas fa-external-link-alt mr-2"></i>Xem Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-20">
+                <a href="https://github.com/ninhhaidang?tab=repositories" target="_blank" class="btn-primary-creative text-lg px-10 py-4">
+                    <i class="fab fa-github mr-2.5"></i> Xem Thêm trên GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="py-24 relative">
+         <div class="absolute inset-0 opacity-15 dark:opacity-5 bg-fixed" style="background-image: url('https://source.unsplash.com/random/1920x1080/?communication,connection,abstract-network'); filter: grayscale(50%);"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="section-title-creative">Kết Nối & Hợp Tác</h2>
+            <p class="text-center text-lg light-mode:text-slate-600 dark-mode:text-slate-300 mb-16 max-w-xl mx-auto">
+                Luôn mở lòng với những ý tưởng mới và cơ hội hợp tác. Hãy cùng nhau kiến tạo những giá trị bền vững!
+            </p>
+            <div class="max-w-lg mx-auto glassmorphism p-8 md:p-12">
+                <div class="space-y-8">
+                    <a href="mailto:ninh.hai.dang@email.com" class="flex items-start p-5 rounded-xl transition-all duration-300 light-mode:hover:bg-slate-100/70 dark-mode:hover:bg-slate-700/50 group">
+                        <i class="fas fa-envelope-open-text fa-2x mt-1 mr-6 light-mode:text-purple-500 dark-mode:text-purple-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div>
+                            <h4 class="text-lg font-semibold light-mode:text-slate-800 dark-mode:text-slate-100">Email</h4>
+                            <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-300">ninh.hai.dang@email.com</p>
+                        </div>
+                    </a>
+                    <a href="https://linkedin.com/in/ninhhaidang" target="_blank" class="flex items-start p-5 rounded-xl transition-all duration-300 light-mode:hover:bg-slate-100/70 dark-mode:hover:bg-slate-700/50 group">
+                        <i class="fab fa-linkedin fa-2x mt-1 mr-6 light-mode:text-sky-600 dark-mode:text-sky-500 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div>
+                            <h4 class="text-lg font-semibold light-mode:text-slate-800 dark-mode:text-slate-100">LinkedIn</h4>
+                            <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-300">linkedin.com/in/ninhhaidang</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ninhhaidang" target="_blank" class="flex items-start p-5 rounded-xl transition-all duration-300 light-mode:hover:bg-slate-100/70 dark-mode:hover:bg-slate-700/50 group">
+                        <i class="fab fa-github-alt fa-2x mt-1 mr-6 light-mode:text-slate-800 dark-mode:text-slate-200 group-hover:scale-110 transition-transform duration-300"></i>
+                        <div>
+                            <h4 class="text-lg font-semibold light-mode:text-slate-800 dark-mode:text-slate-100">GitHub</h4>
+                            <p class="text-sm light-mode:text-slate-500 dark-mode:text-slate-300">github.com/ninhhaidang</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-16">
+    <footer class="py-12 text-center border-t light-mode:border-slate-200/70 dark-mode:border-slate-700/50">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Liên hệ với tôi</h2>
-            <p class="text-center text-lg text-gray-700 mb-8 max-w-xl mx-auto">
-                Tôi rất sẵn lòng kết nối! Nếu bạn có bất kỳ câu hỏi, cơ hội hợp tác hoặc chỉ muốn nói lời chào, đừng ngần ngại liên hệ với tôi.
+            <p class="mb-2.5 text-sm light-mode:text-slate-600 dark-mode:text-slate-400">&copy; <span id="currentYearCreative"></span> Ninh Hải Đăng. All Rights Reserved.</p>
+            <p class="text-xs light-mode:text-slate-500 dark-mode:text-slate-500">
+                Thiết kế với <i class="fas fa-heart text-red-500 animate-pulse"></i> và mã nguồn mở.
             </p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="mailto:[ĐỊA CHỈ EMAIL CỦA BẠN]" class="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-gray-700 hover:text-indigo-600">
-                    <i class="fas fa-envelope fa-2x mr-3 text-red-500"></i>
-                    <span>[ĐỊA CHỈ EMAIL CỦA BẠN]</span>
-                </a>
-                <a href="[LINK_LINKEDIN_CUA_BAN]" target="_blank" class="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-gray-700 hover:text-blue-700">
-                    <i class="fab fa-linkedin fa-2x mr-3 text-blue-700"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/ninhhaidang" target="_blank" class="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-gray-700 hover:text-gray-900">
-                    <i class="fab fa-github fa-2x mr-3 text-gray-800"></i>
-                    <span>GitHub</span>
-                </a>
-                </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-gray-300 py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; <span id="currentYear"></span> [TÊN CỦA BẠN]. Mọi quyền được bảo lưu.</p>
-            <p class="text-sm mt-1">Thiết kế với <i class="fas fa-heart text-red-500"></i> và Tailwind CSS.</p>
+            <p class="text-xs mt-1.5 light-mode:text-slate-500 dark-mode:text-slate-500">Cập nhật lần cuối: <span id="lastUpdatedCreative">13/05/2025</span></p>
         </div>
     </footer>
 
     <script>
         // JavaScript cho hiệu ứng gõ chữ
-        const typedTextSpan = document.getElementById("typed-text");
-        const textArray = ["[CHỨC DANH 1 CỦA BẠN]", "[CHỨC DANH 2 CỦA BẠN]", "[MỘT KỸ NĂNG NỔI BẬT]", "Người học hỏi suốt đời"]; // Thay thế bằng các chức danh/kỹ năng của bạn
-        const typingDelay = 100;
-        const erasingDelay = 50;
-        const newTextDelay = 2000; // Thời gian chờ trước khi bắt đầu gõ chữ mới
-        let textArrayIndex = 0;
-        let charIndex = 0;
+        const typedTextHeroCreativeSpan = document.getElementById("typed-text-hero-creative");
+        // THAY THẾ bằng các chức danh/kỹ năng của bạn
+        const textArrayHeroCreative = ["Web Developer.", "Full-Stack Engineer.", "Tech Innovator.", "Creative Problem Solver."]; 
+        const typingDelayHeroCreative = 100;
+        const erasingDelayHeroCreative = 50;
+        const newTextDelayHeroCreative = 2000;
+        let textArrayIndexHeroCreative = 0;
+        let charIndexHeroCreative = 0;
 
-        function type() {
-            if (charIndex < textArray[textArrayIndex].length) {
-                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typingDelay);
+        function typeHeroCreative() {
+            if (charIndexHeroCreative < textArrayHeroCreative[textArrayIndexHeroCreative].length) {
+                typedTextHeroCreativeSpan.textContent += textArrayHeroCreative[textArrayIndexHeroCreative].charAt(charIndexHeroCreative);
+                charIndexHeroCreative++;
+                setTimeout(typeHeroCreative, typingDelayHeroCreative);
             } else {
-                setTimeout(erase, newTextDelay);
+                setTimeout(eraseHeroCreative, newTextDelayHeroCreative);
             }
         }
 
-        function erase() {
-            if (charIndex > 0) {
-                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(erase, erasingDelay);
+        function eraseHeroCreative() {
+            if (charIndexHeroCreative > 0) {
+                typedTextHeroCreativeSpan.textContent = textArrayHeroCreative[textArrayIndexHeroCreative].substring(0, charIndexHeroCreative - 1);
+                charIndexHeroCreative--;
+                setTimeout(eraseHeroCreative, erasingDelayHeroCreative);
             } else {
-                textArrayIndex++;
-                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-                setTimeout(type, typingDelay + 1100);
+                textArrayIndexHeroCreative++;
+                if (textArrayIndexHeroCreative >= textArrayHeroCreative.length) textArrayIndexHeroCreative = 0;
+                setTimeout(typeHeroCreative, typingDelayHeroCreative + 300);
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() { 
-            if (textArray.length) setTimeout(type, newTextDelay + 250);
+        // Chuyển đổi chế độ Sáng/Tối
+        const themeToggleButton = document.getElementById('theme-toggle-button');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+        
+        // Kiểm tra theme đã lưu trong localStorage hoặc preference của hệ thống
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            applyTheme(currentTheme);
+        } else if (prefersDarkScheme.matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light'); // Mặc định là light nếu không có gì được set
+        }
+
+
+        themeToggleButton.addEventListener('click', () => {
+            let newTheme;
+            if (body.classList.contains('light-mode')) {
+                newTheme = 'dark';
+            } else {
+                newTheme = 'light';
+            }
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
         });
-
-        // JavaScript cho thanh điều hướng (navigation)
-        const navToggle = document.getElementById('nav-toggle');
-        const navContent = document.getElementById('nav-content');
+        
+        // JavaScript cho thanh điều hướng mobile
+        const navToggleMobile = document.getElementById('nav-toggle-mobile');
+        const navContentMobile = document.getElementById('nav-content-mobile');
+        const navLinksMobile = navContentMobile.querySelectorAll('.nav-link-item');
         const header = document.getElementById('header');
-        const navLinks = document.querySelectorAll('.nav-link');
 
-        if (navToggle) {
-            navToggle.addEventListener('click', function() {
-                navContent.classList.toggle('hidden');
+        if (navToggleMobile) {
+            navToggleMobile.addEventListener('click', function() {
+                navContentMobile.classList.toggle('hidden');
+                // Thêm/xóa class nền cho header khi menu mobile mở/đóng trên top
+                 if (!navContentMobile.classList.contains('hidden') && window.scrollY <= 50) {
+                    if(body.classList.contains('light-mode')) header.classList.add('bg-white/80'); // Thêm chút trong suốt
+                    else header.classList.add('bg-slate-900/80');
+                } else if (window.scrollY <= 50) {
+                     header.classList.remove('bg-white/80', 'bg-slate-900/80');
+                }
             });
         }
-        
-        // Đóng menu khi click vào link trên mobile
-        navLinks.forEach(link => {
+        // Đóng menu khi click vào link
+        navLinksMobile.forEach(link => {
             link.addEventListener('click', () => {
-                if (!navContent.classList.contains('hidden') && window.innerWidth < 1024) {
-                    navContent.classList.add('hidden');
+                if (!navContentMobile.classList.contains('hidden')) {
+                    navContentMobile.classList.add('hidden');
+                     if (window.scrollY <= 50) {
+                        header.classList.remove('bg-white/80', 'bg-slate-900/80');
+                    }
                 }
             });
         });
 
-        // Thay đổi màu nền thanh điều hướng khi cuộn
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                header.classList.add('nav-scrolled', 'text-gray-800');
-                header.classList.remove('text-white');
-                navLinks.forEach(link => {
-                    link.classList.remove('text-white', 'hover:text-gray-200');
-                    link.classList.add('text-gray-800', 'hover:text-indigo-600');
-                });
-                document.querySelector('#header a.toggleColour').classList.remove('text-white');
-                document.querySelector('#header a.toggleColour').classList.add('text-gray-800');
-
-            } else {
-                header.classList.remove('nav-scrolled', 'text-gray-800');
-                header.classList.add('text-white');
-                 navLinks.forEach(link => {
-                    link.classList.add('text-white', 'hover:text-gray-200');
-                    link.classList.remove('text-gray-800', 'hover:text-indigo-600');
-                });
-                document.querySelector('#header a.toggleColour').classList.add('text-white');
-                document.querySelector('#header a.toggleColour').classList.remove('text-gray-800');
+        // Cập nhật năm
+        document.getElementById('currentYearCreative').textContent = new Date().getFullYear();
+        
+        // Khởi động hiệu ứng gõ chữ
+        document.addEventListener("DOMContentLoaded", function() { 
+            if (typedTextHeroCreativeSpan && textArrayHeroCreative.length) {
+                 setTimeout(typeHeroCreative, newTextDelayHeroCreative + 250);
             }
         });
 
-        // Cập nhật năm hiện tại ở footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Smooth scroll cho các link điều hướng
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Tính toán vị trí cuộn, trừ đi chiều cao của header nếu header cố định
-                    const headerOffset = document.getElementById('header').offsetHeight;
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset;
-        
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
+        // Animation cho các khối khi cuộn vào tầm nhìn (ví dụ đơn giản)
+        const animatedElements = document.querySelectorAll('.glassmorphism, .project-card-creative');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    // observer.unobserve(entry.target); // Bỏ observe sau khi đã animate
                 }
             });
+        }, { threshold: 0.1 }); // Kích hoạt khi 10% phần tử hiển thị
+
+        animatedElements.forEach(el => {
+            el.style.opacity = 0; // Đặt opacity ban đầu là 0
+            el.style.transform = 'translateY(30px)'; // Dịch chuyển xuống một chút
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
         });
 
     </script>
