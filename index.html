@@ -1,835 +1,455 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninh Hải Đăng - GIS & Remote Sensing Portfolio</title>
-    <meta name="description"
-        content="Portfolio của Ninh Hải Đăng - Chuyên gia GIS, viễn thám và xử lý dữ liệu không gian">
-
-    <link rel="icon" href="https://placehold.co/32x32/4299e1/ffffff?text=NHD&font=urbanist" type="image/x-icon">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninh Hải Đăng - Portfolio</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- GSAP cho animation mạnh mẽ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Three.js cho hiệu ứng 3D -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
-    <!-- VANTA.js cho hiệu ứng 3D background -->
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-
-<body class="light-mode">
-    <!-- Nền mây 3D -->
-    <div id="vanta-bg"></div>
-
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-3">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="#" class="flex items-center">
-                    <div class="sun-effect mr-3"></div>
-                    <span class="text-xl md:text-2xl font-bold text-sky-900 dark:text-white">NHD<span
-                            class="text-sky-600 dark:text-sky-400 font-bold">Weather</span></span>
-                </a>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Giới
-                        Thiệu</a>
-                    <a href="#skills" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Kỹ Năng</a>
-                    <a href="#projects" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Dự Án</a>
-                    <a href="#contact" class="text-sky-900 dark:text-white hover:text-sky-600 transition-all">Liên
-                        Hệ</a>
-                </div>
-
-                <!-- Dark mode toggle & Social links -->
-                <div class="flex items-center space-x-3">
-                    <button id="theme-toggle"
-                        class="w-10 h-10 rounded-full flex items-center justify-center bg-sky-100 dark:bg-sky-900 transition-all">
-                        <i class="fas fa-sun text-yellow-400 dark:hidden"></i>
-                        <i class="fas fa-moon text-sky-300 hidden dark:inline-block"></i>
-                    </button>
-                    <div class="hidden md:flex items-center space-x-3">
-                        <a href="https://github.com/yourusername" target="_blank" class="weather-social-icon">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/yourusername" target="_blank" class="weather-social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <button id="mobile-menu-button" class="md:hidden text-sky-900 dark:text-white">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h3>Ninh Hải Đăng</h3>
         </div>
-
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 opacity-0">
-            <div class="container mx-auto px-4 pt-2 pb-4 weather-card mt-2 flex flex-col space-y-4">
-                <a href="#about" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Giới
-                    Thiệu</a>
-                <a href="#skills" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Kỹ Năng</a>
-                <a href="#projects" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Dự Án</a>
-                <a href="#contact" class="text-sky-900 dark:text-white py-2 px-4 hover:bg-sky-100 rounded-lg">Liên
-                    Hệ</a>
-                <div class="flex items-center space-x-3 pt-2">
-                    <a href="https://github.com/yourusername" target="_blank" class="weather-social-icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="weather-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="nav-menu">
+          <a href="#home" class="nav-link">Trang chủ</a>
+          <a href="#about" class="nav-link">Giới thiệu</a>
+          <a href="#projects" class="nav-link">Dự án</a>
+          <a href="#skills" class="nav-link">Kỹ năng</a>
+          <a href="#contact" class="nav-link">Liên hệ</a>
         </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
-        <!-- Hiệu ứng mây động với parallax -->
-        <div class="absolute top-40 left-20 opacity-50 float-3d cloud-effect parallax-cloud parallax-cloud-1"></div>
-        <div class="absolute bottom-40 right-10 opacity-70 float-3d cloud-effect parallax-cloud parallax-cloud-2"></div>
-        <div class="absolute top-60 right-60 opacity-30 float-3d cloud-effect parallax-cloud parallax-cloud-3"
-            style="transform: scale(0.7)"></div>
-
-        <!-- Hiệu ứng mưa (ẩn mặc định) -->
-        <div id="rain-effect" class="rain-container hidden">
-            <!-- Các giọt mưa được tạo bằng JS -->
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10 py-20">
-            <div class="flex flex-col md:flex-row items-center">
-                <!-- Hero Content -->
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="flex items-center mb-6">
-                        <div class="sunrise mr-3"></div>
-                        <div class="cloud-badge">Geospatial Data Engineer</div>
-                    </div>
-
-                    <h1 class="weather-heading text-left">
-                        <span class="split-text-reveal mb-3 block">Xin chào, tôi là</span>
-                        <span class="text-5xl md:text-6xl text-sky-600 dark:text-sky-400 font-bold">Hải Đăng</span>
-                    </h1>
-
-                    <div class="weather-card p-6 mt-8 max-w-lg">
-                        <div class="flex items-start mb-4">
-                            <div class="text-xl md:text-2xl mr-2 text-sky-600">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p class="text-gray-700 text-lg">
-                                <span id="typing-text"></span>
-                                <span class="typing-cursor">|</span>
-                            </p>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="cloud-badge">
-                                <i class="fas fa-cloud mr-1"></i> Cloud Computing
-                            </span>
-                            <span class="cloud-badge">
-                                <i class="fas fa-map-marked-alt mr-1"></i> GIS
-                            </span>
-                            <span class="cloud-badge">
-                                <i class="fas fa-database mr-1"></i> Data
-                            </span>
-                        </div>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#projects" class="weather-btn">
-                                <i class="fas fa-cloud-sun mr-2"></i>Xem Các Dự Án
-                            </a>
-                            <a href="#contact" class="weather-btn-alt">
-                                <i class="fas fa-paper-plane mr-2"></i>Liên Hệ
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hero Image -->
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative float-3d">
-                        <div class="halo">
-                            <img src="https://placehold.co/400x400/4299e1/ffffff?text=NHD&font=montserrat"
-                                alt="Hai Dang Avatar"
-                                class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-lg border-4 border-white z-10 relative depth-2">
-                        </div>
-                        <!-- Hiệu ứng thời tiết xung quanh avatar -->
-                        <div class="absolute -top-4 -right-4 sun-effect depth-1"></div>
-                        <div class="absolute -bottom-6 -left-6 cloud-effect depth-3" style="transform: scale(0.5);">
-                        </div>
-                    </div>
-                </div>
+    <section id="home" class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>
+              Xin chào, tôi là <span class="highlight">Ninh Hải Đăng</span>
+            </h1>
+            <p class="hero-subtitle">
+              Lập trình viên & Nhà phát triển phần mềm
+            </p>
+            <p class="hero-description">
+              Tôi là một developer đam mê công nghệ, chuyên về xử lý ảnh, phát
+              triển web và các ứng dụng khoa học. Tôi luôn tìm tòi và học hỏi
+              những công nghệ mới để tạo ra những sản phẩm hữu ích.
+            </p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">Xem dự án</a>
+              <a href="#contact" class="btn btn-secondary">Liên hệ</a>
             </div>
-
-            <!-- Scroll indicator -->
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-                <span class="text-sky-900 dark:text-white text-sm mb-2">Cuộn xuống</span>
-                <div class="w-6 h-10 border-2 border-sky-900 dark:border-white rounded-full flex justify-center">
-                    <div class="w-1.5 h-3 bg-sky-900 dark:bg-white rounded-full mt-2 animate-bounce"></div>
-                </div>
+          </div>
+          <div class="hero-image">
+            <div class="profile-circle">
+              <img
+                src="https://avatars.githubusercontent.com/u/93443383?v=4"
+                alt="Ninh Hải Đăng"
+              />
             </div>
+          </div>
         </div>
-
-        <!-- Divider wave -->
-        <div class="wave-divider">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
+      </div>
     </section>
-
-    <!-- Wavy divider -->
-    <div class="section-divider">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,53.3C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
-                fill="#0A101E"></path>
-        </svg>
-    </div>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white/70 relative overflow-hidden">
-        <!-- Hiệu ứng trang trí với parallax -->
-        <div class="absolute top-20 left-10 sun-effect opacity-30"></div>
-        <div class="absolute bottom-20 right-10 cloud-effect opacity-40 parallax-cloud parallax-cloud-1"></div>
-        <div class="absolute top-40 right-40 w-20 h-20 rounded-full bg-blue-100 opacity-60"></div>
-        <div
-            class="absolute bottom-40 left-40 w-32 h-32 rounded-full bg-yellow-100 opacity-50 parallax-cloud parallax-cloud-2">
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>Giới thiệu</h2>
+          <p>Tìm hiểu thêm về tôi</p>
         </div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 class="weather-heading">Về Tôi</h2>
-
-            <div class="flex flex-col lg:flex-row gap-10">
-                <!-- About Image -->
-                <div class="lg:w-2/5 float-3d">
-                    <div class="weather-card p-4 shadow-lg halo">
-                        <img src="https://placehold.co/600x800/3b82f6/ffffff?text=Weather+Portfolio&font=montserrat"
-                            alt="About Image" class="w-full h-auto rounded-lg depth-2">
-                        <div class="absolute top-6 right-6 sun-effect"></div>
-                        <div class="absolute bottom-10 left-10 cloud-effect" style="transform: scale(0.6);"></div>
-                    </div>
-                </div>
-
-                <!-- About Content -->
-                <div class="lg:w-3/5">
-                    <div class="weather-card p-8">
-                        <div class="flex items-center mb-6">
-                            <i class="fas fa-cloud-sun text-4xl text-sky-500 mr-4"></i>
-                            <h3 class="text-2xl font-bold text-sky-900">Geospatial Data Engineer ☁️</h3>
-                        </div>
-
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            Xin chào! Tôi là <strong class="text-sky-800">Ninh Hải Đăng</strong>, một Kỹ sư dữ liệu
-                            không gian địa lý
-                            với đam mê khám phá và biến đổi dữ liệu địa lý thành những thông tin có giá trị.
-                            Giống như thời tiết luôn biến đổi, công nghệ cũng vậy, và tôi luôn sẵn sàng
-                            học hỏi và thích nghi với những công nghệ mới.
-                        </p>
-
-                        <p class="text-gray-700 mb-8 leading-relaxed">
-                            Với kinh nghiệm làm việc với Google Earth Engine, Python, và các công cụ GIS,
-                            tôi xây dựng các ứng dụng và phân tích dữ liệu không gian địa lý để giải quyết
-                            các vấn đề thực tế như giám sát môi trường, phân tích biến đổi khí hậu và quy hoạch đô thị.
-                        </p>
-
-                        <!-- Stats Cards -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-                            <div class="weather-card p-4 text-center rain-card">
-                                <div class="text-5xl font-bold text-sky-800 mb-2 counter" data-target="10">0</div>
-                                <p class="text-gray-600">Dự Án</p>
-                                <div class="absolute bottom-0 right-0 w-10 h-10">
-                                    <i class="fas fa-cloud-rain text-sky-400 text-xl"></i>
-                                </div>
-                            </div>
-                            <div class="weather-card p-4 text-center">
-                                <div class="text-5xl font-bold text-yellow-500 mb-2 counter" data-target="5">0</div>
-                                <p class="text-gray-600">Năm Kinh Nghiệm</p>
-                                <div class="absolute bottom-0 right-0 w-10 h-10">
-                                    <i class="fas fa-sun text-yellow-400 text-xl"></i>
-                                </div>
-                            </div>
-                            <div class="weather-card p-4 text-center">
-                                <div class="text-5xl font-bold text-green-600 mb-2 counter" data-target="500">0</div>
-                                <p class="text-gray-600">Cốc Cà Phê</p>
-                                <div class="absolute bottom-0 right-0 w-10 h-10">
-                                    <i class="fas fa-cloud text-gray-300 text-xl"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tags -->
-                        <div class="mb-6">
-                            <h4 class="text-lg font-semibold mb-3 text-sky-900">Sở thích:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="cloud-badge">
-                                    <i class="fas fa-map mr-1"></i> Bản đồ
-                                </span>
-                                <span class="cloud-badge">
-                                    <i class="fas fa-code mr-1"></i> Lập trình
-                                </span>
-                                <span class="cloud-badge">
-                                    <i class="fas fa-mountain mr-1"></i> Du lịch
-                                </span>
-                                <span class="cloud-badge">
-                                    <i class="fas fa-book mr-1"></i> Đọc sách
-                                </span>
-                                <span class="cloud-badge">
-                                    <i class="fas fa-camera mr-1"></i> Nhiếp ảnh
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>🎯 Tập trung vào việc phát triển</h3>
+            <p>
+              Tôi là Ninh Hải Đăng, một lập trình viên đam mê công nghệ đến từ
+              Hà Nội. Với kinh nghiệm trong lĩnh vực xử lý ảnh, phát triển web
+              và các ứng dụng khoa học, tôi luôn cố gắng tạo ra những sản phẩm
+              chất lượng và hữu ích.
+            </p>
+            <p>
+              Tôi có kinh nghiệm làm việc với Python, JavaScript, HTML/CSS, và
+              các framework hiện đại. Đặc biệt, tôi có niềm đam mê với việc xử
+              lý dữ liệu hình ảnh và phát triển các ứng dụng khoa học.
+            </p>
+            <div class="stats">
+              <div class="stat-item">
+                <h4>91</h4>
+                <p>Contributions năm qua</p>
+              </div>
+              <div class="stat-item">
+                <h4>7</h4>
+                <p>Repositories</p>
+              </div>
+              <div class="stat-item">
+                <h4>2</h4>
+                <p>Followers</p>
+              </div>
             </div>
-        </div>
-
-        <!-- Divider wave -->
-        <div class="wave-divider mt-20">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 relative overflow-hidden">
-        <!-- Weather effects background with parallax -->
-        <div class="absolute top-20 left-20 cloud-effect opacity-60 parallax-cloud parallax-cloud-3"></div>
-        <div class="absolute bottom-40 right-20 sun-effect opacity-60"></div>
-
-        <!-- Raindrops (random positioning by JS) -->
-        <div id="skill-raindrops" class="hidden">
-            <!-- Will be populated by JS -->
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 class="weather-heading">Kỹ Năng</h2>
-
-            <!-- Tech Skills -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <!-- GIS Skills -->
-                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-100 mr-4">
-                            <i class="fas fa-globe-americas text-2xl text-blue-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-sky-900">GIS</h3>
-                    </div>
-                    <p class="text-gray-700 mb-4">Chuyên sâu về các công cụ và kỹ thuật GIS để xử lý, phân tích và hiển
-                        thị dữ liệu không gian địa lý.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="cloud-badge">ArcGIS</span>
-                        <span class="cloud-badge">QGIS</span>
-                        <span class="cloud-badge">PostGIS</span>
-                        <span class="cloud-badge">Leaflet</span>
-                    </div>
-                </div>
-
-                <!-- Remote Sensing -->
-                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-green-100 mr-4">
-                            <i class="fas fa-satellite text-2xl text-green-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-sky-900">Viễn Thám</h3>
-                    </div>
-                    <p class="text-gray-700 mb-4">Kỹ năng xử lý và phân tích dữ liệu ảnh vệ tinh để giám sát môi trường
-                        và theo dõi biến đổi đất đai.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="cloud-badge">Google Earth Engine</span>
-                        <span class="cloud-badge">Sentinel</span>
-                        <span class="cloud-badge">Landsat</span>
-                        <span class="cloud-badge">ENVI</span>
-                    </div>
-                </div>
-
-                <!-- Programming -->
-                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-yellow-100 mr-4">
-                            <i class="fas fa-code text-2xl text-yellow-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-sky-900">Lập Trình</h3>
-                    </div>
-                    <p class="text-gray-700 mb-4">Kỹ năng lập trình để tự động hóa quy trình, phân tích dữ liệu lớn và
-                        phát triển ứng dụng web GIS.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="cloud-badge">Python</span>
-                        <span class="cloud-badge">JavaScript</span>
-                        <span class="cloud-badge">R</span>
-                        <span class="cloud-badge">SQL</span>
-                    </div>
-                </div>
-
-                <!-- Cloud & Big Data -->
-                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-purple-100 mr-4">
-                            <i class="fas fa-cloud text-2xl text-purple-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-sky-900">Cloud & Big Data</h3>
-                    </div>
-                    <p class="text-gray-700 mb-4">Sử dụng dịch vụ điện toán đám mây và công cụ Big Data để xử lý dữ liệu
-                        không gian địa lý quy mô lớn.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="cloud-badge">Google Cloud</span>
-                        <span class="cloud-badge">AWS</span>
-                        <span class="cloud-badge">Hadoop</span>
-                        <span class="cloud-badge">Spark</span>
-                    </div>
-                </div>
-
-                <!-- Web GIS -->
-                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-red-100 mr-4">
-                            <i class="fas fa-map-marked-alt text-2xl text-red-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-sky-900">Web GIS</h3>
-                    </div>
-                    <p class="text-gray-700 mb-4">Phát triển ứng dụng bản đồ tương tác trên web với các thư viện và API
-                        bản đồ hiện đại.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="cloud-badge">MapBox</span>
-                        <span class="cloud-badge">OpenLayers</span>
-                        <span class="cloud-badge">Cesium JS</span>
-                        <span class="cloud-badge">Turf.js</span>
-                    </div>
-                </div>
-
-                <!-- Data Analysis -->
-                <div class="weather-card p-6 hover:shadow-xl transition-all duration-300 float-3d">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-indigo-100 mr-4">
-                            <i class="fas fa-chart-bar text-2xl text-indigo-500"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-sky-900">Phân tích dữ liệu</h3>
-                    </div>
-                    <p class="text-gray-700 mb-4">Kỹ năng phân tích, trực quan hóa dữ liệu không gian địa lý và rút ra
-                        những thông tin có giá trị.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="cloud-badge">GeoPandas</span>
-                        <span class="cloud-badge">NumPy</span>
-                        <span class="cloud-badge">Matplotlib</span>
-                        <span class="cloud-badge">Tableau</span>
-                    </div>
-                </div>
+          </div>
+          <div class="about-info">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Địa điểm</h4>
+                <p>Hà Nội, Việt Nam</p>
+              </div>
             </div>
-
-            <!-- Skill bars -->
-            <div class="weather-card p-8">
-                <h3 class="text-2xl font-bold text-sky-900 mb-6">Mức độ thành thạo</h3>
-
-                <div class="space-y-6">
-                    <!-- Python Skill -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium text-sky-900">Python & Địa không gian</span>
-                            <span class="text-sky-800">90%</span>
-                        </div>
-                        <div class="w-full bg-blue-100 rounded-full h-4">
-                            <div class="bg-sky-500 h-4 rounded-full" style="width: 0%" data-width="90%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Google Earth Engine -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium text-sky-900">Google Earth Engine</span>
-                            <span class="text-sky-800">85%</span>
-                        </div>
-                        <div class="w-full bg-blue-100 rounded-full h-4">
-                            <div class="bg-green-500 h-4 rounded-full" style="width: 0%" data-width="85%"></div>
-                        </div>
-                    </div>
-
-                    <!-- SQL/PostGIS -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium text-sky-900">SQL/PostGIS</span>
-                            <span class="text-sky-800">80%</span>
-                        </div>
-                        <div class="w-full bg-blue-100 rounded-full h-4">
-                            <div class="bg-yellow-500 h-4 rounded-full" style="width: 0%" data-width="80%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Web Development -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium text-sky-900">Web Development</span>
-                            <span class="text-sky-800">75%</span>
-                        </div>
-                        <div class="w-full bg-blue-100 rounded-full h-4">
-                            <div class="bg-purple-500 h-4 rounded-full" style="width: 0%" data-width="75%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Cloud Computing -->
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium text-sky-900">Cloud Computing</span>
-                            <span class="text-sky-800">70%</span>
-                        </div>
-                        <div class="w-full bg-blue-100 rounded-full h-4">
-                            <div class="bg-indigo-500 h-4 rounded-full" style="width: 0%" data-width="70%"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="info-item">
+              <i class="fas fa-code"></i>
+              <div>
+                <h4>Chuyên môn</h4>
+                <p>Xử lý ảnh, Web Development</p>
+              </div>
             </div>
+            <div class="info-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <h4>Học vấn</h4>
+                <p>Đại học Công nghệ</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Divider wave -->
-        <div class="wave-divider mt-20">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white/70 relative overflow-hidden">
-        <!-- Hiệu ứng trang trí with parallax-->
-        <div class="absolute top-20 left-20 cloud-effect opacity-60 parallax-cloud parallax-cloud-2"></div>
-        <div class="absolute bottom-40 right-20 sun-effect opacity-70"></div>
-        <div class="absolute top-60 right-30 cloud-effect opacity-40 parallax-cloud parallax-cloud-1"
-            style="transform: scale(0.6);"></div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 class="weather-heading">Dự Án</h2>
-
-            <!-- Featured Project -->
-            <div class="weather-card p-6 mb-16 overflow-hidden">
-                <div class="flex flex-col lg:flex-row gap-10">
-                    <div class="lg:w-3/5 float-3d halo">
-                        <img src="https://placehold.co/800x500/4299e1/ffffff?text=Earth+Engine+Project&font=montserrat"
-                            alt="Featured Project"
-                            class="w-full h-auto rounded-lg depth-2 transition-all duration-500 hover:scale-[1.02]">
-                    </div>
-                    <div class="lg:w-2/5">
-                        <span class="cloud-badge">Dự án nổi bật</span>
-                        <h3 class="text-2xl font-bold text-sky-900 mt-4 mb-3">Earth Engine Data Processing</h3>
-                        <p class="text-gray-700 mb-6">
-                            Xây dựng ứng dụng theo dõi biến đổi thời tiết và thảm thực vật dựa trên dữ liệu vệ tinh với
-                            Google Earth Engine.
-                            Ứng dụng này cho phép phân tích các xu hướng thay đổi của rừng, nước, và đô thị theo thời
-                            gian thực.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="cloud-badge">
-                                <i class="fas fa-cloud mr-1"></i> Google Earth Engine
-                            </span>
-                            <span class="cloud-badge">
-                                <i class="fab fa-python mr-1"></i> Python
-                            </span>
-                            <span class="cloud-badge">
-                                <i class="fas fa-leaf mr-1"></i> NDVI Analysis
-                            </span>
-                            <span class="cloud-badge">
-                                <i class="fas fa-satellite mr-1"></i> Landsat
-                            </span>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <a href="#" class="weather-btn">
-                                <i class="fas fa-eye mr-2"></i>Demo
-                            </a>
-                            <a href="#" class="weather-btn-alt">
-                                <i class="fab fa-github mr-2"></i>Mã nguồn
-                            </a>
-                        </div>
-
-                        <!-- Weather icons as decoration -->
-                        <div class="absolute bottom-6 right-6 flex gap-3">
-                            <i class="fas fa-cloud-sun text-2xl text-yellow-500"></i>
-                            <i class="fas fa-cloud-rain text-2xl text-blue-500"></i>
-                        </div>
-                    </div>
-                </div>
+    <section id="projects" class="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Dự án nổi bật</h2>
+          <p>Các dự án tôi đã thực hiện</p>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">
+              <i class="fas fa-map"></i>
             </div>
-
-            <!-- Project Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="weather-card hover:shadow-lg transition-all duration-300 overflow-hidden rain-card">
-                    <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Rainfall+Analysis&font=montserrat"
-                        alt="Project 1" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-sky-900 mb-2">Phân tích lượng mưa</h3>
-                        <p class="text-gray-700 mb-4">Ứng dụng phân tích và dự báo lượng mưa dựa trên dữ liệu lịch sử
-                            thời tiết và các mô hình ML.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="cloud-badge">Python</span>
-                            <span class="cloud-badge">Machine Learning</span>
-                            <span class="cloud-badge">CHIRPS Data</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
-                                <i class="fas fa-arrow-right mr-1"></i> Demo
-                            </a>
-                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
-                                <i class="fab fa-github mr-1"></i> Mã nguồn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div class="weather-card hover:shadow-lg transition-all duration-300 overflow-hidden">
-                    <img src="https://placehold.co/600x400/fbbf24/ffffff?text=GEE+Web+Editor&font=montserrat"
-                        alt="Project 2" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-sky-900 mb-2">GEE Python Web Editor</h3>
-                        <p class="text-gray-700 mb-4">Phát triển giao diện web cho phép người dùng chạy mã Python trực
-                            tiếp trong Google Earth Engine.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="cloud-badge">Earth Engine API</span>
-                            <span class="cloud-badge">JavaScript</span>
-                            <span class="cloud-badge">Python</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
-                                <i class="fas fa-arrow-right mr-1"></i> Demo
-                            </a>
-                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
-                                <i class="fab fa-github mr-1"></i> Mã nguồn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="weather-card hover:shadow-lg transition-all duration-300 overflow-hidden">
-                    <img src="https://placehold.co/600x400/10b981/ffffff?text=Climate+Dashboard&font=montserrat"
-                        alt="Project 3" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-sky-900 mb-2">Bảng điều khiển khí hậu</h3>
-                        <p class="text-gray-700 mb-4">Dashboard trực quan hóa dữ liệu khí hậu theo thời gian thực, hiển
-                            thị các xu hướng và dự báo.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="cloud-badge">D3.js</span>
-                            <span class="cloud-badge">React</span>
-                            <span class="cloud-badge">Weather API</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
-                                <i class="fas fa-arrow-right mr-1"></i> Demo
-                            </a>
-                            <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">
-                                <i class="fab fa-github mr-1"></i> Mã nguồn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- More Projects Button -->
-            <div class="text-center mt-12">
-                <a href="https://github.com/ninhhaidang" target="_blank" class="weather-btn inline-block">
-                    <i class="fab fa-github mr-2"></i> Xem thêm dự án trên GitHub
+            <div class="project-content">
+              <h3>Soil Moisture Map</h3>
+              <p>
+                Bản đồ độ ẩm đất Lâm Đồng 2025 - Ứng dụng khoa học sử dụng
+                Jupyter Notebook để phân tích và hiển thị dữ liệu độ ẩm đất.
+              </p>
+              <div class="project-tech">
+                <span>Jupyter Notebook</span>
+                <span>Python</span>
+                <span>Data Analysis</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/ninhhaidang/soil-moisture-map"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i> GitHub
                 </a>
+                <span class="stars">⭐ 2</span>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <!-- Divider wave -->
-        <div class="wave-divider mt-20">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-                    class="shape-fill"></path>
-            </svg>
+          <div class="project-card">
+            <div class="project-image">
+              <i class="fas fa-image"></i>
+            </div>
+            <div class="project-content">
+              <h3>TifTiff</h3>
+              <p>
+                Phần mềm xử lý ảnh Tif/Tiff chuyên nghiệp - Công cụ mạnh mẽ để
+                xử lý và chỉnh sửa các file ảnh định dạng Tiff.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>Image Processing</span>
+                <span>GUI</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/ninhhaidang/TifTiff"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <span class="stars">⭐ 2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <i class="fas fa-terminal"></i>
+            </div>
+            <div class="project-content">
+              <h3>Lighthouse OMP Theme</h3>
+              <p>
+                Theme tùy chỉnh cho Oh My Posh - Tạo giao diện terminal đẹp mắt
+                và chuyên nghiệp với các thông tin hữu ích.
+              </p>
+              <div class="project-tech">
+                <span>Shell</span>
+                <span>Terminal</span>
+                <span>Theme</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/ninhhaidang/lighthouse-omp-theme"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="project-content">
+              <h3>Profile README</h3>
+              <p>
+                Repository profile GitHub cá nhân - Trang giới thiệu đẹp mắt với
+                các thông tin và liên kết social media.
+              </p>
+              <div class="project-tech">
+                <span>Markdown</span>
+                <span>GitHub</span>
+                <span>Profile</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/ninhhaidang/ninhhaidang"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <span class="stars">⭐ 1</span>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="more-projects">
+          <a
+            href="https://github.com/ninhhaidang?tab=repositories"
+            target="_blank"
+            class="btn btn-outline"
+          >
+            Xem tất cả dự án <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <div class="section-header">
+          <h2>Kỹ năng</h2>
+          <p>Công nghệ tôi sử dụng</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Ngôn ngữ lập trình</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-html5"></i>
+                <span>HTML</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Công cụ & Framework</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <i class="fas fa-book"></i>
+                <span>Jupyter Notebook</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-git-alt"></i>
+                <span>Git</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <span>Data Analysis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-image"></i> Chuyên môn</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <i class="fas fa-photo-video"></i>
+                <span>Image Processing</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-globe"></i>
+                <span>Web Development</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Data Visualization</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-microscope"></i>
+                <span>Scientific Computing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 relative overflow-hidden">
-        <!-- Hiệu ứng trang trí -->
-        <div class="absolute top-20 right-20 cloud-effect opacity-50"></div>
-        <div class="absolute bottom-40 left-20 sun-effect opacity-60"></div>
-        <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-blue-100 opacity-20">
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Liên hệ</h2>
+          <p>Hãy kết nối với tôi</p>
         </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Thông tin liên hệ</h3>
+            <p>
+              Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc
+              chỉ đơn giản là trò chuyện về công nghệ.
+            </p>
 
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 class="weather-heading">Liên Hệ</h2>
-
-            <div class="flex flex-col lg:flex-row gap-10">
-                <!-- Contact Info -->
-                <div class="lg:w-2/5">
-                    <div class="weather-card p-8 mb-8">
-                        <h3 class="text-2xl font-bold text-sky-900 mb-6 flex items-center">
-                            <i class="fas fa-paper-plane text-sky-500 mr-3"></i>
-                            Thông tin liên hệ
-                        </h3>
-
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-medium text-sky-900">Email</h4>
-                                    <a href="mailto:example@example.com"
-                                        class="text-gray-700 hover:text-sky-600 transition-colors">example@example.com</a>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-4">
-                                    <i class="fab fa-discord text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-medium text-sky-900">Discord</h4>
-                                    <a href="#"
-                                        class="text-gray-700 hover:text-sky-600 transition-colors">username#1234</a>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-4">
-                                    <i class="fab fa-github text-gray-700"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-medium text-sky-900">GitHub</h4>
-                                    <a href="https://github.com/ninhhaidang" target="_blank"
-                                        class="text-gray-700 hover:text-sky-600 transition-colors">@ninhhaidang</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 pt-6 border-t border-gray-200">
-                            <h4 class="text-lg font-medium text-sky-900 mb-4">Social</h4>
-                            <div class="flex space-x-4">
-                                <a href="#"
-                                    class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition-all">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#"
-                                    class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 hover:bg-pink-200 transition-all">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#"
-                                    class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-400 hover:bg-blue-200 transition-all">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#"
-                                    class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-500 hover:bg-red-200 transition-all">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <div class="lg:w-3/5">
-                    <div class="weather-card p-8">
-                        <h3 class="text-2xl font-bold text-sky-900 mb-6 flex items-center">
-                            <i class="fas fa-cloud-sun text-yellow-500 mr-3"></i>
-                            Gửi tin nhắn
-                        </h3>
-
-                        <form action="#" method="POST" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ và
-                                        tên</label>
-                                    <input type="text" id="name" name="name"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all">
-                                </div>
-                                <div>
-                                    <label for="email"
-                                        class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="email" id="email" name="email"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Chủ đề</label>
-                                <input type="text" id="subject" name="subject"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all">
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Tin
-                                    nhắn</label>
-                                <textarea id="message" name="message" rows="5"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"></textarea>
-                            </div>
-
-                            <div>
-                                <button type="submit" class="weather-btn w-full">
-                                    <i class="fas fa-paper-plane mr-2"></i>Gửi tin nhắn
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Địa chỉ</h4>
+                <p>Hà Nội, Việt Nam</p>
+              </div>
             </div>
+
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Múi giờ</h4>
+                <p>GMT+7 (Giờ Việt Nam)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <h3>Kết nối với tôi</h3>
+            <div class="social-grid">
+              <a
+                href="https://github.com/ninhhaidang"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ninhhaidang/"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://www.instagram.com/bonglantrungmuoj/"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+              <a
+                href="https://www.facebook.com/ngheess"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-facebook"></i>
+                <span>Facebook</span>
+              </a>
+              <a
+                href="https://tiktok.com/@haidang_04"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+              </a>
+              <a
+                href="https://twitter.com/ninhhaidang"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+              </a>
+              <a
+                href="https://youtube.com/@haidangninh"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-sky-900 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center">
-                        <div class="sun-effect mr-3 w-10 h-10"></div>
-                        <span class="text-xl font-bold">NHD<span class="text-sky-400 font-bold">Weather</span></span>
-                    </div>
-                    <p class="text-sky-200 mt-2 text-sm">Geospatial Data Engineer</p>
-                </div>
-
-                <div class="text-center mb-6 md:mb-0">
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="#about" class="text-sky-100 hover:text-white transition-colors">Giới Thiệu</a>
-                        <a href="#skills" class="text-sky-100 hover:text-white transition-colors">Kỹ Năng</a>
-                        <a href="#projects" class="text-sky-100 hover:text-white transition-colors">Dự Án</a>
-                        <a href="#contact" class="text-sky-100 hover:text-white transition-colors">Liên Hệ</a>
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <p class="text-sky-200 text-sm">&copy; <span id="current-year"></span> Ninh Hải Đăng. All rights
-                        reserved.</p>
-                </div>
-            </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-text">
+            <p>&copy; 2025 Ninh Hải Đăng. Tất cả các quyền được bảo lưu.</p>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/ninhhaidang" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/ninhhaidang/" target="_blank"
+              >LinkedIn</a
+            >
+          </div>
         </div>
+      </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
