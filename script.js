@@ -1,4 +1,42 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Dark mode toggle functionality
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+  const icon = themeToggle.querySelector("i");
+
+  // Check for saved theme preference or default to light mode
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  // Apply saved theme
+  if (savedTheme === "dark") {
+    body.setAttribute("data-theme", "dark");
+    icon.className = "fas fa-sun";
+  } else {
+    body.setAttribute("data-theme", "light");
+    icon.className = "fas fa-moon";
+  }
+
+  // Theme toggle event listener
+  themeToggle.addEventListener("click", function () {
+    const currentTheme = body.getAttribute("data-theme");
+
+    if (currentTheme === "dark") {
+      body.setAttribute("data-theme", "light");
+      icon.className = "fas fa-moon";
+      localStorage.setItem("theme", "light");
+    } else {
+      body.setAttribute("data-theme", "dark");
+      icon.className = "fas fa-sun";
+      localStorage.setItem("theme", "dark");
+    }
+
+    // Add animation effect
+    themeToggle.style.transform = "scale(0.9)";
+    setTimeout(() => {
+      themeToggle.style.transform = "scale(1)";
+    }, 150);
+  });
+
   // Mobile menu toggle
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
@@ -269,42 +307,6 @@ document.addEventListener("DOMContentLoaded", function () {
       element.style.transform = "translateY(0)";
     }, index * 100);
   });
-
-  // Theme toggle functionality (for future enhancement)
-  function createThemeToggle() {
-    const themeToggle = document.createElement("button");
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    themeToggle.className = "theme-toggle";
-    themeToggle.style.cssText = `
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            z-index: 1001;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-            transition: all 0.3s ease;
-        `;
-
-    themeToggle.addEventListener("click", function () {
-      document.body.classList.toggle("dark-theme");
-      const icon = this.querySelector("i");
-      icon.className = document.body.classList.contains("dark-theme")
-        ? "fas fa-sun"
-        : "fas fa-moon";
-    });
-
-    document.body.appendChild(themeToggle);
-  }
-
-  // Initialize theme toggle
-  createThemeToggle();
 
   // Smooth scrolling for buttons
   const buttons = document.querySelectorAll('.btn[href^="#"]');
