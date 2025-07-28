@@ -14,7 +14,7 @@
   --card-bg: #ffffff;
 }
 
-[data-theme="dark"] {
+body[data-theme="dark"] {
   /* Dark theme variables */
   --bg-primary: #111827;
   --bg-secondary: #1f2937;
@@ -62,6 +62,12 @@ body {
   padding: 1rem 0;
   box-shadow: var(--shadow);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Specific navbar styling for dark mode */
+body[data-theme="dark"] .navbar {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(10px);
 }
 
 .nav-container {
