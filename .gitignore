@@ -1,6 +1,6 @@
+*.DS_Store
 *.pdf
 *.log
-*.DS_Store
 *.aux
 *.out
 *.tex
