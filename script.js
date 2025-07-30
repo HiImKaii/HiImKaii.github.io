@@ -48,49 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // GitHub Stats Auto-Update
-  async function updateGitHubStats() {
-    const username = 'ninhhaidang'; // Thay bằng username GitHub của bạn
-    
-    try {
-      // Lấy thông tin user
-      const userResponse = await fetch(`https://api.github.com/users/${username}`);
-      const userData = await userResponse.json();
-      
-      // Lấy thông tin repositories
-      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
-      const reposData = await reposResponse.json();
-      
-      // Cập nhật repositories count
-      const repoCount = userData.public_repos;
-      const repoElement = document.querySelector('.stat-item:nth-child(2) h4');
-      if (repoElement) {
-        repoElement.textContent = repoCount;
-      }
-      
-      // Cập nhật followers count
-      const followersCount = userData.followers;
-      const followersElement = document.querySelector('.stat-item:nth-child(3) h4');
-      if (followersElement) {
-        followersElement.textContent = followersCount;
-      }
-      
-      // Tính contributions (tổng stars từ các repo)
-      const totalStars = reposData.reduce((total, repo) => total + repo.stargazers_count, 0);
-      const contributionsElement = document.querySelector('.stat-item:nth-child(1) h4');
-      if (contributionsElement) {
-        contributionsElement.textContent = totalStars;
-      }
-      
-      console.log('GitHub stats updated successfully');
-    } catch (error) {
-      console.error('Error fetching GitHub stats:', error);
-    }
-  }
-  
-  // Gọi hàm update GitHub stats khi trang load
-  updateGitHubStats();
-
   // Smooth scrolling for navigation links
   const navLinks = document.querySelectorAll(".nav-link");
   navLinks.forEach((link) => {
@@ -144,12 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Navbar background change on scroll
   function handleNavbarScroll() {
     const navbar = document.querySelector(".navbar");
+    // Remove hardcoded styles to let CSS variables handle the theme
     if (window.scrollY > 50) {
-      navbar.style.background = "rgba(255, 255, 255, 0.98)";
-      navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.15)";
+      navbar.classList.add("navbar-scrolled");
     } else {
-      navbar.style.background = "rgba(255, 255, 255, 0.95)";
-      navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+      navbar.classList.remove("navbar-scrolled");
     }
   }
 
@@ -290,6 +246,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize counter animation
   animateCounters();
+
+  // Fetch GitHub stats
+  async function fetchGitHubStats() {
+    try {
+      const username = 'ninhhaidang';
+      
+      // Fetch user data
+      const userResponse = await fetch(`https://api.github.com/users/${username}`);
+      const userData = await userResponse.json();
+      
+      // Fetch repositories
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+      const reposData = await reposResponse.json();
+      
+      // Update repositories count
+      document.getElementById('repos-count').textContent = userData.public_repos || 7;
+      
+      // Update followers count
+      document.getElementById('followers-count').textContent = userData.followers || 2;
+      
+      // Fetch contributions (GitHub API doesn't provide this directly, so we'll keep the current value)
+      // For real contributions, you'd need GitHub GraphQL API with authentication
+      
+    } catch (error) {
+      console.log('GitHub API call failed, using default values');
+      // Keep default values if API fails
+    }
+  }
+
+  // Fetch GitHub stats on page load
+  fetchGitHubStats();
 
   // Parallax effect for hero section
   function parallaxEffect() {
@@ -495,11 +482,11 @@ style.textContent = `
     
     .theme-toggle:hover {
         transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
     
     .nav-link.active {
-        color: #2563eb !important;
+        color: var(--accent-primary) !important;
         position: relative;
     }
     
@@ -510,7 +497,7 @@ style.textContent = `
         left: 0;
         width: 100%;
         height: 2px;
-        background: #2563eb;
+        background: var(--accent-primary);
     }
     
     .lazy {

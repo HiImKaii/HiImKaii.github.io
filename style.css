@@ -72,6 +72,11 @@ body[data-theme="dark"] .navbar {
   backdrop-filter: blur(10px);
 }
 
+.navbar-scrolled {
+  background: var(--navbar-bg) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -313,10 +318,7 @@ section {
 }
 
 .stat-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  text-align: center;
   padding: 1.5rem;
   background: var(--card-bg);
   border-radius: 12px;
@@ -343,8 +345,8 @@ section {
 }
 
 .stat-item h4 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--accent-primary);
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
@@ -352,9 +354,8 @@ section {
 
 .stat-item p {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: color 0.3s ease;
-  margin: 0;
 }
 
 .about-info {
@@ -406,15 +407,12 @@ section {
 
 .info-item h4 {
   margin-bottom: 0.5rem;
-  color: var(--accent-primary);
-  font-size: 1.5rem;
-  font-weight: 600;
+  color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
 .info-item p {
   color: var(--text-secondary);
-  font-size: 1rem;
   margin: 0;
   transition: color 0.3s ease;
 }
