@@ -1,33 +1,35 @@
 :root {
-  /* Light theme variables */
+  /* Light theme variables - Monochrome Theme */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --text-primary: #1f2937;
-  --text-secondary: #64748b;
-  --text-muted: #9ca3af;
-  --accent-primary: #2563eb;
-  --accent-secondary: #fbbf24;
-  --border-color: rgba(0, 0, 0, 0.05);
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+  --bg-secondary: #f8f9fa;
+  --text-primary: #000000;
+  --text-secondary: #495057;
+  --text-muted: #6c757d;
+  --accent-primary: #000000;    /* Pure Black */
+  --accent-secondary: #343a40;  /* Dark Gray */
+  --accent-tertiary: #6c757d;   /* Medium Gray */
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
   --navbar-bg: rgba(255, 255, 255, 0.95);
   --card-bg: #ffffff;
 }
 
 body[data-theme="dark"] {
-  /* Dark theme variables */
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
-  --accent-primary: #3b82f6;
-  --accent-secondary: #fbbf24;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
-  --navbar-bg: rgba(17, 24, 39, 0.95);
-  --card-bg: #1f2937;
+  /* Dark theme variables - Monochrome Theme */
+  --bg-primary: #000000;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #e9ecef;
+  --text-muted: #adb5bd;
+  --accent-primary: #ffffff;    /* Pure White */
+  --accent-secondary: #f8f9fa;  /* Light Gray */
+  --accent-tertiary: #dee2e6;   /* Medium Gray */
+  --border-color: rgba(255, 255, 255, 0.15);
+  --shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+  --shadow-hover: 0 20px 40px rgba(255, 255, 255, 0.1);
+  --navbar-bg: rgba(0, 0, 0, 0.95);
+  --card-bg: #1a1a1a;
 }
 
 * {
@@ -144,11 +146,12 @@ body[data-theme="dark"] .navbar {
 /* Hero Section */
 .hero {
   padding: 120px 0 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   min-height: 100vh;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .hero-container {
@@ -172,20 +175,21 @@ body[data-theme="dark"] .navbar {
 }
 
 .highlight {
-  color: #fbbf24;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
-  color: #e5e7eb;
+  color: var(--text-secondary);
 }
 
 .hero-description {
   font-size: 1.1rem;
   margin-bottom: 2rem;
-  color: #d1d5db;
+  color: var(--text-muted);
   line-height: 1.8;
 }
 
@@ -206,26 +210,27 @@ body[data-theme="dark"] .navbar {
 }
 
 .btn-primary {
-  background: #fbbf24;
-  color: #1f2937;
-  border-color: #fbbf24;
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
 }
 
 .btn-primary:hover {
-  background: #f59e0b;
-  border-color: #f59e0b;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
   transform: translateY(-2px);
 }
 
 .btn-secondary {
   background: transparent;
-  color: white;
-  border-color: white;
+  color: var(--text-primary);
+  border-color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  background: white;
-  color: #1f2937;
+  background: var(--text-primary);
+  color: var(--bg-primary);
   transform: translateY(-2px);
 }
 
@@ -427,12 +432,13 @@ section {
 }
 
 .project-tech span {
-  background: #e0e7ff;
-  color: #3730a3;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
+  border: 1px solid var(--border-color);
 }
 
 .project-links {
@@ -534,7 +540,16 @@ body[data-theme="dark"] .skill-item {
 }
 
 body[data-theme="dark"] .skill-item:hover {
-  background: var(--accent-primary);
+  background: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
+}
+
+body[data-theme="dark"] .skill-item:hover i {
+  color: var(--bg-primary) !important;
+}
+
+body[data-theme="dark"] .skill-item:hover span {
+  color: var(--bg-primary) !important;
 }
 
 .skill-item:hover {
@@ -566,7 +581,7 @@ body[data-theme="dark"] .skill-item:hover {
 
 /* Ensure skill item text is visible in dark mode */
 body[data-theme="dark"] .skill-item span {
-  color: #f9fafb;
+  color: var(--text-primary);
 }
 
 body[data-theme="dark"] .skill-item i {
@@ -599,6 +614,47 @@ body[data-theme="dark"] .skill-item i {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-item:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.contact-item:hover i {
+  color: white !important;
+}
+
+.contact-item:hover h4 {
+  color: white !important;
+}
+
+.contact-item:hover p {
+  color: white !important;
+}
+
+/* Dark mode specific hover effects for contact items */
+body[data-theme="dark"] .contact-item:hover {
+  background: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
+}
+
+body[data-theme="dark"] .contact-item:hover i {
+  color: var(--bg-primary) !important;
+}
+
+body[data-theme="dark"] .contact-item:hover h4 {
+  color: var(--bg-primary) !important;
+}
+
+body[data-theme="dark"] .contact-item:hover p {
+  color: var(--bg-primary) !important;
 }
 
 .contact-item i {
@@ -652,6 +708,12 @@ body[data-theme="dark"] .skill-item i {
   color: white;
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
+}
+
+/* Dark mode specific hover effects for social links */
+body[data-theme="dark"] .social-link:hover {
+  background: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
 }
 
 .social-link i {
@@ -875,13 +937,12 @@ a {
 }
 
 /* Dark mode specific styles */
-[data-theme="dark"] .hero {
-  background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
-}
+/* Remove dark mode hero override - let it use the same logic */
 
 [data-theme="dark"] .project-tech span {
-  background: rgba(59, 130, 246, 0.2);
-  color: #93c5fd;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
 /* Theme toggle specific styles */
