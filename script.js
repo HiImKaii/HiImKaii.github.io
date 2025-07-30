@@ -48,6 +48,49 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // GitHub Stats Auto-Update
+  async function updateGitHubStats() {
+    const username = 'ninhhaidang'; // Thay bằng username GitHub của bạn
+    
+    try {
+      // Lấy thông tin user
+      const userResponse = await fetch(`https://api.github.com/users/${username}`);
+      const userData = await userResponse.json();
+      
+      // Lấy thông tin repositories
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+      const reposData = await reposResponse.json();
+      
+      // Cập nhật repositories count
+      const repoCount = userData.public_repos;
+      const repoElement = document.querySelector('.stat-item:nth-child(2) h4');
+      if (repoElement) {
+        repoElement.textContent = repoCount;
+      }
+      
+      // Cập nhật followers count
+      const followersCount = userData.followers;
+      const followersElement = document.querySelector('.stat-item:nth-child(3) h4');
+      if (followersElement) {
+        followersElement.textContent = followersCount;
+      }
+      
+      // Tính contributions (tổng stars từ các repo)
+      const totalStars = reposData.reduce((total, repo) => total + repo.stargazers_count, 0);
+      const contributionsElement = document.querySelector('.stat-item:nth-child(1) h4');
+      if (contributionsElement) {
+        contributionsElement.textContent = totalStars;
+      }
+      
+      console.log('GitHub stats updated successfully');
+    } catch (error) {
+      console.error('Error fetching GitHub stats:', error);
+    }
+  }
+  
+  // Gọi hàm update GitHub stats khi trang load
+  updateGitHubStats();
+
   // Smooth scrolling for navigation links
   const navLinks = document.querySelectorAll(".nav-link");
   navLinks.forEach((link) => {
