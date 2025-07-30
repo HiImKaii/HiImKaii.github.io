@@ -396,6 +396,28 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   images.forEach((img) => imageObserver.observe(img));
+
+  // Back to Top Button functionality
+  const backToTopButton = document.getElementById("back-to-top");
+
+  if (backToTopButton) {
+    // Show/hide button based on scroll position
+    window.addEventListener("scroll", function () {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add("show");
+      } else {
+        backToTopButton.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when button is clicked
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
 });
 
 // Add CSS keyframes for animations

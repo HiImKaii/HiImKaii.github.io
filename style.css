@@ -523,9 +523,18 @@ section {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: var(--bg-secondary);
+  background: rgba(248, 250, 252, 0.7);
   border-radius: 8px;
   transition: all 0.3s ease;
+}
+
+/* Skill items styling for dark mode */
+body[data-theme="dark"] .skill-item {
+  background: rgba(31, 41, 55, 0.6);
+}
+
+body[data-theme="dark"] .skill-item:hover {
+  background: var(--accent-primary);
 }
 
 .skill-item:hover {
@@ -553,6 +562,15 @@ section {
   font-weight: 500;
   color: var(--text-primary);
   transition: color 0.3s ease;
+}
+
+/* Ensure skill item text is visible in dark mode */
+body[data-theme="dark"] .skill-item span {
+  color: #f9fafb;
+}
+
+body[data-theme="dark"] .skill-item i {
+  color: var(--accent-primary);
 }
 
 /* Contact Section */
@@ -895,4 +913,41 @@ a {
 * {
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-hover);
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  background: var(--accent-secondary);
+  transform: translateY(0) scale(1.1);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dark mode styling for back-to-top button */
+body[data-theme="dark"] .back-to-top {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
