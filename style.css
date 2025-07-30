@@ -5,9 +5,12 @@
   --text-primary: #000000;
   --text-secondary: #495057;
   --text-muted: #6c757d;
-  --accent-primary: #000000;    /* Pure Black */
-  --accent-secondary: #343a40;  /* Dark Gray */
-  --accent-tertiary: #6c757d;   /* Medium Gray */
+  --accent-primary: #000000;
+  /* Pure Black */
+  --accent-secondary: #343a40;
+  /* Dark Gray */
+  --accent-tertiary: #6c757d;
+  /* Medium Gray */
   --border-color: rgba(0, 0, 0, 0.1);
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -22,12 +25,15 @@ body[data-theme="dark"] {
   --text-primary: #ffffff;
   --text-secondary: #e9ecef;
   --text-muted: #adb5bd;
-  --accent-primary: #ffffff;    /* Pure White */
-  --accent-secondary: #f8f9fa;  /* Light Gray */
-  --accent-tertiary: #dee2e6;   /* Medium Gray */
+  --accent-primary: #ffffff;
+  /* Pure White */
+  --accent-secondary: #f8f9fa;
+  /* Light Gray */
+  --accent-tertiary: #dee2e6;
+  /* Medium Gray */
   --border-color: rgba(255, 255, 255, 0.15);
-  --shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
-  --shadow-hover: 0 20px 40px rgba(255, 255, 255, 0.1);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
   --navbar-bg: rgba(0, 0, 0, 0.95);
   --card-bg: #1a1a1a;
 }
@@ -249,7 +255,7 @@ body[data-theme="dark"] .navbar {
   height: 300px;
   border-radius: 50%;
   overflow: hidden;
-  border: 5px solid #fbbf24;
+  border: 5px solid var(--accent-primary);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -430,6 +436,7 @@ section {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  border: 0.5px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -483,7 +490,7 @@ section {
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid var(--border-color);
+  border: 0.5px solid var(--border-color);
 }
 
 .project-links {
@@ -546,6 +553,7 @@ section {
   padding: 2rem;
   border-radius: 16px;
   box-shadow: var(--shadow);
+  border: 0.5px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -576,6 +584,7 @@ section {
   padding: 0.75rem;
   background: var(--bg-secondary);
   border-radius: 8px;
+  border: 0.5px solid var(--border-color);
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -874,6 +883,7 @@ section {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -939,7 +949,12 @@ a {
 [data-theme="dark"] .project-tech span {
   background: var(--bg-secondary);
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border: 0.5px solid var(--border-color);
+}
+
+/* Dark mode styling for skill categories */
+[data-theme="dark"] .skill-category {
+  background: #0f0f0f;
 }
 
 /* Theme toggle specific styles */

@@ -251,24 +251,24 @@ document.addEventListener("DOMContentLoaded", function () {
   async function fetchGitHubStats() {
     try {
       const username = 'ninhhaidang';
-      
+
       // Fetch user data
       const userResponse = await fetch(`https://api.github.com/users/${username}`);
       const userData = await userResponse.json();
-      
+
       // Fetch repositories
       const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
       const reposData = await reposResponse.json();
-      
+
       // Update repositories count
       document.getElementById('repos-count').textContent = userData.public_repos || 7;
-      
+
       // Update followers count
       document.getElementById('followers-count').textContent = userData.followers || 2;
-      
+
       // Fetch contributions (GitHub API doesn't provide this directly, so we'll keep the current value)
       // For real contributions, you'd need GitHub GraphQL API with authentication
-      
+
     } catch (error) {
       console.log('GitHub API call failed, using default values');
       // Keep default values if API fails
