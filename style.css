@@ -7,7 +7,7 @@
   --text-muted: #6c757d;
   --accent-primary: #000000;
   /* Pure Black */
-  --accent-secondary: #343a40;
+  --accent-secondary: #292b2d;
   /* Dark Gray */
   --accent-tertiary: #6c757d;
   /* Medium Gray */
@@ -31,7 +31,7 @@ body[data-theme="dark"] {
   /* Light Gray */
   --accent-tertiary: #dee2e6;
   /* Medium Gray */
-  --border-color: rgba(255, 255, 255, 0.15);
+  --border-color: rgba(255, 255, 255, 0.05);
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
   --navbar-bg: rgba(0, 0, 0, 0.95);
@@ -257,7 +257,7 @@ body[data-theme="dark"] .navbar {
   height: 300px;
   border-radius: 50%;
   overflow: hidden;
-  border: 5px solid var(--accent-primary);
+  border: 3px solid var(--accent-primary);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -442,7 +442,7 @@ section {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  border: 0.5px solid var(--border-color);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -496,7 +496,7 @@ section {
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
-  border: 0.5px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 .project-links {
@@ -559,7 +559,7 @@ section {
   padding: 2rem;
   border-radius: 16px;
   box-shadow: var(--shadow);
-  border: 0.5px solid var(--border-color);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -590,7 +590,7 @@ section {
   padding: 0.75rem;
   background: var(--bg-secondary);
   border-radius: 8px;
-  border: 0.5px solid var(--border-color);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -913,7 +913,7 @@ html {
 
 /* Add scroll margin to sections to compensate for fixed navbar */
 section {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 }
 
 /* Loading animation */
@@ -960,7 +960,7 @@ a {
 [data-theme="dark"] .project-tech span {
   background: var(--bg-secondary);
   color: var(--text-primary);
-  border: 0.5px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 /* Dark mode styling for skill categories */

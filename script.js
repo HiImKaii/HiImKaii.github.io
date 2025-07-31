@@ -60,15 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate the offset position considering the fixed navbar height
         const navbar = document.querySelector(".navbar");
         const navbarHeight = navbar.offsetHeight;
-        const targetPosition = targetSection.offsetTop - navbarHeight - 20; // Extra 20px padding
+        const targetPosition = targetSection.offsetTop - navbarHeight; // Remove extra padding
 
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth"
         });
-      }
-
-      // Close mobile menu after clicking
+      }      // Close mobile menu after clicking
       if (navMenu.classList.contains("active")) {
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
@@ -86,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentSection = "";
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - navbarHeight - 50; // Adjust for navbar height + extra margin
+      const sectionTop = section.offsetTop - navbarHeight - 10; // Adjust for navbar height + small margin
       const sectionHeight = section.clientHeight;
 
       if (
@@ -355,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate the offset position considering the fixed navbar height
         const navbar = document.querySelector(".navbar");
         const navbarHeight = navbar.offsetHeight;
-        const targetPosition = targetSection.offsetTop - navbarHeight - 20; // Extra 20px padding
+        const targetPosition = targetSection.offsetTop - navbarHeight; // Remove extra padding
 
         window.scrollTo({
           top: targetPosition,
