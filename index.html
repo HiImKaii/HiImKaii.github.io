@@ -73,13 +73,17 @@
         <h3>Ninh Hải Đăng</h3>
       </div>
       <div class="nav-menu">
-        <a href="#home" class="nav-link">Trang chủ</a>
-        <a href="#about" class="nav-link">Giới thiệu</a>
-        <a href="#projects" class="nav-link">Dự án</a>
-        <a href="#skills" class="nav-link">Kỹ năng</a>
-        <a href="#contact" class="nav-link">Liên hệ</a>
+        <a href="#home" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a>
+        <a href="#about" class="nav-link" data-vi="Giới thiệu" data-en="About">Giới thiệu</a>
+        <a href="#projects" class="nav-link" data-vi="Dự án" data-en="Projects">Dự án</a>
+        <a href="#skills" class="nav-link" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</a>
+        <a href="#contact" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
       </div>
       <div class="nav-actions">
+        <button class="language-toggle" id="language-toggle">
+          <i class="fas fa-globe"></i>
+          <span id="language-text">EN</span>
+        </button>
         <button class="theme-toggle" id="theme-toggle">
           <i class="fas fa-moon"></i>
         </button>
@@ -97,11 +101,15 @@
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-text">
-          <h1>
+          <h1 data-vi="Xin chào, tôi là <span class='highlight'>Ninh Hải Đăng</span>"
+            data-en="Hello, I'm <span class='highlight'>Ninh Hai Dang</span>">
             Xin chào, tôi là <span class="highlight">Ninh Hải Đăng</span>
           </h1>
-          <p class="hero-subtitle">Kỹ sư Công nghệ Hàng Không Vũ Trụ</p>
-          <p class="hero-description">
+          <p class="hero-subtitle" data-vi="Kỹ sư Công nghệ Hàng Không Vũ Trụ" data-en="Aerospace Technology Engineer">
+            Kỹ sư Công nghệ Hàng Không Vũ Trụ</p>
+          <p class="hero-description"
+            data-vi="Tôi là sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội. Tôi định hướng phát triển sự nghiệp trong lĩnh vực Viễn thám và GIS, với mong muốn ứng dụng công nghệ không gian để giải quyết các vấn đề thực tiễn về tài nguyên, môi trường và quản lý lãnh thổ..."
+            data-en="I am a final-year student in Aerospace Technology at University of Engineering and Technology - Vietnam National University, Hanoi. I am oriented to develop my career in Remote Sensing and GIS, with the desire to apply space technology to solve practical problems related to resources, environment and territorial management...">
             Tôi là sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại
             Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội. Tôi định hướng
             phát triển sự nghiệp trong lĩnh vực Viễn thám và GIS, với mong
@@ -109,8 +117,8 @@
             tiễn về tài nguyên, môi trường và quản lý lãnh thổ...
           </p>
           <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">Xem dự án</a>
-            <a href="#contact" class="btn btn-secondary">Liên hệ</a>
+            <a href="#projects" class="btn btn-primary" data-vi="Xem dự án" data-en="View Projects">Xem dự án</a>
+            <a href="#contact" class="btn btn-secondary" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
           </div>
         </div>
         <div class="hero-image">
@@ -126,19 +134,22 @@
   <section id="about" class="about">
     <div class="container">
       <div class="section-header">
-        <h2>Giới thiệu</h2>
-        <p>Tìm hiểu thêm về tôi</p>
+        <h2 data-vi="Giới thiệu" data-en="About">Giới thiệu</h2>
+        <p data-vi="Tìm hiểu thêm về tôi" data-en="Learn more about me">Tìm hiểu thêm về tôi</p>
       </div>
       <div class="about-content">
         <div class="about-text">
-          <h3>🛰️ Chuyên về Viễn thám và GIS</h3>
-          <p>
+          <h3 data-vi="🛰️ Chuyên về Viễn thám và GIS" data-en="🛰️ Specializing in Remote Sensing and GIS">🛰️ Chuyên
+            về Viễn thám và GIS</h3>
+          <p data-vi="Tôi là Ninh Hải Đăng, sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội. Tôi có khả năng học hỏi nhanh và linh hoạt làm việc với nhiều công nghệ khác nhau tùy theo yêu cầu của dự án."
+            data-en="I am Ninh Hai Dang, a final-year student in Aerospace Technology at University of Engineering and Technology - Vietnam National University, Hanoi. I have the ability to learn quickly and work flexibly with various technologies according to project requirements.">
             Tôi là Ninh Hải Đăng, sinh viên năm cuối ngành Công nghệ Hàng
             không Vũ trụ tại Trường Đại học Công nghệ – Đại học Quốc gia Hà
             Nội. Tôi có khả năng học hỏi nhanh và linh hoạt làm việc với nhiều
             công nghệ khác nhau tùy theo yêu cầu của dự án.
           </p>
-          <p>
+          <p data-vi="Tôi chuyên về lĩnh vực Viễn thám và GIS, với kinh nghiệm trong việc xử lý dữ liệu vệ tinh, phân tích không gian địa lý và ứng dụng Machine Learning để giải quyết các vấn đề về tài nguyên, môi trường và quản lý lãnh thổ. Tôi thành thạo Python, JavaScript (Google Earth Engine), và các công cụ GIS chuyên nghiệp."
+            data-en="I specialize in Remote Sensing and GIS, with experience in satellite data processing, geospatial analysis and applying Machine Learning to solve problems related to resources, environment and territorial management. I am proficient in Python, JavaScript (Google Earth Engine), and professional GIS tools.">
             Tôi chuyên về lĩnh vực Viễn thám và GIS, với kinh nghiệm trong
             việc xử lý dữ liệu vệ tinh, phân tích không gian địa lý và ứng
             dụng Machine Learning để giải quyết các vấn đề về tài nguyên, môi
@@ -148,15 +159,15 @@
           <div class="stats">
             <div class="stat-item">
               <h4 id="contributions-count">91</h4>
-              <p>Contributions năm qua</p>
+              <p data-vi="Contributions năm qua" data-en="Contributions this year">Contributions năm qua</p>
             </div>
             <div class="stat-item">
               <h4 id="repos-count">7</h4>
-              <p>Repositories</p>
+              <p data-vi="Repositories" data-en="Repositories">Repositories</p>
             </div>
             <div class="stat-item">
               <h4 id="followers-count">2</h4>
-              <p>Followers</p>
+              <p data-vi="Followers" data-en="Followers">Followers</p>
             </div>
           </div>
         </div>
@@ -164,22 +175,24 @@
           <div class="info-item">
             <i class="fas fa-map-marker-alt"></i>
             <div>
-              <h4>Địa điểm</h4>
-              <p>Hà Nội, Việt Nam</p>
+              <h4 data-vi="Địa điểm" data-en="Location">Địa điểm</h4>
+              <p data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</p>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-code"></i>
             <div>
-              <h4>Chuyên môn</h4>
-              <p>Viễn thám, GIS & Machine Learning</p>
+              <h4 data-vi="Chuyên môn" data-en="Expertise">Chuyên môn</h4>
+              <p data-vi="Viễn thám, GIS & Machine Learning" data-en="Remote Sensing, GIS & Machine Learning">Viễn thám,
+                GIS & Machine Learning</p>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-graduation-cap"></i>
             <div>
-              <h4>Học vấn</h4>
-              <p>Trường Đại học Công nghệ - ĐHQGHN</p>
+              <h4 data-vi="Học vấn" data-en="Education">Học vấn</h4>
+              <p data-vi="Trường Đại học Công nghệ - ĐHQGHN" data-en="University of Engineering and Technology - VNU">
+                Trường Đại học Công nghệ - ĐHQGHN</p>
             </div>
           </div>
         </div>
@@ -191,8 +204,8 @@
   <section id="projects" class="projects">
     <div class="container">
       <div class="section-header">
-        <h2>Dự án nổi bật</h2>
-        <p>Các dự án tôi đã thực hiện</p>
+        <h2 data-vi="Dự án nổi bật" data-en="Featured Projects">Dự án nổi bật</h2>
+        <p data-vi="Các dự án tôi đã thực hiện" data-en="Projects I have completed">Các dự án tôi đã thực hiện</p>
       </div>
       <div class="projects-grid">
         <div class="project-card">
@@ -277,7 +290,9 @@
         </div>
       </div>
       <div class="more-projects">
-        <a href="https://github.com/ninhhaidang?tab=repositories" target="_blank" class="btn btn-outline">
+        <a href="https://github.com/ninhhaidang?tab=repositories" target="_blank" class="btn btn-outline"
+          data-vi="Xem tất cả dự án <i class='fas fa-external-link-alt'></i>"
+          data-en="View all projects <i class='fas fa-external-link-alt'></i>">
           Xem tất cả dự án <i class="fas fa-external-link-alt"></i>
         </a>
       </div>
@@ -288,12 +303,14 @@
   <section id="skills" class="skills">
     <div class="container">
       <div class="section-header">
-        <h2>Kỹ năng</h2>
-        <p>Công nghệ tôi sử dụng</p>
+        <h2 data-vi="Kỹ năng" data-en="Skills">Kỹ năng</h2>
+        <p data-vi="Công nghệ tôi sử dụng" data-en="Technologies I use">Công nghệ tôi sử dụng</p>
       </div>
       <div class="skills-grid">
         <div class="skill-category">
-          <h3><i class="fas fa-code"></i> Ngôn ngữ lập trình</h3>
+          <h3 data-vi="<i class='fas fa-code'></i> Ngôn ngữ lập trình"
+            data-en="<i class='fas fa-code'></i> Programming Languages"><i class="fas fa-code"></i> Ngôn ngữ lập trình
+          </h3>
           <div class="skills-list">
             <div class="skill-item">
               <i class="fab fa-python"></i>
@@ -311,7 +328,9 @@
         </div>
 
         <div class="skill-category">
-          <h3><i class="fas fa-satellite"></i> Viễn thám & GIS</h3>
+          <h3 data-vi="<i class='fas fa-satellite'></i> Viễn thám & GIS"
+            data-en="<i class='fas fa-satellite'></i> Remote Sensing & GIS"><i class="fas fa-satellite"></i> Viễn thám &
+            GIS</h3>
           <div class="skills-list">
             <div class="skill-item">
               <i class="fas fa-globe"></i>
@@ -337,7 +356,9 @@
         </div>
 
         <div class="skill-category">
-          <h3><i class="fas fa-chart-line"></i> Xử lý dữ liệu</h3>
+          <h3 data-vi="<i class='fas fa-chart-line'></i> Xử lý dữ liệu"
+            data-en="<i class='fas fa-chart-line'></i> Data Processing"><i class="fas fa-chart-line"></i> Xử lý dữ liệu
+          </h3>
           <div class="skills-list">
             <div class="skill-item">
               <i class="fas fa-book"></i>
@@ -369,13 +390,14 @@
   <section id="contact" class="contact">
     <div class="container">
       <div class="section-header">
-        <h2>Liên hệ</h2>
-        <p>Hãy kết nối với tôi</p>
+        <h2 data-vi="Liên hệ" data-en="Contact">Liên hệ</h2>
+        <p data-vi="Hãy kết nối với tôi" data-en="Let's connect">Hãy kết nối với tôi</p>
       </div>
       <div class="contact-content">
         <div class="contact-info">
-          <h3>Thông tin liên hệ</h3>
-          <p>
+          <h3 data-vi="Thông tin liên hệ" data-en="Contact Information">Thông tin liên hệ</h3>
+          <p data-vi="Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc chỉ đơn giản là trò chuyện về công nghệ."
+            data-en="I am always ready to discuss new projects, collaboration opportunities, or just chat about technology.">
             Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc
             chỉ đơn giản là trò chuyện về công nghệ.
           </p>
@@ -383,15 +405,15 @@
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
             <div>
-              <h4>Địa chỉ</h4>
-              <p>Hà Nội, Việt Nam</p>
+              <h4 data-vi="Địa chỉ" data-en="Address">Địa chỉ</h4>
+              <p data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</p>
             </div>
           </div>
 
           <div class="contact-item">
             <i class="fas fa-phone"></i>
             <div>
-              <h4>Điện thoại</h4>
+              <h4 data-vi="Điện thoại" data-en="Phone">Điện thoại</h4>
               <p>+84 396965486</p>
             </div>
           </div>
@@ -399,14 +421,14 @@
           <div class="contact-item">
             <i class="fas fa-clock"></i>
             <div>
-              <h4>Múi giờ</h4>
-              <p>GMT+7 (Giờ Việt Nam)</p>
+              <h4 data-vi="Múi giờ" data-en="Timezone">Múi giờ</h4>
+              <p data-vi="GMT+7 (Giờ Việt Nam)" data-en="GMT+7 (Vietnam Time)">GMT+7 (Giờ Việt Nam)</p>
             </div>
           </div>
         </div>
 
         <div class="social-links">
-          <h3>Kết nối với tôi</h3>
+          <h3 data-vi="Kết nối với tôi" data-en="Connect with me">Kết nối với tôi</h3>
           <div class="social-grid">
             <a href="https://github.com/ninhhaidang" target="_blank" class="social-link">
               <i class="fab fa-github"></i>
@@ -451,7 +473,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-text">
-          <p>&copy; 2025 Ninh Hải Đăng. Tất cả các quyền được bảo lưu.</p>
+          <p data-vi="&copy; 2025 Ninh Hải Đăng. Tất cả các quyền được bảo lưu."
+            data-en="&copy; 2025 Ninh Hai Dang. All rights reserved.">&copy; 2025 Ninh Hải Đăng. Tất cả các quyền được
+            bảo lưu.</p>
         </div>
       </div>
     </div>

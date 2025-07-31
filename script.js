@@ -1,4 +1,65 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Language toggle functionality
+  const languageToggle = document.getElementById("language-toggle");
+  const languageText = document.getElementById("language-text");
+
+  // Check for saved language preference or default to Vietnamese
+  const savedLanguage = localStorage.getItem("language") || "vi";
+
+  // Apply saved language
+  setLanguage(savedLanguage);
+
+  // Language toggle event listener
+  languageToggle.addEventListener("click", function () {
+    const currentLanguage = document.documentElement.getAttribute("data-lang") || "vi";
+    const newLanguage = currentLanguage === "vi" ? "en" : "vi";
+
+    setLanguage(newLanguage);
+    localStorage.setItem("language", newLanguage);
+
+    // Add animation effect
+    languageToggle.style.transform = "scale(0.9)";
+    setTimeout(() => {
+      languageToggle.style.transform = "scale(1)";
+    }, 150);
+  });
+
+  // Function to set language
+  function setLanguage(lang) {
+    document.documentElement.setAttribute("data-lang", lang);
+
+    // Update language toggle button text
+    languageText.textContent = lang === "vi" ? "EN" : "VI";
+
+    // Update all elements with data attributes
+    const elementsWithLang = document.querySelectorAll("[data-vi][data-en]");
+    elementsWithLang.forEach(element => {
+      const text = element.getAttribute("data-" + lang);
+      if (text) {
+        element.innerHTML = text;
+      }
+    });
+
+    // Update page title and meta tags
+    if (lang === "en") {
+      document.title = "Ninh Hai Dang - Aerospace Technology Engineer";
+      const description = document.querySelector('meta[name="description"]');
+      if (description) {
+        description.setAttribute("content",
+          "Ninh Hai Dang - Aerospace Technology Engineer specializing in Remote Sensing and GIS. Expert in satellite data processing, Machine Learning and Google Earth Engine applications."
+        );
+      }
+    } else {
+      document.title = "Ninh Hải Đăng";
+      const description = document.querySelector('meta[name="description"]');
+      if (description) {
+        description.setAttribute("content",
+          "Ninh Hải Đăng - Kỹ sư Công nghệ Hàng không Vũ trụ chuyên ngành Viễn thám và GIS. Chuyên gia xử lý dữ liệu vệ tinh, Machine Learning và ứng dụng Google Earth Engine."
+        );
+      }
+    }
+  }
+
   // Dark mode toggle functionality
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
