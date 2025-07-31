@@ -57,9 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        targetSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+        // Calculate the offset position considering the fixed navbar height
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar.offsetHeight;
+        const targetPosition = targetSection.offsetTop - navbarHeight - 20; // Extra 20px padding
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
         });
       }
 
@@ -75,11 +80,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function highlightActiveNavLink() {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
+    const navbar = document.querySelector(".navbar");
+    const navbarHeight = navbar.offsetHeight;
 
     let currentSection = "";
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
+      const sectionTop = section.offsetTop - navbarHeight - 50; // Adjust for navbar height + extra margin
       const sectionHeight = section.clientHeight;
 
       if (
@@ -278,19 +285,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fetch GitHub stats on page load
   fetchGitHubStats();
 
-  // Parallax effect for hero section
+  // Parallax effect for hero section (disabled to prevent overlay issues)
   function parallaxEffect() {
+    // Reset any existing transform on hero section to prevent overlay
     const hero = document.querySelector(".hero");
-    const scrolled = window.pageYOffset;
-    const parallaxSpeed = 0.5;
-
     if (hero) {
-      hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+      hero.style.transform = "none";
     }
   }
 
-  // Add parallax effect on scroll
-  window.addEventListener("scroll", parallaxEffect);
+  // Reset parallax effect on page load
+  parallaxEffect();
 
   // Easter egg - Konami code
   let konamiCode = [];
@@ -347,9 +352,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        targetSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+        // Calculate the offset position considering the fixed navbar height
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar.offsetHeight;
+        const targetPosition = targetSection.offsetTop - navbarHeight - 20; // Extra 20px padding
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
         });
       }
     });
@@ -408,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
       highlightActiveNavLink();
       handleNavbarScroll();
       animateOnScroll();
-      parallaxEffect();
+      // parallaxEffect(); // Disabled to prevent overlay issues
     }, 10)
   );
 
