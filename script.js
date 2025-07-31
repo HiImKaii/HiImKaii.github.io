@@ -488,11 +488,6 @@ style.textContent = `
         transform: translateY(0);
     }
     
-    .theme-toggle:hover {
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-    
     .nav-link.active {
         color: var(--accent-primary) !important;
         position: relative;
