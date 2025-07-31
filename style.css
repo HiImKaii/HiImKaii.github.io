@@ -109,6 +109,16 @@ body[data-theme="dark"] .navbar {
   color: var(--text-secondary);
   font-weight: 500;
   transition: color 0.3s ease;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.nav-link:focus,
+.nav-link:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .nav-link:hover {
@@ -950,8 +960,9 @@ a {
 .btn:focus,
 .social-link:focus,
 .theme-toggle:focus {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-primary);
+  border-radius: 4px;
 }
 
 /* Dark mode specific styles */
