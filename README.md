@@ -19,20 +19,18 @@ Xem tại: [hiimkaii.github.io](https://hiimkaii.github.io)
 - **Email**: quanvuvan201@gmail.com
 - **Phone**: 0388468147
 
-Website portfolio cá nhân của Ninh Hải Đăng.
+## 🛠️ Công nghệ sử dụng
 
-## 🌐 Về website
+- HTML5, CSS3, JavaScript
+- Responsive Design
+- GitHub Pages
 
-Đây là portfolio website được xây dựng bằng HTML, CSS và JavaScript, giới thiệu về:
-- Hồ sơ cá nhân và kinh nghiệm
-- Các dự án Viễn thám và GIS
-- Kỹ năng và công nghệ sử dụng
+## 📁 Cấu trúc dự án
 
-## � Demo
-
-Xem tại: [ninhhaidang.github.io](https://ninhhaidang.github.io)
-
-## 📞 Liên hệ
-
-- **GitHub**: [@ninhhaidang](https://github.com/ninhhaidang)
-- **Email**: ninhhailongg@gmail.com
+```
+├── index.html          # Trang chính
+├── style.css           # Stylesheet
+├── script.js           # JavaScript functionality
+├── avatar.jpg          # Ảnh đại diện
+└── README.md           # Tài liệu dự án
+```
