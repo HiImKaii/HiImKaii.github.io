@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const GITHUB_USERNAME = "ninhhaidang";
+  const GITHUB_USERNAME = "HiImKaii";
 
   // Function to fetch GitHub stats
   async function fetchGitHubStats() {
