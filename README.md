@@ -11,13 +11,13 @@ Website portfolio cá nhân của Vũ Xuân Quân.
 
 ## 🌟 Demo
 
-Xem tại: [HiImKaii GitHub Pages](https://github.com/HiImKaii)
+Xem tại: [hiimkaii.github.io](https://hiimkaii.github.io)
 
 ## 📞 Liên hệ
 
 - **GitHub**: [@HiImKaii](https://github.com/HiImKaii)
 - **Email**: quanvuvan201@gmail.com
-- **Phone**: 0388468147ite - Ninh Hải Đăng
+- **Phone**: 0388468147
 
 Website portfolio cá nhân của Ninh Hải Đăng.
 
