@@ -5,92 +5,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Vũ Xuân Quân - Kỹ sư Công nghệ Hàng không Vũ trụ chuyên ngành GIS, AI và Tối ưu hóa. Kinh nghiệm xử lý dữ liệu vệ tinh, Machine Learning, Web Development và Software Testing." />
-  <meta name="keywords"
-    content="Vũ Xuân Quân, GIS, AI, Optimization, Machine Learning, Python, JavaScript, React, TypeScript, Software Testing, Google Earth Engine, QGIS, ArcGIS" />
+    content="Vũ Xuân Quân - Kỹ sư Công nghệ Hàng không Vũ trụ chuyên ngành GIS, AI và Tối ưu hóa." />
   <meta name="author" content="Vũ Xuân Quân" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph Tags -->
   <meta property="og:title" content="Vũ Xuân Quân - Portfolio" />
-  <meta property="og:description"
-    content="Kỹ sư Công nghệ Hàng không Vũ trụ với kinh nghiệm về GIS, AI, Tối ưu hóa, Web Development và Software Testing" />
-  <meta property="og:image" content="https://github.com/HiImKaii/avatar.jpg" />
-  <meta property="og:url" content="https://github.com/HiImKaii" />
+  <meta property="og:url" content="https://hiimkaii.github.io" />
   <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vũ Xuân Quân - Portfolio" />
-  <meta name="twitter:description"
-    content="Kỹ sư Công nghệ Hàng không Vũ trụ với kinh nghiệm về GIS, AI, Tối ưu hóa, Web Development và Software Testing" />
-  <meta name="twitter:image" content="https://github.com/HiImKaii/avatar.jpg" />
-
   <title>Vũ Xuân Quân</title>
-
-  <!-- Preload critical resources -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-    as="style" />
-  <link rel="preload" href="style.css" as="style" />
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' ry='20' fill='%23000000'/%3E%3Ctext x='50' y='60' font-family='Inter, sans-serif' font-size='28' font-weight='bold' text-anchor='middle' fill='white'%3EVXQ%3C/text%3E%3C/svg%3E" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="apple-touch-icon" href="favicon.png" />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Vũ Xuân Quân",
-      "jobTitle": "Kỹ sư Công nghệ Hàng không Vũ trụ",
-      "description": "Chuyên gia GIS, AI và Tối ưu hóa",
-      "url": "https://github.com/HiImKaii",
-      "sameAs": [
-        "https://github.com/HiImKaii"
-      ],
-      "knowsAbout": ["GIS", "AI", "Optimization", "Machine Learning", "Python", "JavaScript", "React", "TypeScript", "Software Testing"],
-      "alumniOf": "Đại học Công nghệ - Đại học Quốc gia Hà Nội"
-    }
-    </script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' ry='20' fill='%23000'/%3E%3Ctext x='50' y='62' font-family='monospace' font-size='28' font-weight='bold' text-anchor='middle' fill='white'%3EVXQ%3C/text%3E%3C/svg%3E" />
 </head>
 
 <body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-logo">
-        <h3>Vũ Xuân Quân</h3>
-      </div>
-      <div class="nav-menu">
-        <a href="#home" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a>
-        <a href="#about" class="nav-link" data-vi="Giới thiệu" data-en="About">Giới thiệu</a>
-        <a href="meocipher/" class="nav-link" data-vi="Con Mèo kêu sao?" data-en="Cat Cipher">Con Mèo kêu sao?</a>
-        <a href="#skills" class="nav-link" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</a>
-        <a href="#contact" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>VXQ<span class="logo-bracket"> /&gt;</span>
+      </a>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active" data-vi="Trang chủ" data-en="Home">
+          <span class="nav-link-text">Trang chủ</span>
+          <span class="nav-link-line"></span>
+        </a>
+        <a href="#about" class="nav-link" data-vi="Giới thiệu" data-en="About">
+          <span class="nav-link-text">Giới thiệu</span>
+          <span class="nav-link-line"></span>
+        </a>
+        <a href="meocipher/" class="nav-link" data-vi="Con Mèo kêu sao?" data-en="Cat Cipher">
+          <span class="nav-link-text">Con Mèo kêu sao?</span>
+          <span class="nav-link-line"></span>
+        </a>
+        <a href="#skills" class="nav-link" data-vi="Kỹ năng" data-en="Skills">
+          <span class="nav-link-text">Kỹ năng</span>
+          <span class="nav-link-line"></span>
+        </a>
+        <a href="#contact" class="nav-link" data-vi="Liên hệ" data-en="Contact">
+          <span class="nav-link-text">Liên hệ</span>
+          <span class="nav-link-line"></span>
+        </a>
       </div>
       <div class="nav-actions">
-        <button class="language-toggle" id="language-toggle">
+        <button class="action-btn" id="language-toggle" aria-label="Toggle language">
           <i class="fas fa-globe"></i>
           <span id="language-text">EN</span>
         </button>
-        <button class="theme-toggle" id="theme-toggle">
+        <button class="action-btn" id="theme-toggle" aria-label="Toggle theme">
           <i class="fas fa-moon"></i>
         </button>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -100,278 +78,227 @@
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-text">
-          <h1 data-vi="Xin chào, tôi là <span class='highlight'>Vũ Xuân Quân</span>"
-            data-en="Hello, I'm <span class='highlight'>Vu Xuan Quan</span>">
-            Xin chào, tôi là <span class="highlight">Vũ Xuân Quân</span>
+          <div class="hero-badge reveal-up">
+            <span class="badge-dot"></span>
+            <span data-vi="Sẵn sàng cho cơ hội mới" data-en="Open for opportunities">Sẵn sàng cho cơ hội mới</span>
+          </div>
+          <h1 class="hero-title reveal-up" style="--delay: 0.1s">
+            <span class="greeting" data-vi="Xin chào, tôi là" data-en="Hello, I'm">Xin chào, tôi là</span>
+            <span class="name-glitch" data-text="Vũ Xuân Quân">Vũ Xuân Quân</span>
           </h1>
-          <p class="hero-subtitle" data-vi="Kỹ sư Công nghệ Hàng Không Vũ Trụ" data-en="Aerospace Engineer">
-            Kỹ sư Công nghệ Hàng Không Vũ Trụ</p>
-          <p class="hero-description"
-            data-vi="Tôi là sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội. Tôi có khả năng học hỏi nhanh và linh hoạt làm việc với nhiều công nghệ khác nhau. Tôi có khả năng làm việc với GIS, AI và Tối ưu hóa, với định hướng phát triển sự nghiệp chủ yếu tập trung vào lĩnh vực Tối ưu hóa..."
-            data-en="I am a final-year student in Aerospace Engineering at University of Engineering and Technology - Vietnam National University, Hanoi. I have the ability to learn quickly and work flexibly with various technologies. I have capabilities in GIS, AI and Optimization, with career development focused primarily on the field of Optimization...">
-            Tôi là sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại
-            Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội. Tôi có khả năng
-            học hỏi nhanh và linh hoạt làm việc với nhiều công nghệ khác nhau.
-            Tôi có khả năng làm việc với GIS, AI và Tối ưu hóa, với định hướng
-            phát triển sự nghiệp chủ yếu tập trung vào lĩnh vực Tối ưu hóa...
+          <div class="hero-roles reveal-up" style="--delay: 0.2s">
+            <span class="role-prefix">&gt;&gt;&gt;</span>
+            <span class="typewriter" id="typewriter"></span>
+            <span class="cursor-blink">|</span>
+          </div>
+          <p class="hero-description reveal-up" style="--delay: 0.3s"
+            data-vi="Sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại UET-VNU. Đam mê GIS, AI và Tối ưu hóa. Xây dựng các giải pháp từ dữ liệu vệ tinh đến mô hình ML."
+            data-en="Final-year Aerospace Engineering student at UET-VNU. Passionate about GIS, AI, and Optimization. Building solutions from satellite data to ML models.">
+            Sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại UET-VNU. Đam mê GIS, AI và Tối ưu hóa. Xây dựng các giải pháp từ dữ liệu vệ tinh đến mô hình ML.
           </p>
-          <div class="hero-buttons">
-            <a href="meocipher/" class="btn btn-primary" data-vi="Con Mèo kêu sao? 🐱" data-en="Cat Cipher 🐱">Con Mèo kêu sao? 🐱</a>
-            <a href="#contact" class="btn btn-secondary" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
+          <div class="hero-cta reveal-up" style="--delay: 0.4s">
+            <a href="meocipher/" class="btn-magnetic">
+              <span class="btn-magnetic-text" data-vi="🐱 Con Mèo kêu sao?" data-en="🐱 Cat Cipher">🐱 Con Mèo kêu sao?</span>
+              <span class="btn-magnetic-bg"></span>
+            </a>
+            <a href="#contact" class="btn-outline-glow">
+              <span data-vi="Liên hệ" data-en="Contact me">Liên hệ</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="hero-stats reveal-up" style="--delay: 0.5s">
+            <div class="stat-pill">
+              <span class="stat-number" data-target="91" id="contributions-count">0</span>
+              <span class="stat-label">Contributions</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-pill">
+              <span class="stat-number" data-target="7" id="repos-count">0</span>
+              <span class="stat-label">Repos</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-pill">
+              <span class="stat-number" data-target="2" id="followers-count">0</span>
+              <span class="stat-label">Followers</span>
+            </div>
           </div>
         </div>
-        <div class="hero-image">
-          <div class="profile-circle">
-            <img src="avatar.jpg" alt="Vũ Xuân Quân" />
+        <div class="hero-visual reveal-up" style="--delay: 0.3s">
+          <div class="avatar-container">
+            <div class="avatar-ring"></div>
+            <div class="avatar-ring ring-2"></div>
+            <div class="avatar-glow"></div>
+            <img src="avatar.jpg" alt="Vũ Xuân Quân" class="avatar-img" />
+            <div class="avatar-status"><span class="status-dot"></span></div>
+          </div>
+          <div class="floating-icons">
+            <div class="float-icon" style="--x: -80px; --y: -60px; --delay: 0s"><i class="fab fa-python"></i></div>
+            <div class="float-icon" style="--x: 80px; --y: -40px; --delay: 0.5s"><i class="fab fa-react"></i></div>
+            <div class="float-icon" style="--x: -60px; --y: 70px; --delay: 1s"><i class="fas fa-satellite"></i></div>
+            <div class="float-icon" style="--x: 70px; --y: 60px; --delay: 1.5s"><i class="fas fa-brain"></i></div>
+            <div class="float-icon" style="--x: -100px; --y: 10px; --delay: 2s"><i class="fas fa-cogs"></i></div>
+            <div class="float-icon" style="--x: 100px; --y: 15px; --delay: 2.5s"><i class="fab fa-js"></i></div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse"><div class="wheel"></div></div>
+      <span data-vi="Cuộn xuống" data-en="Scroll down">Cuộn xuống</span>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
-      <div class="section-header">
-        <h2 data-vi="Giới thiệu" data-en="About">Giới thiệu</h2>
-        <p data-vi="Tìm hiểu thêm về tôi" data-en="Learn more about me">Tìm hiểu thêm về tôi</p>
+      <div class="section-header reveal-up">
+        <span class="section-tag">&lt;about&gt;</span>
+        <h2 data-vi="Giới thiệu" data-en="About Me">Giới thiệu</h2>
+        <p class="section-sub" data-vi="Tìm hiểu thêm về tôi" data-en="Learn more about me">Tìm hiểu thêm về tôi</p>
       </div>
-      <div class="about-content">
-        <div class="about-text">
-          <h3 data-vi="🛰️ Chuyên nghành Viễn thám và GIS" data-en="🛰️ Specializing in Remote Sensing and GIS">🛰️ Chuyên
-            về Viễn thám và GIS</h3>
-          <p data-vi="Tôi là Vũ Xuân Quân, sinh viên năm cuối ngành Công nghệ Hàng không Vũ trụ tại Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội. Tôi có khả năng học hỏi nhanh và linh hoạt làm việc với nhiều công nghệ khác nhau tùy theo yêu cầu của dự án."
-            data-en="I am Vu Xuan Quan, a final-year student in Aerospace Engineering at University of Engineering and Technology - Vietnam National University, Hanoi. I have the ability to learn quickly and work flexibly with various technologies according to project requirements.">
-            Tôi là Vũ Xuân Quân, sinh viên năm cuối ngành Công nghệ Hàng
-            không Vũ trụ tại Trường Đại học Công nghệ – Đại học Quốc gia Hà
-            Nội. Tôi có khả năng học hỏi nhanh và linh hoạt làm việc với nhiều
-            công nghệ khác nhau tùy theo yêu cầu của dự án.
-          </p>
-          <p data-vi="Tôi có khả năng làm việc với GIS, AI và Tối ưu hóa, với định hướng phát triển sự nghiệp chủ yếu tập trung vào lĩnh vực Tối ưu hóa. Có kinh nghiệm làm việc với các thuật toán ML như Random Forest, XGBoost và Neural Networks. Đặc biệt thành thạo trong việc phát triển mô hình ensemble learning và tối ưu hóa hyperparameters bằng các thuật toán meta-heuristic như PUMA Optimizer. Ngoài ra, tôi cũng có kinh nghiệm thực tập làm Software Tester tại Lifetex, nơi tôi đã học được quy trình QA và cải thiện kỹ năng phân tích chi tiết."
-            data-en="I have capabilities in GIS, AI and Optimization, with career development focused primarily on the field of Optimization. Experienced with ML algorithms like Random Forest, XGBoost and Neural Networks. Particularly proficient in developing ensemble learning models and optimizing hyperparameters using meta-heuristic algorithms like PUMA Optimizer. Additionally, I have internship experience as a Software Tester at Lifetex, where I learned QA processes and improved analytical skills.">
-            Tôi có khả năng làm việc với GIS, AI và Tối ưu hóa, với định hướng phát triển sự nghiệp chủ yếu tập trung vào lĩnh vực Tối ưu hóa. Có kinh nghiệm làm việc với các thuật toán ML như Random Forest, XGBoost và Neural Networks. Đặc biệt thành thạo trong việc phát triển mô hình ensemble learning và tối ưu hóa hyperparameters bằng các thuật toán meta-heuristic như PUMA Optimizer. Ngoài ra, tôi cũng có kinh nghiệm thực tập làm Software Tester tại Lifetex, nơi tôi đã học được quy trình QA và cải thiện kỹ năng phân tích chi tiết.
-          </p>
-          <div class="stats">
-            <div class="stat-item">
-              <h4 id="contributions-count">91</h4>
-              <p data-vi="Contributions năm qua" data-en="Contributions this year">Contributions năm qua</p>
-            </div>
-            <div class="stat-item">
-              <h4 id="repos-count">7</h4>
-              <p data-vi="Repositories" data-en="Repositories">Repositories</p>
-            </div>
-            <div class="stat-item">
-              <h4 id="followers-count">2</h4>
-              <p data-vi="Followers" data-en="Followers">Followers</p>
-            </div>
+      <div class="about-grid">
+        <div class="about-card glass-card reveal-left">
+          <div class="card-accent"></div>
+          <div class="about-card-header">
+            <div class="icon-wrapper"><i class="fas fa-satellite-dish"></i></div>
+            <h3 data-vi="Viễn thám & GIS" data-en="Remote Sensing & GIS">Viễn thám & GIS</h3>
           </div>
+          <p data-vi="Xử lý dữ liệu vệ tinh đa nguồn (Sentinel-1/2, MODIS, CHIRPS), phân tích không gian với Google Earth Engine, QGIS và ArcGIS Pro." data-en="Multi-source satellite data processing, spatial analysis with GEE, QGIS and ArcGIS Pro.">
+            Xử lý dữ liệu vệ tinh đa nguồn (Sentinel-1/2, MODIS, CHIRPS), phân tích không gian với Google Earth Engine, QGIS và ArcGIS Pro.
+          </p>
         </div>
-        <div class="about-info">
-          <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <h4 data-vi="Địa điểm" data-en="Location">Địa điểm</h4>
-              <p data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</p>
-            </div>
+        <div class="about-card glass-card reveal-up">
+          <div class="card-accent"></div>
+          <div class="about-card-header">
+            <div class="icon-wrapper"><i class="fas fa-brain"></i></div>
+            <h3 data-vi="AI & Tối ưu hóa" data-en="AI & Optimization">AI & Tối ưu hóa</h3>
           </div>
-          <div class="info-item">
-            <i class="fas fa-code"></i>
-            <div>
-              <h4 data-vi="Chuyên môn" data-en="Expertise">Chuyên môn</h4>
-              <p data-vi="GIS, AI, Tối ưu hóa & Software Testing" data-en="GIS, AI, Optimization & Software Testing">GIS, AI, Tối ưu hóa & Software Testing</p>
-            </div>
+          <p data-vi="Phát triển mô hình ML (Random Forest, XGBoost, Neural Networks). Tối ưu hóa hyperparameters bằng thuật toán meta-heuristic PUMA Optimizer." data-en="ML model development (RF, XGBoost, NN). Hyperparameter optimization using PUMA Optimizer.">
+            Phát triển mô hình ML (Random Forest, XGBoost, Neural Networks). Tối ưu hóa hyperparameters bằng thuật toán meta-heuristic PUMA Optimizer.
+          </p>
+        </div>
+        <div class="about-card glass-card reveal-right">
+          <div class="card-accent"></div>
+          <div class="about-card-header">
+            <div class="icon-wrapper"><i class="fas fa-bug"></i></div>
+            <h3 data-vi="Software Testing" data-en="Software Testing">Software Testing</h3>
           </div>
-          <div class="info-item">
-            <i class="fas fa-graduation-cap"></i>
-            <div>
-              <h4 data-vi="Học vấn" data-en="Education">Học vấn</h4>
-              <p data-vi="Trường Đại học Công nghệ - ĐHQGHN" data-en="University of Engineering and Technology - VNU">
-                Trường Đại học Công nghệ - ĐHQGHN</p>
-            </div>
-          </div>
+          <p data-vi="Kinh nghiệm thực tập QA tại Lifetex. Thành thạo quy trình kiểm thử phần mềm, phân tích lỗi chi tiết." data-en="QA internship at Lifetex. Proficient in testing processes and bug analysis.">
+            Kinh nghiệm thực tập QA tại Lifetex. Thành thạo quy trình kiểm thử phần mềm, phân tích lỗi chi tiết.
+          </p>
         </div>
       </div>
+      <div class="about-info-strip reveal-up">
+        <div class="info-chip"><i class="fas fa-map-marker-alt"></i><span data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</span></div>
+        <div class="info-chip"><i class="fas fa-graduation-cap"></i><span data-vi="UET - ĐHQGHN" data-en="UET - VNU">UET - ĐHQGHN</span></div>
+        <div class="info-chip"><i class="fas fa-code"></i><span>GIS · AI · Optimization</span></div>
+      </div>
+      <div class="section-closer reveal-up"><span class="section-tag">&lt;/about&gt;</span></div>
     </div>
   </section>
 
   <!-- Skills Section -->
   <section id="skills" class="skills">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
+        <span class="section-tag">&lt;skills&gt;</span>
         <h2 data-vi="Kỹ năng" data-en="Skills">Kỹ năng</h2>
-        <p data-vi="Công nghệ tôi sử dụng" data-en="Technologies I use">Công nghệ tôi sử dụng</p>
+        <p class="section-sub" data-vi="Công nghệ tôi sử dụng" data-en="Technologies I use">Công nghệ tôi sử dụng</p>
       </div>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3 data-vi="<i class='fas fa-code'></i> Ngôn ngữ lập trình"
-            data-en="<i class='fas fa-code'></i> Programming Languages"><i class="fas fa-code"></i> Ngôn ngữ lập trình
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <i class="fab fa-python"></i>
-              <span>Python</span>
-            </div>
-            <div class="skill-item">
-              <i class="fab fa-js"></i>
-              <span>JavaScript (GEE)</span>
-            </div>
-            <div class="skill-item">
-              <i class="fab fa-cuttlefish"></i>
-              <span>C++</span>
-            </div>
-            <div class="skill-item">
-              <i class="fab fa-react"></i>
-              <span>TypeScript</span>
-            </div>
+      <div class="skills-orbit">
+        <div class="skill-card glass-card reveal-up" style="--delay: 0s" data-tilt>
+          <div class="skill-card-glow"></div>
+          <h4><i class="fas fa-code"></i><span data-vi="Ngôn ngữ" data-en="Languages">Ngôn ngữ</span></h4>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="skill-tag"><i class="fab fa-cuttlefish"></i> C++</span>
+            <span class="skill-tag"><i class="fab fa-react"></i> TypeScript</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <h3 data-vi="<i class='fas fa-laptop-code'></i> Web Development"
-            data-en="<i class='fas fa-laptop-code'></i> Web Development"><i class="fas fa-laptop-code"></i> Web Development
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <i class="fab fa-react"></i>
-              <span>React</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-wind"></i>
-              <span>Tailwind CSS</span>
-            </div>
-            <div class="skill-item">
-              <i class="fab fa-node-js"></i>
-              <span>Express.js</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-bolt"></i>
-              <span>Vite</span>
-            </div>
+        <div class="skill-card glass-card reveal-up" style="--delay: 0.1s" data-tilt>
+          <div class="skill-card-glow"></div>
+          <h4><i class="fas fa-laptop-code"></i><span data-vi="Web Dev" data-en="Web Dev">Web Dev</span></h4>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fab fa-react"></i> React</span>
+            <span class="skill-tag"><i class="fas fa-wind"></i> Tailwind</span>
+            <span class="skill-tag"><i class="fab fa-node-js"></i> Express</span>
+            <span class="skill-tag"><i class="fas fa-bolt"></i> Vite</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <h3 data-vi="<i class='fas fa-satellite'></i> Viễn thám & GIS"
-            data-en="<i class='fas fa-satellite'></i> Remote Sensing & GIS"><i class="fas fa-satellite"></i> Viễn thám &
-            GIS</h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <i class="fas fa-globe"></i>
-              <span>Google Earth Engine</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-map"></i>
-              <span>QGIS</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-layer-group"></i>
-              <span>ArcGIS Pro</span>
-            </div>
+        <div class="skill-card glass-card reveal-up" style="--delay: 0.2s" data-tilt>
+          <div class="skill-card-glow"></div>
+          <h4><i class="fas fa-satellite"></i><span data-vi="GIS" data-en="GIS">GIS</span></h4>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fas fa-globe"></i> GEE</span>
+            <span class="skill-tag"><i class="fas fa-map"></i> QGIS</span>
+            <span class="skill-tag"><i class="fas fa-layer-group"></i> ArcGIS</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <h3 data-vi="<i class='fas fa-brain'></i> AI & Machine Learning"
-            data-en="<i class='fas fa-brain'></i> AI & Machine Learning"><i class="fas fa-brain"></i> AI & Machine Learning
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <i class="fas fa-robot"></i>
-              <span>Scikit-learn</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-network-wired"></i>
-              <span>TensorFlow (cơ bản)</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-layer-group"></i>
-              <span>Deep Learning (cơ bản)</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-cogs"></i>
-              <span>Optimization</span>
-            </div>
+        <div class="skill-card glass-card reveal-up" style="--delay: 0.3s" data-tilt>
+          <div class="skill-card-glow"></div>
+          <h4><i class="fas fa-brain"></i><span data-vi="AI & ML" data-en="AI & ML">AI & ML</span></h4>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fas fa-robot"></i> Scikit-learn</span>
+            <span class="skill-tag"><i class="fas fa-network-wired"></i> TensorFlow</span>
+            <span class="skill-tag"><i class="fas fa-cogs"></i> Optimization</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <h3 data-vi="<i class='fas fa-chart-line'></i> Xử lý dữ liệu"
-            data-en="<i class='fas fa-chart-line'></i> Data Processing"><i class="fas fa-chart-line"></i> Xử lý dữ liệu
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <i class="fas fa-book"></i>
-              <span>Jupyter Notebook</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-table"></i>
-              <span>Pandas</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-calculator"></i>
-              <span>NumPy</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-chart-bar"></i>
-              <span>Matplotlib</span>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-chart-line"></i>
-              <span>Seaborn</span>
-            </div>
+        <div class="skill-card glass-card reveal-up" style="--delay: 0.4s" data-tilt>
+          <div class="skill-card-glow"></div>
+          <h4><i class="fas fa-chart-line"></i><span data-vi="Data" data-en="Data">Data</span></h4>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fas fa-book"></i> Jupyter</span>
+            <span class="skill-tag"><i class="fas fa-table"></i> Pandas</span>
+            <span class="skill-tag"><i class="fas fa-calculator"></i> NumPy</span>
+            <span class="skill-tag"><i class="fas fa-chart-bar"></i> Matplotlib</span>
           </div>
         </div>
       </div>
+      <div class="section-closer reveal-up"><span class="section-tag">&lt;/skills&gt;</span></div>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
+        <span class="section-tag">&lt;contact&gt;</span>
         <h2 data-vi="Liên hệ" data-en="Contact">Liên hệ</h2>
-        <p data-vi="Hãy kết nối với tôi" data-en="Let's connect">Hãy kết nối với tôi</p>
+        <p class="section-sub" data-vi="Hãy kết nối với tôi" data-en="Let's connect">Hãy kết nối với tôi</p>
       </div>
-      <div class="contact-content">
-        <div class="contact-info">
-          <h3 data-vi="Thông tin liên hệ" data-en="Contact Information">Thông tin liên hệ</h3>
-          <p data-vi="Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc chỉ đơn giản là trò chuyện về công nghệ."
-            data-en="I am always ready to discuss new projects, collaboration opportunities, or just chat about technology.">
-            Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc
-            chỉ đơn giản là trò chuyện về công nghệ.
+      <div class="contact-grid">
+        <div class="contact-text reveal-left">
+          <h3 data-vi="Hãy cùng tạo nên điều tuyệt vời!" data-en="Let's build something amazing!">
+            Hãy cùng tạo nên điều<br /><span class="gradient-text">tuyệt vời!</span>
+          </h3>
+          <p data-vi="Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc chỉ đơn giản là trò chuyện về công nghệ." data-en="I am always ready to discuss new projects, collaboration opportunities, or just chat about technology.">
+            Tôi luôn sẵn sàng thảo luận về các dự án mới, cơ hội hợp tác, hoặc chỉ đơn giản là trò chuyện về công nghệ.
           </p>
-
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <h4 data-vi="Địa chỉ" data-en="Address">Địa chỉ</h4>
-              <p data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <h4 data-vi="Điện thoại" data-en="Phone">Điện thoại</h4>
-              <p>0388468147</p>
-            </div>
-          </div>
         </div>
-
-        <div class="social-links">
-          <h3 data-vi="Kết nối với tôi" data-en="Connect with me">Kết nối với tôi</h3>
-          <div class="social-grid">
-            <a href="https://github.com/HiImKaii" target="_blank" class="social-link">
-              <i class="fab fa-github"></i>
-              <span>GitHub</span>
-            </a>
-            <a href="mailto:quanvuvan201@gmail.com" class="social-link">
-              <i class="fas fa-envelope"></i>
-              <span>Email</span>
-            </a>
+        <div class="contact-links reveal-right">
+          <a href="https://github.com/HiImKaii" target="_blank" class="contact-card glass-card" data-tilt>
+            <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+            <div class="contact-card-info"><h4>GitHub</h4><span>@HiImKaii</span></div>
+            <i class="fas fa-arrow-up-right-from-square contact-card-arrow"></i>
+          </a>
+          <a href="mailto:quanvuvan201@gmail.com" class="contact-card glass-card" data-tilt>
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-info"><h4>Email</h4><span>quanvuvan201@gmail.com</span></div>
+            <i class="fas fa-arrow-up-right-from-square contact-card-arrow"></i>
+          </a>
+          <a href="tel:0388468147" class="contact-card glass-card" data-tilt>
+            <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-card-info"><h4 data-vi="Điện thoại" data-en="Phone">Điện thoại</h4><span>0388468147</span></div>
+            <i class="fas fa-arrow-up-right-from-square contact-card-arrow"></i>
+          </a>
+          <div class="contact-card glass-card" data-tilt>
+            <div class="contact-card-icon"><i class="fas fa-map-pin"></i></div>
+            <div class="contact-card-info"><h4 data-vi="Địa điểm" data-en="Location">Địa điểm</h4><span data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</span></div>
           </div>
         </div>
       </div>
+      <div class="section-closer reveal-up"><span class="section-tag">&lt;/contact&gt;</span></div>
     </div>
   </section>
 
@@ -379,20 +306,20 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-text">
-          <p data-vi="&copy; 2025 Vũ Xuân Quân. Tất cả các quyền được bảo lưu."
-            data-en="&copy; 2025 Vu Xuan Quan. All rights reserved.">&copy; 2025 Vũ Xuân Quân. Tất cả các quyền được bảo lưu.</p>
+        <span class="footer-logo">&lt;VXQ /&gt;</span>
+        <p data-vi="&copy; 2025 Vũ Xuân Quân. Crafted with ❤️" data-en="&copy; 2025 Vu Xuan Quan. Crafted with ❤️">&copy; 2025 Vũ Xuân Quân. Crafted with ❤️</p>
+        <div class="footer-links">
+          <a href="https://github.com/HiImKaii" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="mailto:quanvuvan201@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
   <button id="back-to-top" class="back-to-top" aria-label="Back to top">
     <i class="fas fa-chevron-up"></i>
   </button>
 
   <script src="script.js"></script>
 </body>
-
 </html>
