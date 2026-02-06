@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Con Mèo kêu sao? - Mã hóa văn bản thành Mèo 🐱</title>
+    <meta name="description" content="Con Mèo kêu sao? - Công cụ mã hóa văn bản tiếng Việt thành chuỗi mèo độc đáo">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="cat-icon">🐱</span>
+                <h1>Con Mèo kêu sao?</h1>
+            </div>
+            <p class="tagline">Mã hóa văn bản tiếng Việt thành chuỗi "mèo" 🔐</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="card input-section">
+                <div class="card-header">
+                    <h2>📝 Văn bản nhập</h2>
+                </div>
+                <div class="card-body">
+                    <textarea 
+                        id="inputText" 
+                        placeholder="Nhập văn bản tiếng Việt hoặc mã mèo..."
+                        rows="4"
+                    ></textarea>
+                    <div class="button-group">
+                        <button id="encodeBtn" class="btn btn-primary" disabled>
+                            <span>🐱</span> Mã hóa
+                        </button>
+                        <button id="decodeBtn" class="btn btn-secondary" disabled>
+                            <span>📝</span> Giải mã
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Arrow -->
+            <div class="arrow-indicator">
+                <span>↓</span>
+            </div>
+
+            <!-- Output Section -->
+            <section class="card output-section">
+                <div class="card-header">
+                    <h2>✨ Kết quả</h2>
+                </div>
+                <div class="card-body">
+                    <div id="outputText" class="output-box">
+                        <span class="placeholder">Kết quả sẽ hiển thị ở đây...</span>
+                    </div>
+                    <div class="button-group">
+                        <button id="copyBtn" class="btn btn-text">
+                            <span>📋</span> Sao chép
+                        </button>
+                        <button id="clearBtn" class="btn btn-text">
+                            <span>🗑️</span> Xóa
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="card info-section">
+                <div class="card-header">
+                    <h2>ℹ️ Hướng dẫn</h2>
+                </div>
+                <div class="card-body">
+                    <div class="info-content">
+                        <p><strong>Cách sử dụng:</strong></p>
+                        <ul>
+                            <li><strong>Mã hóa:</strong> Nhập văn bản tiếng Việt → Nhấn "Mã hóa"</li>
+                            <li><strong>Giải mã:</strong> Dán mã mèo → Nhấn "Giải mã"</li>
+                        </ul>
+                        
+                        <p><strong>Quy tắc dấu thanh (qua cách viết hoa):</strong></p>
+                        <div class="tone-table">
+                            <div class="tone-row">
+                                <span class="tone-example">meo</span>
+                                <span class="tone-name">Thanh ngang (không dấu)</span>
+                            </div>
+                            <div class="tone-row">
+                                <span class="tone-example">Meo</span>
+                                <span class="tone-name">Thanh huyền (à)</span>
+                            </div>
+                            <div class="tone-row">
+                                <span class="tone-example">mEo</span>
+                                <span class="tone-name">Thanh sắc (á)</span>
+                            </div>
+                            <div class="tone-row">
+                                <span class="tone-example">meO</span>
+                                <span class="tone-name">Thanh hỏi (ả)</span>
+                            </div>
+                            <div class="tone-row">
+                                <span class="tone-example">MEo</span>
+                                <span class="tone-name">Thanh ngã (ã)</span>
+                            </div>
+                            <div class="tone-row">
+                                <span class="tone-example">mEO</span>
+                                <span class="tone-name">Thanh nặng (ạ)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with 💜 by <a href="https://github.com/HiImKaii" target="_blank">HiImKaii</a></p>
+            <p class="copyright">© 2026 Con Mèo kêu sao?</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <span id="toastMessage">Đã sao chép!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
