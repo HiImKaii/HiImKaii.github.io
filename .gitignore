@@ -1,9 +1,24 @@
-*.DS_Store
-*.bak
-*.pdf
-*.log
-*.aux
-*.out
-*.tex
-*.gz
-*.png
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+
+# production
+build/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# env
+.env*.local
+
+# typescript
+next-env.d.ts
