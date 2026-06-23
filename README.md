@@ -17,11 +17,11 @@ Portfolio cá nhân — Kỹ sư Công nghệ Hàng không Vũ trụ · GIS · A
 
 ## Tính năng
 
-- 🌓 Dark / Light mode
-- 🌐 Song ngữ Tiếng Việt – English
-- 🎯 Particle background, custom cursor, scroll reveal animations
-- 📊 GitHub stats realtime (contributions, repos, followers)
-- 📱 Responsive trên mọi thiết bị
+- Dark / Light mode
+- Song ngữ Tiếng Việt – English
+- Particle background, custom cursor, scroll reveal animations
+- GitHub stats realtime (contributions, repos, followers)
+- Responsive trên mọi thiết bị
 
 ## Stack
 
@@ -61,18 +61,10 @@ src/
 ## Chạy local
 
 ```bash
-# Clone
 git clone https://github.com/HiImKaii/HiImKaii.github.io.git
 cd HiImKaii.github.io
-
-# Cài dependencies
 npm install
-
-# Dev server
 npm run dev
-
-# Build static
-npm run build
 ```
 
 ## Dự án tiêu biểu
